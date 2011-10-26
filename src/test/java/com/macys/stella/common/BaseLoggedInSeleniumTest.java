@@ -6,7 +6,7 @@ import org.selenium.base.AbstractTest;
 
 import com.macys.stella.login.LoginPageDriver;
 
-public abstract class StellaBaseLoggedInSeleniumTest extends AbstractTest{
+public abstract class BaseLoggedInSeleniumTest extends AbstractTest{
 	
 	//
 	

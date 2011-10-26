@@ -4,9 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.selenium.util.Selenium2Utils;
 
+import com.macys.stella.common.LeftMenuDriver;
 import com.macys.stella.common.StellaBaseDriver;
-import com.macys.stella.product.CreateProductDriver;
-import com.macys.stella.savedSet.CreateSavedSetOfProductsDriver;
+import com.macys.stella.product.ProductsPageDriver;
 
 public final class HomePageDriver extends StellaBaseDriver{
 	
@@ -16,36 +16,24 @@ public final class HomePageDriver extends StellaBaseDriver{
 	
 	// API
 	
-	final void createAction(){
-		this.driver.findElement( By.id( "create-action" ) ).click();
-	}
-	
-	public final HomePageDriver selectProductCreation(){
-		this.driver.findElement( By.xpath( ".//select[@id='create-select']/option[1]" ) ).click();
-		return this;
-	}
-	public final HomePageDriver selectSavedSetOfProductsCreation(){
-		this.driver.findElement( By.xpath( ".//select[@id='create-select']/option[9]" ) ).click();
-		return this;
-	}
-	
-	public final CreateProductDriver createProduct(){
-		this.selectProductCreation().createAction();
-		Selenium2Utils.Wait.waitForElementFoundById( this.driver, "createproductform", 2 );
-		return new CreateProductDriver( this.driver );
-	}
-	public final CreateSavedSetOfProductsDriver createSavedSetOfProducts(){
-		this.selectSavedSetOfProductsCreation().createAction();
-		Selenium2Utils.Wait.waitForElementFoundById( this.driver, "create-savedset", 2 );
-		return new CreateSavedSetOfProductsDriver( this.driver );
+	public final LeftMenuDriver activateLeftMenuDriver(){
+		return new LeftMenuDriver( this.getWebDriver() );
 	}
 	
 	// navigation
 	
 	@Override
 	public final HomePageDriver navigateToCurrent(){
+		// TODO: do not do this if the navigation is already here
 		this.driver.findElement( By.id( "nav-Home" ) ).click();
 		return this;
+	}
+	
+	public final ProductsPageDriver openProductsPage(){
+		this.driver.findElement( By.id( "nav-Product" ) ).click();
+		
+		Selenium2Utils.Wait.tryWaitForElementFoundByXPath( this.driver, ".//*[@id='webproducts-table']/table/tbody[2]/tr[1]/td/div/a", 2 );
+		return new ProductsPageDriver( this.getWebDriver() );
 	}
 	
 }

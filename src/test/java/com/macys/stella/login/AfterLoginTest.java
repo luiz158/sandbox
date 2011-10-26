@@ -4,9 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.macys.stella.HomePageDriver;
-import com.macys.stella.common.StellaBaseLoggedInSeleniumTest;
+import com.macys.stella.common.BaseLoggedInSeleniumTest;
 
-public final class StellaAfterLoginTest extends StellaBaseLoggedInSeleniumTest{
+public final class AfterLoginTest extends BaseLoggedInSeleniumTest{
 	
 	// tests
 	

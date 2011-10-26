@@ -3,7 +3,7 @@ package com.macys.stella.login;
 import org.junit.Test;
 import org.selenium.base.AbstractTest;
 
-public final class StellaLoginTest extends AbstractTest{
+public final class LoginTest extends AbstractTest{
 	
 	// tests
 	
