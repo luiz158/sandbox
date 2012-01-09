@@ -21,7 +21,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 	@Before
 	public void before(){
 		super.before();
-		this.<HomePageDriver> getDriver().navigateToCurrent();
+		this.<HomePageDriver> getDriver().wait( 1 );
 	}
 	
 	// tests
@@ -44,7 +44,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		final String idProduct = this.<HomePageDriver> getDriver().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
 		
 		// When
-		new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().productIds( idProduct ).create();
+		this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().productIds( idProduct ).create();
 		
 		// Then
 		Assert.assertTrue( this.getDriver().isErrorEmbeddedPresent() );
@@ -55,7 +55,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		final String idProduct = this.<HomePageDriver> getDriver().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
 		
 		// When
-		final SavedSetByIdDriver savedSetByIdDriver = new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().productIds( idProduct ).create();
+		final SavedSetByIdDriver savedSetByIdDriver = this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().productIds( idProduct ).create();
 		
 		// Then
 		Assert.assertFalse( savedSetByIdDriver.isHere() );
@@ -83,6 +83,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		// Then
 		Assert.assertFalse( savedSetByIdDriver.isHere() );
 	}
+	// - note: this sometimes fails - replicate and fix
 	@Test
 	public final void givenOnCreateSavedSetFromProductPage_whenInvalidSavedSetIsCreated_thenTheSavedSetIsNotCreated(){
 		// Given
@@ -106,7 +107,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		final String idProduct = this.<HomePageDriver> getDriver().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
 		
 		// When
-		new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct, "\nwrong" ).create();
+		this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct, "\nwrong" ).create();
 		
 		// Then
 		Assert.assertTrue( this.getDriver().isErrorEmbeddedPresent() );
@@ -117,7 +118,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		final String idProduct = this.<HomePageDriver> getDriver().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
 		
 		// When
-		final SavedSetByIdDriver savedSetByIdDriver = new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct, "\nwrong" ).create();
+		final SavedSetByIdDriver savedSetByIdDriver = this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct, "\nwrong" ).create();
 		
 		// Then
 		Assert.assertFalse( savedSetByIdDriver.isHere() );
@@ -129,7 +130,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		final String nameOfSavedSet = randomAlphabetic( 6 );
 		
 		// When
-		final CreateSavedSetOfProductsDriver createSavedSetOfProductsDriver = new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( nameOfSavedSet ).productIds( idProduct, "\nwrong" );
+		final CreateSavedSetOfProductsDriver createSavedSetOfProductsDriver = this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( nameOfSavedSet ).productIds( idProduct, "\nwrong" );
 		createSavedSetOfProductsDriver.create();
 		
 		// Then
@@ -144,7 +145,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		final String idProduct = this.<HomePageDriver> getDriver().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
 		
 		// When
-		new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct, "\n  " ).create();
+		this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct, "\n  " ).create();
 		
 		// Then''
 		Assert.assertFalse( this.getDriver().isErrorEmbeddedPresent() );
@@ -155,7 +156,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		final String idProduct = this.<HomePageDriver> getDriver().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
 		
 		// When
-		final SavedSetByIdDriver savedSetByIdDriver = new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct, "\n  " ).create();
+		final SavedSetByIdDriver savedSetByIdDriver = this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct, "\n  " ).create();
 		
 		// Then
 		Assert.assertTrue( savedSetByIdDriver.isHere() );
@@ -167,7 +168,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		final String nameOfSavedSet = randomAlphabetic( 6 );
 		
 		// When
-		final SavedSetByIdDriver savedSetByIdDriver = new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( nameOfSavedSet ).productIds( idProduct, "\n  " ).create();
+		final SavedSetByIdDriver savedSetByIdDriver = this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( nameOfSavedSet ).productIds( idProduct, "\n  " ).create();
 		
 		// Then
 		Assert.assertTrue( savedSetByIdDriver.openSavedSetsPage().selectFilterByName().filterBy( nameOfSavedSet ).filter( nameOfSavedSet ).countSavedSetsInTable() >= 1 );
@@ -179,10 +180,10 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 	public final void givenOnCreateSavedSetFromProductPage_whenSavedSetWithValidIdsOnTheSameLine_thenNoErrors(){
 		// Given
 		final String idProduct1 = this.<HomePageDriver> getDriver().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
-		final String idProduct2 = new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
+		final String idProduct2 = this.home().navigateToCurrent().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
 		
 		// When
-		new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct1 + ", " + idProduct2 ).create();
+		this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct1 + ", " + idProduct2 ).create();
 		
 		// Then
 		Assert.assertFalse( this.getDriver().anyProblem() );
@@ -191,11 +192,11 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 	public final void givenOnCreateSavedSetFromProductPage_whenSavedSetWithValidIdsOnTheSameLine_thenTheSavedSetIsStillCreated(){
 		// Given
 		final String idProduct1 = this.<HomePageDriver> getDriver().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
-		final String idProduct2 = new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
+		final String idProduct2 = this.home().navigateToCurrent().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
 		final String nameOfSavedSet = randomAlphabetic( 6 );
 		
 		// When
-		final SavedSetByIdDriver savedSetByIdDriver = new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( nameOfSavedSet ).productIds( idProduct1 + ", " + idProduct2 ).create();
+		final SavedSetByIdDriver savedSetByIdDriver = this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( nameOfSavedSet ).productIds( idProduct1 + ", " + idProduct2 ).create();
 		
 		// Then
 		Assert.assertTrue( savedSetByIdDriver.openSavedSetsPage().selectFilterByName().filterBy( nameOfSavedSet ).filter( nameOfSavedSet ).countSavedSetsInTable() >= 1 );
@@ -209,7 +210,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		final String idProduct = this.<HomePageDriver> getDriver().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
 		
 		// When
-		new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct, "\n123" ).create();
+		this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct, "\n123" ).create();
 		
 		// Then
 		Assert.assertTrue( this.getDriver().isErrorEmbeddedPresent() );
@@ -220,7 +221,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		final String idProduct = this.<HomePageDriver> getDriver().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
 		
 		// When
-		final SavedSetByIdDriver savedSetByIdDriver = new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct, "\n123" ).create();
+		final SavedSetByIdDriver savedSetByIdDriver = this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct, "\n123" ).create();
 		
 		// Then
 		Assert.assertFalse( savedSetByIdDriver.isHere() );
@@ -232,7 +233,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		final String nameOfSavedSet = randomAlphabetic( 6 );
 		
 		// When
-		final CreateSavedSetOfProductsDriver createSavedSetOfProductsDriver = new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( nameOfSavedSet ).productIds( idProduct, "\n123" );
+		final CreateSavedSetOfProductsDriver createSavedSetOfProductsDriver = this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( nameOfSavedSet ).productIds( idProduct, "\n123" );
 		createSavedSetOfProductsDriver.create();
 		
 		// Then
@@ -245,7 +246,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		final String nameOfSavedSet = randomAlphabetic( 6 );
 		
 		// When
-		final CreateSavedSetOfProductsDriver createSavedSetOfProductsDriver = new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( nameOfSavedSet ).productIds( idProduct, "\n123" );
+		final CreateSavedSetOfProductsDriver createSavedSetOfProductsDriver = this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( nameOfSavedSet ).productIds( idProduct, "\n123" );
 		createSavedSetOfProductsDriver.create();
 		final List< String > productIds = createSavedSetOfProductsDriver.cancel().selectFilterByName().filterBy( nameOfSavedSet ).filter( nameOfSavedSet ).goInto( 1 ).getProductIds();
 		
@@ -262,7 +263,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		final String nameOfSavedSet = randomAlphabetic( 6 );
 		
 		// When
-		final CreateSavedSetOfProductsDriver createSavedSetOfProductsDriver = new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( nameOfSavedSet ).productIds( idProduct, "\nwrong", "\n   ", "\n123" );
+		final CreateSavedSetOfProductsDriver createSavedSetOfProductsDriver = this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( nameOfSavedSet ).productIds( idProduct, "\nwrong", "\n   ", "\n123" );
 		createSavedSetOfProductsDriver.create();
 		
 		// Then
@@ -277,7 +278,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		final String idProduct = this.<HomePageDriver> getDriver().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
 		
 		// When
-		new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct + " " ).create();
+		this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct + " " ).create();
 		
 		// Then
 		Assert.assertFalse( this.getDriver().anyProblem() );
@@ -289,7 +290,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		final String idProduct = this.<HomePageDriver> getDriver().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
 		
 		// When
-		new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct ).create();
+		this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct ).create();
 		
 		// Then
 		Assert.assertFalse( this.getDriver().anyProblem() );
@@ -300,7 +301,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 		final String idProduct = this.<HomePageDriver> getDriver().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
 		
 		// When
-		final SavedSetByIdDriver savedSetByIdDriver = new HomePageDriver( this.getWebDriver() ).navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct ).create();
+		final SavedSetByIdDriver savedSetByIdDriver = this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct ).create();
 		
 		// Then
 		Assert.assertTrue( savedSetByIdDriver.isHere() );

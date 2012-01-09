@@ -4,11 +4,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.selenium.base.AbstractTest;
 
+import com.macys.stella.HomePageDriver;
 import com.macys.stella.login.LoginPageDriver;
+import com.macys.stella.util.ContextConstants;
 
 public abstract class BaseLoggedInSeleniumTest extends AbstractTest{
-	
-	//
 	
 	protected final void cancelModalWindowsBeforeLoggingOutIfNeeded(){
 		// TODO
@@ -16,14 +16,19 @@ public abstract class BaseLoggedInSeleniumTest extends AbstractTest{
 	
 	// fixtures
 	
+	@Override
 	@Before
 	public void before(){
-		currentTest = this;
-		new LoginPageDriver( this.getWebDriver() ).openLoginPage().name( "SuperBAUser" ).password( "haht" ).login();
+		super.before();
+		new LoginPageDriver( this.getWebDriver() ).openLoginPage().name( ContextConstants.SUPER_USER ).password( ContextConstants.PASSWORD ).login();
 	}
 	@After
 	public void after(){
-		new LoginPageDriver( this.getWebDriver() ).logoutIfLoggedIn();
+		new LoginPageDriver( this.getWebDriver() ).logout();
+	}
+	
+	protected final HomePageDriver home(){
+		return new HomePageDriver( this.getWebDriver() ).wait( 1 );
 	}
 	
 }

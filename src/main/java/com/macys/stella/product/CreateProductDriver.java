@@ -1,5 +1,6 @@
 package com.macys.stella.product;
 
+import static com.macys.stella.product.ProductConstants.departament;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 
@@ -74,7 +75,7 @@ public final class CreateProductDriver extends StellaBaseDriver{
 	// API - shortcuts
 	
 	public final CreateProductDriver fillRandom(){
-		this.division( "1" ).department( "188" ).brandName( "A New York" ).projectId( "140" ).name( randomAlphabetic( 5 ) ).price( randomNumeric( 3 ) );
+		this.division( ProductConstants.division ).department( departament ).brandName( ProductConstants.brandName ).projectId( "140" ).name( randomAlphabetic( 5 ) ).price( randomNumeric( 3 ) );
 		return this;
 	}
 	

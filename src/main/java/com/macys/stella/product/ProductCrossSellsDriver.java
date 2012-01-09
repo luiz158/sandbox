@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.selenium.util.Selenium2Utils;
 
 import com.macys.stella.common.StellaBaseDriver;
+import com.macys.stella.util.Ids;
 
 public final class ProductCrossSellsDriver extends StellaBaseDriver{
 	
@@ -18,7 +19,7 @@ public final class ProductCrossSellsDriver extends StellaBaseDriver{
 	// API
 	
 	public final CrossSellCreationDriver startEditAndAddCrossSell(){
-		this.getWebDriver().findElement( By.id( "edit-button" ) ).click();
+		this.getWebDriver().findElement( By.id( Ids.EDIT_BUTTON ) ).click();
 		Selenium2Utils.Wait.waitForElementDisplayedById( this.getWebDriver(), "add-xsell-action", 1 );
 		
 		this.getWebDriver().findElement( By.id( "add-xsell-action" ) ).click();
@@ -29,10 +30,10 @@ public final class ProductCrossSellsDriver extends StellaBaseDriver{
 	//
 	
 	public final ProductCrossSellsDriver save(){
-		Selenium2Utils.Wait.waitForElementDisplayedById( this.getWebDriver(), "save-button", 1 );
-		this.getWebDriver().findElement( By.id( "save-button" ) ).click();
+		Selenium2Utils.Wait.waitForElementDisplayedById( this.getWebDriver(), Ids.SAVE_BUTTON, 1 );
+		this.getWebDriver().findElement( By.id( Ids.SAVE_BUTTON ) ).click();
 		
-		Selenium2Utils.Wait.waitForElementDisplayedById( this.getWebDriver(), "edit-button", 2 );
+		Selenium2Utils.Wait.waitForElementDisplayedById( this.getWebDriver(), Ids.EDIT_BUTTON, 2 );
 		return this;
 	}
 	

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.selenium.util.Selenium2Utils;
 
 import com.macys.stella.common.StellaBaseDriver;
+import com.macys.stella.util.Ids;
 
 public final class ProductCloningDriver extends StellaBaseDriver{
 	
@@ -18,7 +19,7 @@ public final class ProductCloningDriver extends StellaBaseDriver{
 	 * the logic here will wait for a few elements on the page <br>
 	 */
 	public final ProductByIdDriver save(){
-		this.driver.findElement( By.id( "save-button" ) ).click();
+		this.driver.findElement( By.id( Ids.SAVE_BUTTON ) ).click();
 		
 		Selenium2Utils.Wait.tryWaitForElementDisplayedById( this.getWebDriver(), "itemId", 1 );
 		Selenium2Utils.Wait.tryWaitForElementDisplayedById( this.getWebDriver(), "headerPricing", 1 );

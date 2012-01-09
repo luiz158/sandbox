@@ -3,6 +3,8 @@ package com.macys.stella.login;
 import org.junit.Test;
 import org.selenium.base.AbstractTest;
 
+import com.macys.stella.util.ContextConstants;
+
 public final class LoginTest extends AbstractTest{
 	
 	// tests
@@ -12,7 +14,7 @@ public final class LoginTest extends AbstractTest{
 		// Given
 		
 		// When
-		new LoginPageDriver( this.getWebDriver() ).openLoginPage().name( "SuperBAUser" ).password( "haht" ).login();
+		new LoginPageDriver( this.getWebDriver() ).openLoginPage().name( ContextConstants.SUPER_USER ).password( ContextConstants.PASSWORD ).login();
 		
 		// Then
 	}

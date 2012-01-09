@@ -3,7 +3,6 @@ package com.macys.stella.login;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.macys.stella.HomePageDriver;
 import com.macys.stella.common.BaseLoggedInSeleniumTest;
 
 public final class AfterLoginTest extends BaseLoggedInSeleniumTest{
@@ -17,7 +16,7 @@ public final class AfterLoginTest extends BaseLoggedInSeleniumTest{
 		// When
 		
 		// Then
-		Assert.assertFalse( new HomePageDriver( this.getWebDriver() ).isErrorPopupPresent() );
+		Assert.assertFalse( this.home().isErrorPopupPresent() );
 	}
 	@Test
 	public final void whenJustLoggedIn_thenNoAllerts(){
@@ -26,7 +25,7 @@ public final class AfterLoginTest extends BaseLoggedInSeleniumTest{
 		// When
 		
 		// Then
-		Assert.assertFalse( new HomePageDriver( this.getWebDriver() ).isAlertPresent() );
+		Assert.assertFalse( this.home().isAlertPresent() );
 	}
 	@Test
 	public final void whenJustLoggedIn_thenNoEmbeddedErrors(){
@@ -35,7 +34,7 @@ public final class AfterLoginTest extends BaseLoggedInSeleniumTest{
 		// When
 		
 		// Then
-		Assert.assertFalse( new HomePageDriver( this.getWebDriver() ).isErrorEmbeddedPresent() );
+		Assert.assertFalse( this.home().isErrorEmbeddedPresent() );
 	}
 	
 }

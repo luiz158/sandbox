@@ -1,13 +1,10 @@
 package com.macys.stella.product;
 
-import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
-
 import com.google.common.base.Preconditions;
 
-public final class ProductDriver{
+public final class ProductShortcut{
 	
-	private ProductDriver(){
+	private ProductShortcut(){
 		throw new AssertionError();
 	}
 	
@@ -16,7 +13,7 @@ public final class ProductDriver{
 	public static ProductByIdDriver goIntoRandomProduct( final ProductsPageDriver productsPageDriver ){
 		Preconditions.checkNotNull( productsPageDriver );
 		
-		final ProductByIdDriver productDriver = productsPageDriver.goIntoProductByIndex( 1 );
+		final ProductByIdDriver productDriver = productsPageDriver.goIntoEntityByIndex( 1 );
 		if( productDriver != null ){
 			return productDriver;
 		}
@@ -36,7 +33,7 @@ public final class ProductDriver{
 	
 	public static ProductByIdDriver createAProduct( final ProductsPageDriver productsPageDriver ){
 		final CreateProductDriver createProductDriver = productsPageDriver.activateLeftMenuDriver().createProduct();
-		return createProductDriver.division( "1" ).department( "188" ).brandName( "A New York" ).projectId( "140" ).name( randomAlphabetic( 5 ) ).price( randomNumeric( 3 ) ).create();
+		return createProductDriver.fillRandom().create();
 	}
 	
 }

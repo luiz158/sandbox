@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.selenium.util.Selenium2Utils;
 
 import com.macys.stella.common.StellaBaseDriver;
+import com.macys.stella.util.Ids;
 
 public final class CrossSellCreationDriver extends StellaBaseDriver{
 	
@@ -44,7 +45,7 @@ public final class CrossSellCreationDriver extends StellaBaseDriver{
 		this.getWebDriver().findElement( By.id( "add-selected" ) ).click();
 		
 		Selenium2Utils.Wait.waitForElementFoundByXPath( this.getWebDriver(), ".//*[@id='xsellsitemscontainer-" + positionOfExpectedCrossSells + "']/*", 2 );
-		Selenium2Utils.Wait.waitForElementEnabledById( this.driver, "save-button", 1 );
+		Selenium2Utils.Wait.waitForElementEnabledById( this.driver, Ids.SAVE_BUTTON, 1 );
 		return new ProductCrossSellsDriver( this.getWebDriver() );
 	}
 	

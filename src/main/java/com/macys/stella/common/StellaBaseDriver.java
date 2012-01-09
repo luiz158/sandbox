@@ -30,7 +30,7 @@ public abstract class StellaBaseDriver extends AbstractDriver{
 	public final LoginPageDriver openLoginPage(){
 		this.driver.get( "http://localhost:8080/UI" );
 		
-		Selenium2Utils.Wait.waitForElementFoundById( this.driver, "btnLogin", 2 );
+		Selenium2Utils.Wait.waitForElementFoundById( this.driver, "btnLogin", 3 );
 		return new LoginPageDriver( this.driver );
 	}
 	
@@ -42,6 +42,10 @@ public abstract class StellaBaseDriver extends AbstractDriver{
 		catch( final NoSuchElementException e ){
 			// do nothing, logout not needed
 		}
+	}
+	public final void logout(){
+		final WebElement logoutElement = this.driver.findElement( By.id( "logout-link" ) );
+		logoutElement.click();
 	}
 	
 	protected final void waitForLoadingMask(){

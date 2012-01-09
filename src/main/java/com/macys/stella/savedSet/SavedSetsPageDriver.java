@@ -38,7 +38,7 @@ public final class SavedSetsPageDriver extends StellaBaseDriver{
 		return this;
 	}
 	
-	final SavedSetsPageDriver filter( final String valueToWaitForInFirstElement ){
+	public final SavedSetsPageDriver filter( final String valueToWaitForInFirstElement ){
 		this.driver.findElement( By.id( "filter-go" ) ).click();
 		
 		Selenium2Utils.Wait.tryWaitForElementContainsByXPath( this.driver, "// *[@id=\"saved-set-table\"]/table/tbody[2]/tr[1]/td[2]/div", valueToWaitForInFirstElement, 1 );

@@ -23,7 +23,9 @@ public final class ProductByIdDriver extends StellaBaseDriver{
 	@Override
 	public final ProductByIdDriver wait( final int seconds ){
 		Selenium2Utils.Wait.tryWaitForElementFoundById( this.driver, "globalproduct", seconds );
-		Selenium2Utils.Wait.tryWaitForElementFoundById( this.driver, "main-content-area", 1 );
+		Selenium2Utils.Wait.waitForElementFoundById( this.driver, "main-content-area", 1 );
+		Selenium2Utils.Wait.waitForElementFoundById( this.driver, "productimage", 1 );
+		
 		return this;
 	}
 	
@@ -43,16 +45,35 @@ public final class ProductByIdDriver extends StellaBaseDriver{
 	}
 	
 	public final ProductCrossSellsDriver openCrossSellsTab(){
-		final String topMenuLinkText = "Merchandising";
-		final String submenuLinkText = "Cross Sells";
-		
-		Selenium2Utils.Wait.waitForElementDisplayedByLinkText( this.driver, topMenuLinkText, 2 );
-		this.getWebDriver().findElement( By.linkText( topMenuLinkText ) ).click();
-		
-		Selenium2Utils.Wait.waitForElementDisplayedByLinkText( this.driver, submenuLinkText, 2 );
-		this.getWebDriver().findElement( By.linkText( submenuLinkText ) ).click();
+		this.openProductMenu( "Merchandising" );
+		this.clickOnProductMenu( "Cross Sells" );
 		
 		return new ProductCrossSellsDriver( this.getWebDriver() ).wait( 2 );
+	}
+	
+	public final ProductRegistryDriver openRegistryTab(){
+		this.openProductMenu( "Attributes" );
+		this.clickOnProductMenu( "Registry" );
+		
+		return new ProductRegistryDriver( this.getWebDriver() ).wait( 2 );
+	}
+	
+	public final ProductCopyDriver openCopyTab(){
+		this.openProductMenu( "General" );
+		this.clickOnProductMenu( "Copy" );
+		
+		return new ProductCopyDriver( this.getWebDriver() ).wait( 2 );
+	}
+	
+	// utils
+	
+	private final void openProductMenu( final String menuName ){
+		Selenium2Utils.Wait.waitForElementDisplayedByLinkText( this.driver, menuName, 2 );
+		this.getWebDriver().findElement( By.linkText( menuName ) ).click();
+	}
+	private final void clickOnProductMenu( final String submenuLinkText ){
+		Selenium2Utils.Wait.waitForElementDisplayedByLinkText( this.driver, submenuLinkText, 2 );
+		this.getWebDriver().findElement( By.linkText( submenuLinkText ) ).click();
 	}
 	
 }

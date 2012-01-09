@@ -6,6 +6,7 @@ import org.selenium.util.Selenium2Utils;
 
 import com.google.common.base.Preconditions;
 import com.macys.stella.common.StellaBaseDriver;
+import com.macys.stella.util.Ids;
 
 public final class CreateSavedSetOfProductsDriver extends StellaBaseDriver{
 	
@@ -38,9 +39,9 @@ public final class CreateSavedSetOfProductsDriver extends StellaBaseDriver{
 		return new SavedSetByIdDriver( this.driver ).wait( 1 );
 	}
 	public final SavedSetsPageDriver cancel(){
-		Selenium2Utils.Wait.waitForElementFoundById( this.driver, "cancelButton", 1 );
+		Selenium2Utils.Wait.waitForElementFoundById( this.driver, Ids.BUTTON_CANCEL1, 1 );
 		
-		this.driver.findElement( By.id( "cancelButton" ) ).click();
+		this.driver.findElement( By.id( Ids.BUTTON_CANCEL1 ) ).click();
 		
 		return new SavedSetsPageDriver( this.driver );
 	}
