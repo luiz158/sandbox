@@ -46,7 +46,6 @@ public final class SavedSetByIdDriver extends StellaBaseDriver{
 	public List< String > getProductIds(){
 		final List< WebElement > productIdNodes = this.driver.findElements( By.xpath( "//*[@id=\"product-table\"]/table/tbody[2]/tr/td[3]/div/a" ) );
 		final List< String > ids = Lists.transform( productIdNodes, new Function< WebElement, String >(){
-			@Override
 			public final String apply( final WebElement webEl ){
 				return webEl.getText();
 			}
