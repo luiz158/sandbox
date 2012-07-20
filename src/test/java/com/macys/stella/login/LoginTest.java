@@ -1,5 +1,7 @@
 package com.macys.stella.login;
 
+import static com.macys.stella.util.ContextConstants.PASSWORD;
+import static com.macys.stella.util.ContextConstants.SUPER_USER;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
@@ -8,7 +10,6 @@ import org.selenium.base.AbstractTest;
 
 import com.macys.stella.HomePageDriver;
 import com.macys.stella.common.LogoutDriver;
-import com.macys.stella.util.ContextConstants;
 
 public final class LoginTest extends AbstractTest{
 	
@@ -21,13 +22,13 @@ public final class LoginTest extends AbstractTest{
 	
 	@Test
 	public final void givenNotLoggedIn_whenLoggingIn_thenNoExceptions(){
-		new LoginPageDriver( this.getWebDriver() ).openLoginPage().username( ContextConstants.SUPER_USER ).password( ContextConstants.PASSWORD ).login();
+		new LoginPageDriver( this.getWebDriver() ).openLoginPage().username( SUPER_USER ).password( PASSWORD ).login();
 	}
 	
 	@Test
 	public final void givenNotLoggedIn_whenLoggingIn_thenOnHomepage(){
 		// When
-		final HomePageDriver homePageDriver = new LoginPageDriver( this.getWebDriver() ).openLoginPage().username( ContextConstants.SUPER_USER ).password( ContextConstants.PASSWORD ).login();
+		final HomePageDriver homePageDriver = new LoginPageDriver( this.getWebDriver() ).openLoginPage().username( SUPER_USER ).password( PASSWORD ).login();
 		
 		// Then
 		assertTrue( homePageDriver.isHere() );
@@ -36,7 +37,7 @@ public final class LoginTest extends AbstractTest{
 	@Test
 	public final void givenLoggedIn_whenLoggingOut_thenNoExceptions(){
 		// Given
-		final HomePageDriver homePageDriver = new LoginPageDriver( this.getWebDriver() ).openLoginPage().username( ContextConstants.SUPER_USER ).password( ContextConstants.PASSWORD ).login();
+		final HomePageDriver homePageDriver = new LoginPageDriver( this.getWebDriver() ).openLoginPage().username( SUPER_USER ).password( PASSWORD ).login();
 		
 		// When
 		homePageDriver.logout();
@@ -45,13 +46,23 @@ public final class LoginTest extends AbstractTest{
 	@Test
 	public final void givenLoggedIn_whenLoggingOut_thenOnLoggedOutPage(){
 		// Given
-		final HomePageDriver homePageDriver = new LoginPageDriver( this.getWebDriver() ).openLoginPage().username( ContextConstants.SUPER_USER ).password( ContextConstants.PASSWORD ).login();
+		final HomePageDriver homePageDriver = new LoginPageDriver( this.getWebDriver() ).openLoginPage().username( SUPER_USER ).password( PASSWORD ).login();
 		
 		// When
 		final LoggedOutPageDriver loggedOutPageDriver = homePageDriver.logout();
 		
 		// Then
 		assertTrue( loggedOutPageDriver.isHere() );
+	}
+	
+	@Test
+	public final void givenNotLoggedIn_whenLoggingInWithIncorrectCredentials_thenLoginPage(){
+		// When
+		final LoginPageDriver loginPageDriver = new LoginPageDriver( this.getWebDriver() );
+		loginPageDriver.openLoginPage().username( SUPER_USER ).password( PASSWORD + "a" ).login();
+		
+		// Then
+		assertTrue( loginPageDriver.isHere() );
 	}
 	
 }

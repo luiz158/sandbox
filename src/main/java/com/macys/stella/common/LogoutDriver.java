@@ -20,6 +20,10 @@ public final class LogoutDriver extends StellaBaseDriver{
 		if( Selenium2Utils.isElementPresentByXPath( this.driver, LoggedOutPageDriver.LOGGED_OUT_PAGE_ID ) ){
 			return new LoggedOutPageDriver( this.getWebDriver() );
 		}
+		if( !Selenium2Utils.isElementPresentByXPath( this.driver, StellaBaseDriver.LOGOUT_ID ) ){
+			return null;
+		}
+		
 		return super.logout();
 	}
 	

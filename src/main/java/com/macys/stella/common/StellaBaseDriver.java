@@ -13,7 +13,7 @@ import com.macys.stella.login.LoggedOutPageDriver;
 import com.macys.stella.login.LoginPageDriver;
 
 public abstract class StellaBaseDriver extends AbstractDriver{
-	private static final String LOGOUT_ID = "logout-link";
+	public static final String LOGOUT_ID = "logout-link";
 	private static final String ERROR_POPUP_ID = "alert-dialog-box_c"; // another option for stella: "alert-dialog-box"
 	private static final String ERROR_EMBEDDED_XPATH = "//div[@id='errorMessages']";
 	
