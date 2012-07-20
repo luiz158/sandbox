@@ -14,7 +14,7 @@ public final class LoginTest extends AbstractTest{
 		// Given
 		
 		// When
-		new LoginPageDriver( this.getWebDriver() ).openLoginPage().name( ContextConstants.SUPER_USER ).password( ContextConstants.PASSWORD ).login();
+		new LoginPageDriver( this.getWebDriver() ).openLoginPage().username( ContextConstants.SUPER_USER ).password( ContextConstants.PASSWORD ).login();
 		
 		// Then
 	}

@@ -29,7 +29,7 @@ public final class EditabilityTest extends AbstractTest{
 		// Given
 		
 		// When
-		new LoginPageDriver( this.getWebDriver() ).openLoginPage().name( ContextConstants.SUPER_USER ).password( ContextConstants.PASSWORD ).login().wait( 1 );
+		new LoginPageDriver( this.getWebDriver() ).openLoginPage().username( ContextConstants.SUPER_USER ).password( ContextConstants.PASSWORD ).login().wait( 1 );
 		
 		// Then
 	}
@@ -97,7 +97,7 @@ public final class EditabilityTest extends AbstractTest{
 	//
 	
 	final HomePageDriver login( final String user, final String pass ){
-		return new LoginPageDriver( this.getWebDriver() ).openLoginPage().name( user ).password( pass ).login().wait( 1 );
+		return new LoginPageDriver( this.getWebDriver() ).openLoginPage().username( user ).password( pass ).login().wait( 1 );
 	}
 	
 	final HomePageDriver home(){

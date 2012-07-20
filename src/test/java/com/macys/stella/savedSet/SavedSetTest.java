@@ -180,7 +180,7 @@ public final class SavedSetTest extends BaseLoggedInSeleniumTest{
 	public final void givenOnCreateSavedSetFromProductPage_whenSavedSetWithValidIdsOnTheSameLine_thenNoErrors(){
 		// Given
 		final String idProduct1 = this.<HomePageDriver> getDriver().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
-		final String idProduct2 = this.home().navigateToCurrent().activateLeftMenuDriver().createProduct().fillRandom().create().retrieveId();
+		final String idProduct2 = this.home().navigateToCurrent().activateLeftMenuDriver().createProduct().fillRandom().create().wait( 1 ).retrieveId();
 		
 		// When
 		this.home().navigateToCurrent().activateLeftMenuDriver().createSavedSetOfProducts().name( randomAlphabetic( 6 ) ).productIds( idProduct1 + ", " + idProduct2 ).create();

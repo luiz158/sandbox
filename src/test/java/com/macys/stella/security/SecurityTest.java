@@ -40,7 +40,7 @@ public final class SecurityTest extends AbstractTest{
 	//
 	
 	final HomePageDriver login( final String user, final String pass ){
-		return new LoginPageDriver( this.getWebDriver() ).openLoginPage().name( user ).password( pass ).login();
+		return new LoginPageDriver( this.getWebDriver() ).openLoginPage().username( user ).password( pass ).login();
 	}
 	
 	final HomePageDriver home(){

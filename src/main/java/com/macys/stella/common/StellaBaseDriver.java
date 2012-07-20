@@ -15,7 +15,7 @@ public abstract class StellaBaseDriver extends AbstractDriver{
 	private static final String ERROR_POPUP_ID = "alert-dialog-box_c"; // another option for stella: "alert-dialog-box"
 	private static final String ERROR_EMBEDDED_XPATH = "//div[@id='errorMessages']";
 	
-	private static final String XPATH_OF_WAIT_MASK = "//div[@id=\"wait_c\"]"; // id="wait_c"
+	public static final String LOGIN_LOGIN_BUTTON_ID = "login_loginBtn";
 	
 	public StellaBaseDriver( final WebDriver driverToSet ){
 		super( driverToSet );
@@ -28,9 +28,9 @@ public abstract class StellaBaseDriver extends AbstractDriver{
 	// API
 	
 	public final LoginPageDriver openLoginPage(){
-		this.driver.get( "http://localhost:8080/UI" );
+		this.driver.get( "http://localhost:8080/UI/Common/Html/Login.jsp" );
 		
-		Selenium2Utils.Wait.waitForElementFoundById( this.driver, "btnLogin", 3 );
+		Selenium2Utils.Wait.waitForElementFoundById( this.driver, LOGIN_LOGIN_BUTTON_ID, 3 );
 		return new LoginPageDriver( this.driver );
 	}
 	

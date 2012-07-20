@@ -113,7 +113,7 @@ public final class WorkflowTest extends AbstractTest{
 	//
 	
 	final void login( final String user, final String pass ){
-		new LoginPageDriver( this.getWebDriver() ).openLoginPage().name( user ).password( pass ).login();
+		new LoginPageDriver( this.getWebDriver() ).openLoginPage().username( user ).password( pass ).login();
 	}
 	
 	final HomePageDriver home(){

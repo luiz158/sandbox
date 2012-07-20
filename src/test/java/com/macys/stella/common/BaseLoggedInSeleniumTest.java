@@ -20,7 +20,7 @@ public abstract class BaseLoggedInSeleniumTest extends AbstractTest{
 	@Before
 	public void before(){
 		super.before();
-		new LoginPageDriver( this.getWebDriver() ).openLoginPage().name( ContextConstants.SUPER_USER ).password( ContextConstants.PASSWORD ).login();
+		new LoginPageDriver( this.getWebDriver() ).openLoginPage().username( ContextConstants.SUPER_USER ).password( ContextConstants.PASSWORD ).login();
 	}
 	@After
 	public void after(){

@@ -10,30 +10,33 @@ import com.macys.stella.common.StellaBaseDriver;
 
 public final class LoginPageDriver extends StellaBaseDriver{
 	
+	private static final String LOGIN_USERNAME_ID = "login_username";
+	private static final String LOGIN_PASSWORD_ID = "login_password";
+	
 	public LoginPageDriver( final WebDriver driverToSet ){
 		super( driverToSet );
 	}
 	
 	// API
 	
-	public final LoginPageDriver name( final String nameToSet ){
-		Preconditions.checkNotNull( nameToSet );
+	public final LoginPageDriver username( final String usernameToSet ){
+		Preconditions.checkNotNull( usernameToSet );
 		
-		this.driver.findElement( By.id( "txtLoginId" ) ).sendKeys( nameToSet );
+		this.driver.findElement( By.id( LOGIN_USERNAME_ID ) ).sendKeys( usernameToSet );
 		return this;
 	}
 	
 	public final LoginPageDriver password( final String passwordToSet ){
 		Preconditions.checkNotNull( passwordToSet );
 		
-		this.driver.findElement( By.id( "txtPassword" ) ).sendKeys( passwordToSet );
+		this.driver.findElement( By.id( LOGIN_PASSWORD_ID ) ).sendKeys( passwordToSet );
 		return this;
 	}
 	
 	public final HomePageDriver login(){
-		Selenium2Utils.Wait.waitForElementFoundById( this.driver, "btnLogin", 1 );
+		Selenium2Utils.Wait.waitForElementFoundById( this.driver, StellaBaseDriver.LOGIN_LOGIN_BUTTON_ID, 1 );
 		
-		this.driver.findElement( By.id( "btnLogin" ) ).click();
+		this.driver.findElement( By.id( StellaBaseDriver.LOGIN_LOGIN_BUTTON_ID ) ).click();
 		return new HomePageDriver( this.driver );
 	}
 	
