@@ -10,6 +10,8 @@ import com.macys.stella.product.ProductsPageDriver;
 
 public final class HomePageDriver extends StellaBaseDriver{
 	
+	private static final String ID_ON_HOMEPAGE = "nav-Home";
+	
 	public HomePageDriver( final WebDriver driverToSet ){
 		super( driverToSet );
 	}
@@ -25,7 +27,7 @@ public final class HomePageDriver extends StellaBaseDriver{
 	// TODO: do not do this if the navigation is already here
 	@Override
 	public final HomePageDriver navigateToCurrent(){
-		final String idOnHomepage = "nav-Home";
+		final String idOnHomepage = ID_ON_HOMEPAGE;
 		this.driver.findElement( By.id( idOnHomepage ) ).click();
 		
 		return this.wait( 1 );
@@ -45,10 +47,13 @@ public final class HomePageDriver extends StellaBaseDriver{
 	
 	@Override
 	public final HomePageDriver wait( final int seconds ){
-		final String idOnHomepage = "nav-Home";
-		Selenium2Utils.Wait.waitForElementFoundById( this.getWebDriver(), idOnHomepage, seconds );
-		
+		Selenium2Utils.Wait.waitForElementFoundById( this.getWebDriver(), ID_ON_HOMEPAGE, seconds );
 		return this;
+	}
+	
+	@Override
+	public final boolean isHere(){
+		return Selenium2Utils.isElementPresentById( this.driver, ID_ON_HOMEPAGE );
 	}
 	
 }

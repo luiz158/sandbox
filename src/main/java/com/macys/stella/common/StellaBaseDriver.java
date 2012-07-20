@@ -12,6 +12,7 @@ import org.selenium.util.SpringContext;
 import com.macys.stella.login.LoginPageDriver;
 
 public abstract class StellaBaseDriver extends AbstractDriver{
+	private static final String LOGOUT_ID = "logout-link";
 	private static final String ERROR_POPUP_ID = "alert-dialog-box_c"; // another option for stella: "alert-dialog-box"
 	private static final String ERROR_EMBEDDED_XPATH = "//div[@id='errorMessages']";
 	
@@ -36,15 +37,15 @@ public abstract class StellaBaseDriver extends AbstractDriver{
 	
 	public final void logoutIfLoggedIn(){
 		try{
-			final WebElement logoutElement = this.driver.findElement( By.id( "logout-link" ) );
+			final WebElement logoutElement = this.driver.findElement( By.id( LOGOUT_ID ) );
 			logoutElement.click();
 		}
 		catch( final NoSuchElementException e ){
 			// do nothing, logout not needed
 		}
 	}
-	public final void logout(){
-		final WebElement logoutElement = this.driver.findElement( By.id( "logout-link" ) );
+	public void logout(){
+		final WebElement logoutElement = this.driver.findElement( By.id( LOGOUT_ID ) );
 		logoutElement.click();
 	}
 	
