@@ -9,6 +9,7 @@ import org.selenium.event.DriverChangeEvent;
 import org.selenium.util.Selenium2Utils;
 import org.selenium.util.SpringContext;
 
+import com.macys.stella.login.LoggedOutPageDriver;
 import com.macys.stella.login.LoginPageDriver;
 
 public abstract class StellaBaseDriver extends AbstractDriver{
@@ -44,9 +45,10 @@ public abstract class StellaBaseDriver extends AbstractDriver{
 			// do nothing, logout not needed
 		}
 	}
-	public void logout(){
+	public LoggedOutPageDriver logout(){
 		final WebElement logoutElement = this.driver.findElement( By.id( LOGOUT_ID ) );
 		logoutElement.click();
+		return new LoggedOutPageDriver( this.getWebDriver() );
 	}
 	
 	protected final void waitForLoadingMask(){

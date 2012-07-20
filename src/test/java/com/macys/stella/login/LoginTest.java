@@ -42,4 +42,16 @@ public final class LoginTest extends AbstractTest{
 		homePageDriver.logout();
 	}
 	
+	@Test
+	public final void givenLoggedIn_whenLoggingOut_thenOnLoggedOutPage(){
+		// Given
+		final HomePageDriver homePageDriver = new LoginPageDriver( this.getWebDriver() ).openLoginPage().username( ContextConstants.SUPER_USER ).password( ContextConstants.PASSWORD ).login();
+		
+		// When
+		final LoggedOutPageDriver loggedOutPageDriver = homePageDriver.logout();
+		
+		// Then
+		assertTrue( loggedOutPageDriver.isHere() );
+	}
+	
 }
