@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="launchpad-common">
+    <wb-module deploy-name="cardSample-common">
         <wb-resource deploy-path="/" source-path="/src/main/java"/>
-        <property name="context-root" value="launchpad"/>
-        <property name="java-output-path" value="/launchpad-common/target/classes"/>
+        <property name="context-root" value="cardSample"/>
+        <property name="java-output-path" value="/cardSample-common/target/classes"/>
     </wb-module>
 </project-modules>
