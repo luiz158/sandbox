@@ -49,7 +49,7 @@ public class RestTemplateFactoryBean implements FactoryBean<RestTemplate>, Initi
         };
         restTemplate = new RestTemplate(requestFactory);
 
-        restTemplate.getMessageConverters().add(marshallingHttpMessageConverter());
+        // restTemplate.getMessageConverters().add(marshallingHttpMessageConverter());
     }
 
     //

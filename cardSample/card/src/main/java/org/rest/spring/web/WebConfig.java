@@ -1,16 +1,7 @@
 package org.rest.spring.web;
 
-import java.util.List;
-
-import org.rest.sec.model.BusinessCard;
-import org.rest.sec.model.BusinessToClient;
-import org.rest.sec.model.ClientCard;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
-import org.springframework.oxm.xstream.XStreamMarshaller;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -25,7 +16,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     // beans
 
-    @Bean
+    /*@Bean
     public XStreamMarshaller xstreamMarshaller() {
         final XStreamMarshaller xStreamMarshaller = new XStreamMarshaller();
         xStreamMarshaller.setAutodetectAnnotations(true);
@@ -50,6 +41,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         super.configureMessageConverters(converters);
 
         converters.add(marshallingHttpMessageConverter());
-    }
+    }*/
 
 }
