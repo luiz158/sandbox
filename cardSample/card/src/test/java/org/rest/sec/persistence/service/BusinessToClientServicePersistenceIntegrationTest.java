@@ -1,7 +1,7 @@
 package org.rest.sec.persistence.service;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Ignore;
@@ -12,8 +12,6 @@ import org.rest.sec.model.BusinessToClient;
 import org.rest.sec.test.SecPersistenceServiceIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-
-import com.google.common.collect.Sets;
 
 public class BusinessToClientServicePersistenceIntegrationTest extends SecPersistenceServiceIntegrationTest<BusinessToClient> {
 
@@ -45,7 +43,7 @@ public class BusinessToClientServicePersistenceIntegrationTest extends SecPersis
     public final void givenEntityExistsWithAssociationScenarios_whenDeletingEverything_thenNoException() {
         final BusinessCard existingAssociation = getAssociationService().create(new BusinessCard(randomAlphabetic(6)));
         final BusinessToClient newResource = createNewEntity();
-        newResource.getPrivileges().add(existingAssociation);
+        newResource.setBusinessCard(existingAssociation);
         getAPI().create(newResource);
 
         roleService.deleteAll();
@@ -56,27 +54,27 @@ public class BusinessToClientServicePersistenceIntegrationTest extends SecPersis
     public final void whenCreatingNewResourceWithExistingAssociations_thenNewResourceIsCorrectlyCreated() {
         final BusinessCard existingAssociation = getAssociationService().create(new BusinessCard(randomAlphabetic(6)));
         final BusinessToClient newResource = createNewEntity();
-        newResource.getPrivileges().add(existingAssociation);
+        newResource.setBusinessCard(existingAssociation);
         getAPI().create(newResource);
 
         final BusinessToClient newResource2 = createNewEntity();
-        newResource2.getPrivileges().add(existingAssociation);
+        newResource2.setBusinessCard(existingAssociation);
         getAPI().create(newResource2);
     }
 
     @Test
     public final void whenScenarioOfWorkingWithAssociations_thenTheChangesAreCorrectlyPersisted() {
         final BusinessCard existingAssociation = getAssociationService().create(new BusinessCard(randomAlphabetic(6)));
-        final BusinessToClient resource1 = new BusinessToClient(randomAlphabetic(6), Sets.newHashSet(existingAssociation));
+        final BusinessToClient resource1 = new BusinessToClient(randomAlphabetic(6), existingAssociation);
 
         final BusinessToClient resource1ViewOfServerBefore = getAPI().create(resource1);
-        assertThat(resource1ViewOfServerBefore.getPrivileges(), hasItem(existingAssociation));
+        assertThat(resource1ViewOfServerBefore.getBusinessCard(), equalTo(existingAssociation));
 
-        final BusinessToClient resource2 = new BusinessToClient(randomAlphabetic(6), Sets.newHashSet(existingAssociation));
+        final BusinessToClient resource2 = new BusinessToClient(randomAlphabetic(6), existingAssociation);
         getAPI().create(resource2);
 
         final BusinessToClient resource1ViewOfServerAfter = getAPI().findOne(resource1ViewOfServerBefore.getId());
-        assertThat(resource1ViewOfServerAfter.getPrivileges(), hasItem(existingAssociation));
+        assertThat(resource1ViewOfServerAfter.getBusinessCard(), equalTo(existingAssociation));
     }
 
     // template method
@@ -104,7 +102,7 @@ public class BusinessToClientServicePersistenceIntegrationTest extends SecPersis
     // util
 
     protected final BusinessToClient createNewEntity(final String name) {
-        return new BusinessToClient(name, Sets.<BusinessCard> newHashSet());
+        return new BusinessToClient(name, null);
     }
 
     final IBusinessCardService getAssociationService() {

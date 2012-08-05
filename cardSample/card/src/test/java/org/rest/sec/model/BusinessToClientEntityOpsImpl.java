@@ -3,11 +3,7 @@ package org.rest.sec.model;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
 import org.rest.common.client.IEntityOperations;
-import org.rest.sec.model.BusinessCard;
-import org.rest.sec.model.BusinessToClient;
 import org.springframework.stereotype.Component;
-
-import com.google.common.collect.Sets;
 
 @Component
 public final class BusinessToClientEntityOpsImpl implements IEntityOperations<BusinessToClient> {
@@ -20,7 +16,7 @@ public final class BusinessToClientEntityOpsImpl implements IEntityOperations<Bu
 
     @Override
     public final BusinessToClient createNewEntity() {
-        return new BusinessToClient(randomAlphabetic(8), Sets.<BusinessCard> newHashSet());
+        return new BusinessToClient(randomAlphabetic(8), null);
     }
 
     @Override

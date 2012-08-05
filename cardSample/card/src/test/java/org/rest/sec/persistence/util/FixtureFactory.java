@@ -3,10 +3,8 @@ package org.rest.sec.persistence.util;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
 import org.rest.sec.model.BusinessCard;
-import org.rest.sec.model.ClientCard;
 import org.rest.sec.model.BusinessToClient;
-
-import com.google.common.collect.Sets;
+import org.rest.sec.model.ClientCard;
 
 public class FixtureFactory {
 
@@ -21,7 +19,7 @@ public class FixtureFactory {
     }
 
     public static BusinessToClient createNewRole(final String name) {
-        return new BusinessToClient(name, Sets.<BusinessCard> newHashSet());
+        return new BusinessToClient(name, null);
     }
 
     // business card

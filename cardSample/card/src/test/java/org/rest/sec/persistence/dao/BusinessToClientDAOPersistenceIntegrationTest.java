@@ -4,15 +4,12 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
-import org.rest.sec.model.BusinessCard;
 import org.rest.sec.model.BusinessToClient;
 import org.rest.sec.test.SecPersistenceDAOIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.google.common.collect.Sets;
 
 @TransactionConfiguration(defaultRollback = true)
 @Transactional
@@ -47,7 +44,6 @@ public class BusinessToClientDAOPersistenceIntegrationTest extends SecPersistenc
     @Override
     protected final BusinessToClient createNewEntity() {
         final BusinessToClient entity = new BusinessToClient(randomAlphabetic(8));
-        entity.setPrivileges(Sets.<BusinessCard> newHashSet());
         return entity;
     }
 

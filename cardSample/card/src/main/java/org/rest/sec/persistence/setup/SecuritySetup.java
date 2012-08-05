@@ -1,7 +1,5 @@
 package org.rest.sec.persistence.setup;
 
-import java.util.Set;
-
 import org.rest.common.event.BeforeSetupEvent;
 import org.rest.sec.model.BusinessCard;
 import org.rest.sec.model.BusinessToClient;
@@ -15,8 +13,6 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-
-import com.google.common.collect.Sets;
 
 @Component
 @Profile("production")
@@ -62,11 +58,11 @@ public class SecuritySetup implements ApplicationListener<ContextRefreshedEvent>
     // BusinessCard
 
     private void createPrivileges() {
-        createPrivilegeIfNotExisting("CAN_USER_WRITE");
-        createPrivilegeIfNotExisting("CAN_ROLE_WRITE");
+        createBusinessCardIfNotExisting("CAN_USER_WRITE");
+        createBusinessCardIfNotExisting("CAN_ROLE_WRITE");
     }
 
-    final void createPrivilegeIfNotExisting(final String name) {
+    final void createBusinessCardIfNotExisting(final String name) {
         final BusinessCard entityByName = privilegeService.findByName(name);
         if (entityByName == null) {
             final BusinessCard entity = new BusinessCard(name);
@@ -77,17 +73,17 @@ public class SecuritySetup implements ApplicationListener<ContextRefreshedEvent>
     // BusinessToClient
 
     private void createRoles() {
-        final BusinessCard privilegeUserWrite = privilegeService.findByName("CAN_USER_WRITE");
-        final BusinessCard privilegeRoleWrite = privilegeService.findByName("CAN_ROLE_WRITE");
+        final BusinessCard businessCardUserWrite = privilegeService.findByName("CAN_USER_WRITE");
+        final BusinessCard businessCardRoleWrite = privilegeService.findByName("CAN_ROLE_WRITE");
 
-        createRoleIfNotExisting("ROLE_ADMIN", Sets.<BusinessCard> newHashSet(privilegeUserWrite, privilegeRoleWrite));
+        // createRoleIfNotExisting("ROLE_ADMIN", Sets.<BusinessCard> newHashSet(businessCardUserWrite, businessCardRoleWrite));
     }
 
-    final void createRoleIfNotExisting(final String name, final Set<BusinessCard> privileges) {
+    final void createRoleIfNotExisting(final String name, final BusinessCard businessCard) {
         final BusinessToClient entityByName = roleService.findByName(name);
         if (entityByName == null) {
             final BusinessToClient entity = new BusinessToClient(name);
-            entity.setPrivileges(privileges);
+            entity.setBusinessCard(businessCard);
             roleService.create(entity);
         }
     }

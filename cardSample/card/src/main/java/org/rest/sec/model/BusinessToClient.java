@@ -1,16 +1,12 @@
 package org.rest.sec.model;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -18,7 +14,6 @@ import org.rest.common.persistence.model.INameableEntity;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
-import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
 @Entity
 @XmlRootElement
@@ -34,11 +29,8 @@ public class BusinessToClient implements INameableEntity {
     private String name;
 
     // @formatter:off
-    @ManyToMany( /* cascade = { CascadeType.REMOVE }, */fetch = FetchType.EAGER)
-    @JoinTable(joinColumns = { @JoinColumn(name = "ROLE_ID", referencedColumnName = "ROLE_ID") }, inverseJoinColumns = { @JoinColumn(name = "BC_ID", referencedColumnName = "BC_ID") })
-    @XStreamImplicit
-    private Set<BusinessCard> privileges;
-
+    @OneToOne( /* cascade = { CascadeType.REMOVE }, */fetch = FetchType.EAGER)
+    private BusinessCard businessCard;
     // @formatter:on
 
     public BusinessToClient() {
@@ -50,10 +42,11 @@ public class BusinessToClient implements INameableEntity {
         name = nameToSet;
     }
 
-    public BusinessToClient(final String nameToSet, final Set<BusinessCard> privilegesToSet) {
+    public BusinessToClient(final String nameToSet, final BusinessCard businessCardToSet) {
         super();
+
         name = nameToSet;
-        privileges = privilegesToSet;
+        businessCard = businessCardToSet;
     }
 
     // API
@@ -77,12 +70,12 @@ public class BusinessToClient implements INameableEntity {
         name = nameToSet;
     }
 
-    public Set<BusinessCard> getPrivileges() {
-        return privileges;
+    public BusinessCard getBusinessCard() {
+        return businessCard;
     }
 
-    public void setPrivileges(final Set<BusinessCard> privilegesToSet) {
-        privileges = privilegesToSet;
+    public void setBusinessCard(final BusinessCard businessCardToSet) {
+        businessCard = businessCardToSet;
     }
 
     //
