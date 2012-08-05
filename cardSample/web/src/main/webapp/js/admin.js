@@ -17,11 +17,11 @@ var Admin = {
 				} else {
 					$("#nextPage").parent().removeClass("disabled");
 				}
-				table.fnClearTable();
+				// table.fnClearTable();
 
 				// add new data to the grid
 				$.each(cards, function(index, elem) {
-					table.fnAddData([ elem.email, elem.userType, elem.enabled ? "Yes" : "No", elem.id ]);
+					table.fnAddData([ elem.id, elem.name ]);
 				});
 
 				// change info - a page number
@@ -44,12 +44,11 @@ var Admin = {
 			}
 		};
 
-		var table = $('#datatable').dataTable({
-			aoColumns : [ {
-				sTitle : "Name",
-				bSearchable : false,
-				bSortable : false
-			} ],
+		$('#datatable').dataTable({
+			aoColumns : [
+				{ sTitle : "id", bSearchable : false, bSortable : false },
+				{ sTitle : "name", bSearchable : false, bSortable : false }
+			],
 			bJQueryUI : true,
 			bLengthChange : false,
 			bFilter : false,
@@ -84,7 +83,7 @@ var Admin = {
 	},
 
 	_toBusinessCard : function(elem) {
-		return {id : elem.id, name : name.email};
+		return {id : elem.id, name : elem.name};
 	}
 
 };
