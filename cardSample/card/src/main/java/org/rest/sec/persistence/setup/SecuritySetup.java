@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import com.google.common.collect.Sets;
+
 @Component
 @Profile("production")
 public class SecuritySetup implements ApplicationListener<ContextRefreshedEvent> {
@@ -46,26 +48,11 @@ public class SecuritySetup implements ApplicationListener<ContextRefreshedEvent>
             logger.info("Executing Setup");
             eventPublisher.publishEvent(new BeforeSetupEvent(this));
 
-            createBusinessCards();
             createClientCards();
+            createBusinessCards();
 
             setupDone = true;
             logger.info("Setup Done");
-        }
-    }
-
-    // BusinessCard
-
-    private void createBusinessCards() {
-        createBusinessCardIfNotExisting("BusinessCard1");
-        createBusinessCardIfNotExisting("BusinessCard2");
-    }
-
-    final void createBusinessCardIfNotExisting(final String name) {
-        final BusinessCard entityByName = businessCardService.findByName(name);
-        if (entityByName == null) {
-            final BusinessCard entity = new BusinessCard(name);
-            businessCardService.create(entity);
         }
     }
 
@@ -81,6 +68,33 @@ public class SecuritySetup implements ApplicationListener<ContextRefreshedEvent>
         if (entityByName == null) {
             final ClientCard entity = new ClientCard(name);
             clientCardService.create(entity);
+        }
+    }
+
+    // BusinessCard
+
+    private void createBusinessCards() {
+        createBusinessCardIfNotExisting("BusinessCard1");
+        createBusinessCardIfNotExisting("BusinessCard2");
+
+        final ClientCard cc1 = clientCardService.findByName("ClientCard1");
+        final ClientCard cc2 = clientCardService.findByName("ClientCard2");
+
+        final BusinessCard bc1 = businessCardService.findByName("BusinessCard1");
+        final BusinessCard bc2 = businessCardService.findByName("BusinessCard2");
+
+        bc1.setClientCards(Sets.newHashSet(cc2));
+        bc2.setClientCards(Sets.newHashSet(cc1));
+
+        businessCardService.update(bc1);
+        businessCardService.update(bc2);
+    }
+
+    final void createBusinessCardIfNotExisting(final String name) {
+        final BusinessCard entityByName = businessCardService.findByName(name);
+        if (entityByName == null) {
+            final BusinessCard entity = new BusinessCard(name);
+            businessCardService.create(entity);
         }
     }
 

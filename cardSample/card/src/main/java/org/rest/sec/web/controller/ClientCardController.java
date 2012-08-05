@@ -96,7 +96,7 @@ public class ClientCardController extends AbstractController<ClientCard> impleme
 
     @RequestMapping(params = "name", method = RequestMethod.GET)
     @ResponseBody
-    public ClientCard findOneByName(@RequestParam("name") final String name) {
+    public ClientCard findByName(@RequestParam("name") final String name) {
         ClientCard resource = null;
         try {
             resource = RestPreconditions.checkNotNull(getService().findByName(name));

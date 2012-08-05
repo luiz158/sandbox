@@ -23,7 +23,7 @@ var BusinessCardApi = {
 	 * Find all resources of association
 	 */
 	findAllByAssociation : function(idOfAssociation, successHandler, errorHandler) {
-		var serverURL = businessCardUrl() + "/api/businesscard/" + ididOfAssociation;
+		var serverURL = businessCardUrl() + "/api/businesscard/clientcard/" + ididOfAssociation;
 		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
 	}
 
@@ -54,7 +54,7 @@ var ClientCardApi = {
 	 * Find all resources of association
 	 */
 	findAllByAssociation : function(idOfAssociation, successHandler, errorHandler) {
-		var serverURL = businessCardUrl() + "/api/clientcard/" + ididOfAssociation;
+		var serverURL = businessCardUrl() + "/api/clientcard/businesscard/" + ididOfAssociation;
 		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
 	}
 

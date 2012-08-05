@@ -5,7 +5,6 @@ var Admin = {
 	// page handlers
 
 	loadPage : function() {
-
 		var businesscardtable = $('#businesscardtable').dataTable({
 			aoColumns : [ {
 				sTitle : "Id",
@@ -40,8 +39,6 @@ var Admin = {
 		});
 
 		// II. BUSINESS CARD TABLE
-
-		initializeBusinessCardTable(businesscardtable, clientcardtable);
 
 		var businessCardSuccessHandler = function(data, textStatus, xhr) {
 			if (!data || data.length == 0) {
@@ -82,36 +79,19 @@ var Admin = {
 				$("#prevPageBC").parent().removeClass("disabled");
 			}
 		};
-
-		// pagination
-		$('#prevPageBC').click(function() {
-			if (page > 0) {
-				BusinessCardApi.findAllPaged(--page, pageSize, businessCardSuccessHandler, businessCardErrorHandler);
-			}
-		});
-		$('#nextPageBC').click(function() {
-			BusinessCardApi.findAllPaged(++page, pageSize, businessCardSuccessHandler, businessCardErrorHandler);
-		});
-
+		initializeBusinessCardTable(businesscardtable, clientcardtable);
+		
 		// load first page
 		BusinessCardApi.findAllPaged(page, pageSize, businessCardSuccessHandler, businessCardErrorHandler);
 
+		
 		// II. CLIENT CARD TABLE
-
-		initializeClientCardTable(clientcardtable, businesscardtable);
 
 		var clientCardSuccessHandler = function(data, textStatus, xhr) {
 			if (!data || data.length == 0) {
 				// if there are no data, then don't change table and page number
-				page--;
-				$("#nextPageCC").parent().addClass("disabled");
 			} else {
 				var cards = Admin._toCards(data);
-				if (cards.length < pageSize) {
-					$("#nextPageCC").parent().addClass("disabled");
-				} else {
-					$("#nextPageCC").parent().removeClass("disabled");
-				}
 
 				$('#clientcardtable').dataTable().fnClearTable();
 
@@ -123,31 +103,12 @@ var Admin = {
 				// change info - a page number
 				$("#currentPage").text(page + 1);
 			}
-
-			if (page == 0) {
-				$("#prevPageCC").parent().addClass("disabled");
-			} else {
-				$("#prevPageCC").parent().removeClass("disabled");
-			}
 		};
 		var clientCardErrorHandler = function(xhr, textStatus) {
 			showErrorNotification(loadErrMsg);
-			page--;
-			if (page == 0) {
-				$("#prevPageCC").parent().addClass("disabled");
-			} else {
-				$("#prevPageCC").parent().removeClass("disabled");
-			}
 		};
 
-		$('#prevPageCC').click(function() {
-			if (page > 0) {
-				ClientCardApi.findAllPaged(--page, pageSize, clientCardSuccessHandler, clientCardErrorHandler);
-			}
-		});
-		$('#nextPageCC').click(function() {
-			ClientCardApi.findAllPaged(++page, pageSize, clientCardSuccessHandler, clientCardErrorHandler);
-		});
+		initializeClientCardTable(clientcardtable, businesscardtable);
 
 		// load first page
 		ClientCardApi.findAllPaged(page, pageSize, clientCardSuccessHandler, clientCardErrorHandler);
@@ -186,10 +147,10 @@ function initializeBusinessCardTable(bTable, cTable) {
 
 	/* Add a click handler for the delete row */
 	$('#businesscardtable tbody').click(function() {
+		$('#clientcardtable').dataTable().fnClearTable();
+		
 		var anSelected = rowClicked(bTable);
-		if (anSelected.length !== 0) {
-			bTable.fnDeleteRow(anSelected[0]);
-		}
+		anSelected[0];
 	});
 }
 

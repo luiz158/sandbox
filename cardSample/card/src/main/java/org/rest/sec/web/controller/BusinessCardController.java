@@ -80,6 +80,12 @@ public class BusinessCardController extends AbstractController<BusinessCard> imp
         return findAllInternal(request);
     }
 
+    @RequestMapping(value = "/clientcard/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<BusinessCard> findAllByAssociation(@PathVariable("id") final Long idOfAssociation) {
+        return service.findAllByAssociation(idOfAssociation);
+    }
+
     // find - one
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -90,7 +96,7 @@ public class BusinessCardController extends AbstractController<BusinessCard> imp
 
     @RequestMapping(params = "name", method = RequestMethod.GET)
     @ResponseBody
-    public BusinessCard findOneByName(@RequestParam("name") final String name) {
+    public BusinessCard findByName(@RequestParam("name") final String name) {
         BusinessCard resource = null;
         try {
             resource = RestPreconditions.checkNotNull(getService().findByName(name));
