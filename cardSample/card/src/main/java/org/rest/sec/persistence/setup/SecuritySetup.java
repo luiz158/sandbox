@@ -3,8 +3,10 @@ package org.rest.sec.persistence.setup;
 import org.rest.common.event.BeforeSetupEvent;
 import org.rest.sec.model.BusinessCard;
 import org.rest.sec.model.BusinessToClient;
+import org.rest.sec.model.ClientCard;
 import org.rest.sec.persistence.service.IBusinessCardService;
 import org.rest.sec.persistence.service.IBusinessToClientService;
+import org.rest.sec.persistence.service.IClientCardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +24,11 @@ public class SecuritySetup implements ApplicationListener<ContextRefreshedEvent>
     private boolean setupDone;
 
     @Autowired
-    private IBusinessToClientService roleService;
-
+    private IBusinessCardService businessCardService;
     @Autowired
-    private IBusinessCardService privilegeService;
+    private IClientCardService clientCardService;
+    @Autowired
+    private IBusinessToClientService businessToClientService;
 
     @Autowired
     private ApplicationContext eventPublisher;
@@ -47,8 +50,9 @@ public class SecuritySetup implements ApplicationListener<ContextRefreshedEvent>
             logger.info("Executing Setup");
             eventPublisher.publishEvent(new BeforeSetupEvent(this));
 
-            createPrivileges();
-            createRoles();
+            createBusinessCards();
+            createClientCards();
+            createBusinessToClientAssociations();
 
             setupDone = true;
             logger.info("Setup Done");
@@ -57,34 +61,53 @@ public class SecuritySetup implements ApplicationListener<ContextRefreshedEvent>
 
     // BusinessCard
 
-    private void createPrivileges() {
-        createBusinessCardIfNotExisting("CAN_USER_WRITE");
-        createBusinessCardIfNotExisting("CAN_ROLE_WRITE");
+    private void createBusinessCards() {
+        createBusinessCardIfNotExisting("BusinessCard1");
+        createBusinessCardIfNotExisting("BusinessCard2");
     }
 
     final void createBusinessCardIfNotExisting(final String name) {
-        final BusinessCard entityByName = privilegeService.findByName(name);
+        final BusinessCard entityByName = businessCardService.findByName(name);
         if (entityByName == null) {
             final BusinessCard entity = new BusinessCard(name);
-            privilegeService.create(entity);
+            businessCardService.create(entity);
+        }
+    }
+
+    // ClientCard
+
+    private void createClientCards() {
+        createClientCardsIfNotExisting("ClientCard1");
+        createClientCardsIfNotExisting("ClientCard2");
+    }
+
+    final void createClientCardsIfNotExisting(final String name) {
+        final ClientCard entityByName = clientCardService.findByName(name);
+        if (entityByName == null) {
+            final ClientCard entity = new ClientCard(name);
+            clientCardService.create(entity);
         }
     }
 
     // BusinessToClient
 
-    private void createRoles() {
-        final BusinessCard businessCardUserWrite = privilegeService.findByName("CAN_USER_WRITE");
-        final BusinessCard businessCardRoleWrite = privilegeService.findByName("CAN_ROLE_WRITE");
+    private void createBusinessToClientAssociations() {
+        final BusinessCard businessCard1 = businessCardService.findByName("BusinessCard1");
+        final BusinessCard businessCard2 = businessCardService.findByName("BusinessCard2");
+        final ClientCard clientCard1 = clientCardService.findByName("ClientCard1");
+        final ClientCard clientCard2 = clientCardService.findByName("ClientCard2");
 
-        // createRoleIfNotExisting("ROLE_ADMIN", Sets.<BusinessCard> newHashSet(businessCardUserWrite, businessCardRoleWrite));
+        createBusinessToClientAssociationIfNotExisting("bc11", businessCard1, clientCard1);
+        createBusinessToClientAssociationIfNotExisting("bc21", businessCard2, clientCard1);
+        createBusinessToClientAssociationIfNotExisting("bc22", businessCard2, clientCard2);
     }
 
-    final void createRoleIfNotExisting(final String name, final BusinessCard businessCard) {
-        final BusinessToClient entityByName = roleService.findByName(name);
+    final void createBusinessToClientAssociationIfNotExisting(final String name, final BusinessCard businessCard, final ClientCard clientCard) {
+        final BusinessToClient entityByName = businessToClientService.findByName(name);
         if (entityByName == null) {
             final BusinessToClient entity = new BusinessToClient(name);
             entity.setBusinessCard(businessCard);
-            roleService.create(entity);
+            businessToClientService.create(entity);
         }
     }
 

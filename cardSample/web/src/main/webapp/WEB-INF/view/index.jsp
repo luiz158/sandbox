@@ -30,7 +30,7 @@
       return '${properties.securl}';
     }
     function businessCardUrl() {
-      return '${properties.businessCardUrl}';
+      return '/cardSample-rest';
     }
     $(document).ready(function () {
       Admin.loadPage();
