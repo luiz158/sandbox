@@ -88,6 +88,8 @@
 	<modules>
 		<module>common</module>
 		<module>test</module>
+		
+		<module>card</module>
 
 		<module>web</module>
 	</modules>
