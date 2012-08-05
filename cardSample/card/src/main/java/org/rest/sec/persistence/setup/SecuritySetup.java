@@ -5,7 +5,7 @@ import java.util.Set;
 import org.rest.common.event.BeforeSetupEvent;
 import org.rest.sec.model.BusinessCard;
 import org.rest.sec.model.Role;
-import org.rest.sec.persistence.service.IPrivilegeService;
+import org.rest.sec.persistence.service.IBusinessCardService;
 import org.rest.sec.persistence.service.IRoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +29,7 @@ public class SecuritySetup implements ApplicationListener<ContextRefreshedEvent>
     private IRoleService roleService;
 
     @Autowired
-    private IPrivilegeService privilegeService;
+    private IBusinessCardService privilegeService;
 
     @Autowired
     private ApplicationContext eventPublisher;

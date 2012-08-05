@@ -18,7 +18,7 @@ import com.google.common.collect.Sets;
 public class RoleServicePersistenceIntegrationTest extends SecPersistenceServiceIntegrationTest<Role> {
 
     @Autowired
-    private IPrivilegeService privilegeService;
+    private IBusinessCardService privilegeService;
     @Autowired
     private IRoleService roleService;
 
@@ -107,7 +107,7 @@ public class RoleServicePersistenceIntegrationTest extends SecPersistenceService
         return new Role(name, Sets.<BusinessCard> newHashSet());
     }
 
-    final IPrivilegeService getAssociationService() {
+    final IBusinessCardService getAssociationService() {
         return privilegeService;
     }
 

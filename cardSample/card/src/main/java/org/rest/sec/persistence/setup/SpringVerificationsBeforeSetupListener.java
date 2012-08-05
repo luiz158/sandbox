@@ -1,7 +1,7 @@
 package org.rest.sec.persistence.setup;
 
 import org.rest.common.event.BeforeSetupEvent;
-import org.rest.sec.web.controller.PrivilegeController;
+import org.rest.sec.web.controller.BusinessCardController;
 import org.rest.sec.web.controller.RoleController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -27,7 +27,7 @@ public final class SpringVerificationsBeforeSetupListener implements Application
 
     @Override
     public final void onApplicationEvent(final BeforeSetupEvent event) {
-        Preconditions.checkNotNull(context.getBean(PrivilegeController.class));
+        Preconditions.checkNotNull(context.getBean(BusinessCardController.class));
         Preconditions.checkNotNull(context.getBean(RoleController.class));
     }
 

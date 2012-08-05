@@ -8,9 +8,9 @@ import javax.persistence.criteria.Root;
 import org.rest.sec.model.BusinessCard;
 import org.springframework.data.jpa.domain.Specification;
 
-public final class PrivilegeSpecifications {
+public final class BusinessCardSpecifications {
 
-    private PrivilegeSpecifications() {
+    private BusinessCardSpecifications() {
         throw new AssertionError();
     }
 

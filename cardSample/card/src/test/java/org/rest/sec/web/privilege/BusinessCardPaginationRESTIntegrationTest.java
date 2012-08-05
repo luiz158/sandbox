@@ -1,14 +1,14 @@
 package org.rest.sec.web.privilege;
 
-import org.rest.sec.client.template.PrivilegeRESTTemplateImpl;
+import org.rest.sec.client.template.BusinessCardRESTTemplateImpl;
 import org.rest.sec.model.BusinessCard;
 import org.rest.sec.test.SecPaginationRESTIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class PrivilegePaginationRESTIntegrationTest extends SecPaginationRESTIntegrationTest<BusinessCard> {
+public class BusinessCardPaginationRESTIntegrationTest extends SecPaginationRESTIntegrationTest<BusinessCard> {
 
     @Autowired
-    private PrivilegeRESTTemplateImpl template;
+    private BusinessCardRESTTemplateImpl template;
 
     // tests
 
@@ -25,7 +25,7 @@ public class PrivilegePaginationRESTIntegrationTest extends SecPaginationRESTInt
     }
 
     @Override
-    protected final PrivilegeRESTTemplateImpl getAPI() {
+    protected final BusinessCardRESTTemplateImpl getAPI() {
         return template;
     }
 

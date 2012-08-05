@@ -7,9 +7,9 @@ import org.rest.sec.model.BusinessCard;
 import org.springframework.stereotype.Component;
 
 @Component
-public final class PrivilegeEntityOpsImpl implements IEntityOperations<BusinessCard> {
+public final class BusinessCardEntityOpsImpl implements IEntityOperations<BusinessCard> {
 
-    public PrivilegeEntityOpsImpl() {
+    public BusinessCardEntityOpsImpl() {
         super();
     }
 

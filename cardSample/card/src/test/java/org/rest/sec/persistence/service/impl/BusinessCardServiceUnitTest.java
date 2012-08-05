@@ -11,26 +11,26 @@ import org.junit.Test;
 import org.rest.common.persistence.service.AbstractServiceUnitTest;
 import org.rest.common.util.IDUtils;
 import org.rest.sec.model.BusinessCard;
-import org.rest.sec.persistence.dao.IPrivilegeJpaDAO;
+import org.rest.sec.persistence.dao.IBusinessCardJpaDAO;
 import org.rest.sec.persistence.util.FixtureFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.google.common.collect.Lists;
 
-public class PrivilegeServiceUnitTest extends AbstractServiceUnitTest<BusinessCard> {
+public class BusinessCardServiceUnitTest extends AbstractServiceUnitTest<BusinessCard> {
 
-    private PrivilegeServiceImpl instance;
+    private BusinessCardServiceImpl instance;
 
-    private IPrivilegeJpaDAO daoMock;
+    private IBusinessCardJpaDAO daoMock;
 
     // fixtures
 
     @Override
     @Before
     public final void before() {
-        instance = new PrivilegeServiceImpl();
+        instance = new BusinessCardServiceImpl();
 
-        daoMock = mock(IPrivilegeJpaDAO.class);
+        daoMock = mock(IBusinessCardJpaDAO.class);
         when(daoMock.save(any(BusinessCard.class))).thenReturn(new BusinessCard());
         when(daoMock.findAll()).thenReturn(Lists.<BusinessCard> newArrayList());
         instance.dao = daoMock;
@@ -71,7 +71,7 @@ public class PrivilegeServiceUnitTest extends AbstractServiceUnitTest<BusinessCa
     // template method
 
     @Override
-    protected final PrivilegeServiceImpl getAPI() {
+    protected final BusinessCardServiceImpl getAPI() {
         return instance;
     }
 
@@ -82,7 +82,7 @@ public class PrivilegeServiceUnitTest extends AbstractServiceUnitTest<BusinessCa
 
     @Override
     protected BusinessCard createNewEntity() {
-        final BusinessCard newPrivilege = FixtureFactory.createNewPrivilege();
+        final BusinessCard newPrivilege = FixtureFactory.createNewBusinessCard();
         newPrivilege.setId(IDUtils.randomPositiveLong());
         return newPrivilege;
     }

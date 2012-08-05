@@ -19,7 +19,7 @@ import com.google.common.collect.Sets;
 public class RoleDAOPersistenceIntegrationTest extends SecPersistenceDAOIntegrationTest<Role> {
 
     @Autowired
-    IPrivilegeJpaDAO privilegeDao;
+    IBusinessCardJpaDAO privilegeDao;
     @Autowired
     private IRoleJpaDAO roleDao;
 

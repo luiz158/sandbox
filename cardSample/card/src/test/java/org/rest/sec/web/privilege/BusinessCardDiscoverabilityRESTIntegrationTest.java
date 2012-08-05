@@ -2,19 +2,19 @@ package org.rest.sec.web.privilege;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
-import org.rest.sec.client.template.PrivilegeRESTTemplateImpl;
+import org.rest.sec.client.template.BusinessCardRESTTemplateImpl;
 import org.rest.sec.model.BusinessCard;
 import org.rest.sec.test.SecDiscoverabilityRESTIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jayway.restassured.specification.RequestSpecification;
 
-public class PrivilegeDiscoverabilityRESTIntegrationTest extends SecDiscoverabilityRESTIntegrationTest<BusinessCard> {
+public class BusinessCardDiscoverabilityRESTIntegrationTest extends SecDiscoverabilityRESTIntegrationTest<BusinessCard> {
 
     @Autowired
-    private PrivilegeRESTTemplateImpl restTemplate;
+    private BusinessCardRESTTemplateImpl restTemplate;
 
-    public PrivilegeDiscoverabilityRESTIntegrationTest() {
+    public BusinessCardDiscoverabilityRESTIntegrationTest() {
         super(BusinessCard.class);
     }
 
@@ -43,7 +43,7 @@ public class PrivilegeDiscoverabilityRESTIntegrationTest extends SecDiscoverabil
     }
 
     @Override
-    protected final PrivilegeRESTTemplateImpl getAPI() {
+    protected final BusinessCardRESTTemplateImpl getAPI() {
         return restTemplate;
     }
 

@@ -13,10 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @TransactionConfiguration(defaultRollback = true)
 @Transactional
-public class PrivilegeDAOPersistenceIntegrationTest extends SecPersistenceDAOIntegrationTest<BusinessCard> {
+public class BusinessCardDAOPersistenceIntegrationTest extends SecPersistenceDAOIntegrationTest<BusinessCard> {
 
     @Autowired
-    private IPrivilegeJpaDAO privilegeDao;
+    private IBusinessCardJpaDAO privilegeDao;
     @Autowired
     IRoleJpaDAO associationDao;
 
@@ -65,7 +65,7 @@ public class PrivilegeDAOPersistenceIntegrationTest extends SecPersistenceDAOInt
 
     //
 
-    protected final IPrivilegeJpaDAO getDAOCasted() {
+    protected final IBusinessCardJpaDAO getDAOCasted() {
         return privilegeDao;
     }
 

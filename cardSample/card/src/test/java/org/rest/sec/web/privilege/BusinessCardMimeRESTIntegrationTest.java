@@ -1,16 +1,16 @@
 package org.rest.sec.web.privilege;
 
-import org.rest.sec.client.template.PrivilegeRESTTemplateImpl;
+import org.rest.sec.client.template.BusinessCardRESTTemplateImpl;
 import org.rest.sec.model.BusinessCard;
 import org.rest.sec.test.SecMimeRESTIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class PrivilegeMimeRESTIntegrationTest extends SecMimeRESTIntegrationTest<BusinessCard> {
+public class BusinessCardMimeRESTIntegrationTest extends SecMimeRESTIntegrationTest<BusinessCard> {
 
     @Autowired
-    private PrivilegeRESTTemplateImpl restTemplate;
+    private BusinessCardRESTTemplateImpl restTemplate;
 
-    public PrivilegeMimeRESTIntegrationTest() {
+    public BusinessCardMimeRESTIntegrationTest() {
         super(BusinessCard.class);
     }
 
@@ -19,7 +19,7 @@ public class PrivilegeMimeRESTIntegrationTest extends SecMimeRESTIntegrationTest
     // template method
 
     @Override
-    protected final PrivilegeRESTTemplateImpl getAPI() {
+    protected final BusinessCardRESTTemplateImpl getAPI() {
         return restTemplate;
     }
 

@@ -23,13 +23,13 @@ public class FixtureFactory {
         return new Role(name, Sets.<BusinessCard> newHashSet());
     }
 
-    // privilege
+    // business card
 
-    public static BusinessCard createNewPrivilege() {
-        return createNewPrivilege(randomAlphabetic(8));
+    public static BusinessCard createNewBusinessCard() {
+        return createNewBusinessCard(randomAlphabetic(8));
     }
 
-    public static BusinessCard createNewPrivilege(final String name) {
+    public static BusinessCard createNewBusinessCard(final String name) {
         return new BusinessCard(name);
     }
 

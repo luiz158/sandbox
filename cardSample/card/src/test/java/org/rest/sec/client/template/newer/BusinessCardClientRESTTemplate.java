@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Profile("client")
-public class PrivilegeClientRESTTemplate extends AbstractClientRESTTemplate<BusinessCard> {
+public class BusinessCardClientRESTTemplate extends AbstractClientRESTTemplate<BusinessCard> {
 
     @Autowired
     private SecBusinessPaths paths;
 
-    public PrivilegeClientRESTTemplate() {
+    public BusinessCardClientRESTTemplate() {
         super(BusinessCard.class);
     }
 

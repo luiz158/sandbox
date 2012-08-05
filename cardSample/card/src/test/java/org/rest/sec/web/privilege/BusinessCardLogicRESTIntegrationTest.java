@@ -1,19 +1,19 @@
 package org.rest.sec.web.privilege;
 
 import org.rest.common.web.WebConstants;
-import org.rest.sec.client.template.PrivilegeRESTTemplateImpl;
+import org.rest.sec.client.template.BusinessCardRESTTemplateImpl;
 import org.rest.sec.model.BusinessCard;
 import org.rest.sec.test.SecLogicRESTIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jayway.restassured.specification.RequestSpecification;
 
-public class PrivilegeLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<BusinessCard> {
+public class BusinessCardLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<BusinessCard> {
 
     @Autowired
-    private PrivilegeRESTTemplateImpl restTemplate;
+    private BusinessCardRESTTemplateImpl restTemplate;
 
-    public PrivilegeLogicRESTIntegrationTest() {
+    public BusinessCardLogicRESTIntegrationTest() {
         super(BusinessCard.class);
     }
 
@@ -22,7 +22,7 @@ public class PrivilegeLogicRESTIntegrationTest extends SecLogicRESTIntegrationTe
     // template
 
     @Override
-    protected final PrivilegeRESTTemplateImpl getAPI() {
+    protected final BusinessCardRESTTemplateImpl getAPI() {
         return restTemplate;
     }
 

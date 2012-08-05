@@ -9,10 +9,10 @@ import org.rest.sec.test.SecPersistenceServiceIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
-public class PrivilegeServicePersistenceIntegrationTest extends SecPersistenceServiceIntegrationTest<BusinessCard> {
+public class BusinessCardServicePersistenceIntegrationTest extends SecPersistenceServiceIntegrationTest<BusinessCard> {
 
     @Autowired
-    private IPrivilegeService privilegeService;
+    private IBusinessCardService service;
     @Autowired
     IRoleService roleService;
 
@@ -20,22 +20,22 @@ public class PrivilegeServicePersistenceIntegrationTest extends SecPersistenceSe
 
     @Test
     public void whenSaveIsPerformed_thenNoException() {
-        privilegeService.create(createNewEntity());
+        service.create(createNewEntity());
     }
 
     @Test(expected = DataAccessException.class)
     public void whenAUniqueConstraintIsBroken_thenSpringSpecificExceptionIsThrown() {
         final String name = randomAlphabetic(8);
 
-        privilegeService.create(createNewEntity(name));
-        privilegeService.create(createNewEntity(name));
+        service.create(createNewEntity(name));
+        service.create(createNewEntity(name));
     }
 
     // template method
 
     @Override
     protected final IService<BusinessCard> getAPI() {
-        return privilegeService;
+        return service;
     }
 
     @Override

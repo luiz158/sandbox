@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.rest.common.web.WebConstants;
-import org.rest.sec.client.template.PrivilegeRESTTemplateImpl;
+import org.rest.sec.client.template.BusinessCardRESTTemplateImpl;
 import org.rest.sec.client.template.RoleRESTTemplateImpl;
 import org.rest.sec.model.BusinessCard;
 import org.rest.sec.model.Role;
@@ -26,7 +26,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
     @Autowired
     private RoleRESTTemplateImpl restTemplate;
     @Autowired
-    private PrivilegeRESTTemplateImpl associationRestTemplate;
+    private BusinessCardRESTTemplateImpl associationRestTemplate;
 
     public RoleLogicRESTIntegrationTest() {
         super(Role.class);
@@ -222,7 +222,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
 
     // util
 
-    final PrivilegeRESTTemplateImpl getAssociationAPI() {
+    final BusinessCardRESTTemplateImpl getAssociationAPI() {
         return associationRestTemplate;
     }
 

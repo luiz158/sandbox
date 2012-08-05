@@ -4,8 +4,8 @@ import org.apache.commons.lang3.tuple.Triple;
 import org.rest.common.persistence.service.AbstractService;
 import org.rest.common.search.ClientOperation;
 import org.rest.sec.model.BusinessCard;
-import org.rest.sec.persistence.dao.IPrivilegeJpaDAO;
-import org.rest.sec.persistence.service.IPrivilegeService;
+import org.rest.sec.persistence.dao.IBusinessCardJpaDAO;
+import org.rest.sec.persistence.service.IBusinessCardService;
 import org.rest.sec.util.SearchUtilSec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -15,12 +15,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class PrivilegeServiceImpl extends AbstractService<BusinessCard> implements IPrivilegeService {
+public class BusinessCardServiceImpl extends AbstractService<BusinessCard> implements IBusinessCardService {
 
     @Autowired
-    IPrivilegeJpaDAO dao;
+    IBusinessCardJpaDAO dao;
 
-    public PrivilegeServiceImpl() {
+    public BusinessCardServiceImpl() {
         super(BusinessCard.class);
     }
 
@@ -36,7 +36,7 @@ public class PrivilegeServiceImpl extends AbstractService<BusinessCard> implemen
     // Spring
 
     @Override
-    protected final IPrivilegeJpaDAO getDao() {
+    protected final IBusinessCardJpaDAO getDao() {
         return dao;
     }
 

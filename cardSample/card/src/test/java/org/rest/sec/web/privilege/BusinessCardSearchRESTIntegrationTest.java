@@ -3,7 +3,7 @@ package org.rest.sec.web.privilege;
 import org.junit.runner.RunWith;
 import org.rest.common.client.IEntityOperations;
 import org.rest.common.web.base.AbstractSearchRESTIntegrationTest;
-import org.rest.sec.client.template.PrivilegeRESTTemplateImpl;
+import org.rest.sec.client.template.BusinessCardRESTTemplateImpl;
 import org.rest.sec.model.BusinessCard;
 import org.rest.spring.client.ClientTestConfig;
 import org.rest.spring.context.ContextTestConfig;
@@ -14,12 +14,12 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ClientTestConfig.class, ContextTestConfig.class }, loader = AnnotationConfigContextLoader.class)
-public class PrivilegeSearchRESTIntegrationTest extends AbstractSearchRESTIntegrationTest<BusinessCard> {
+public class BusinessCardSearchRESTIntegrationTest extends AbstractSearchRESTIntegrationTest<BusinessCard> {
 
     @Autowired
-    private PrivilegeRESTTemplateImpl restTemplate;
+    private BusinessCardRESTTemplateImpl restTemplate;
 
-    public PrivilegeSearchRESTIntegrationTest() {
+    public BusinessCardSearchRESTIntegrationTest() {
         super();
     }
 
@@ -28,7 +28,7 @@ public class PrivilegeSearchRESTIntegrationTest extends AbstractSearchRESTIntegr
     // template
 
     @Override
-    protected final PrivilegeRESTTemplateImpl getAPI() {
+    protected final BusinessCardRESTTemplateImpl getAPI() {
         return restTemplate;
     }
 

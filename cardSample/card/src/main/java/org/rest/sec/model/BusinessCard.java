@@ -13,12 +13,12 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @Entity
 @XmlRootElement
-@XStreamAlias("privilege")
+@XStreamAlias("businessCard")
 public class BusinessCard implements INameableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "PRIV_ID")
+    @Column(name = "BC_ID")
     private Long id;
     @Column(unique = true, nullable = false)
     private String name;

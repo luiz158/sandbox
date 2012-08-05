@@ -14,12 +14,12 @@ import com.jayway.restassured.specification.RequestSpecification;
 
 @Component
 @Profile("client")
-public final class PrivilegeRESTTemplateImpl extends AbstractRESTTemplate<BusinessCard> {
+public final class BusinessCardRESTTemplateImpl extends AbstractRESTTemplate<BusinessCard> {
 
     @Autowired
     protected SecBusinessPaths paths;
 
-    public PrivilegeRESTTemplateImpl() {
+    public BusinessCardRESTTemplateImpl() {
         super(BusinessCard.class);
     }
 

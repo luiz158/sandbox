@@ -12,7 +12,7 @@ import org.rest.common.web.RestPreconditions;
 import org.rest.common.web.controller.AbstractController;
 import org.rest.common.web.controller.ISortingController;
 import org.rest.sec.model.BusinessCard;
-import org.rest.sec.persistence.service.IPrivilegeService;
+import org.rest.sec.persistence.service.IBusinessCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.HttpStatus;
@@ -28,12 +28,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
 @RequestMapping(value = "privilege")
-public class PrivilegeController extends AbstractController<BusinessCard> implements ISortingController<BusinessCard> {
+public class BusinessCardController extends AbstractController<BusinessCard> implements ISortingController<BusinessCard> {
 
     @Autowired
-    private IPrivilegeService service;
+    private IBusinessCardService service;
 
-    public PrivilegeController() {
+    public BusinessCardController() {
         super(BusinessCard.class);
     }
 
@@ -130,7 +130,7 @@ public class PrivilegeController extends AbstractController<BusinessCard> implem
     // Spring
 
     @Override
-    protected final IPrivilegeService getService() {
+    protected final IBusinessCardService getService() {
         return service;
     }
 
