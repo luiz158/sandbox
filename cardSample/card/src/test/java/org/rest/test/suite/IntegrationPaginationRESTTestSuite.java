@@ -5,10 +5,9 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import org.rest.sec.web.businesscard.BusinessCardPaginationRESTIntegrationTest;
 import org.rest.sec.web.clientcard.ClientCardPaginationRESTIntegrationTest;
-import org.rest.sec.web.role.BusinessToClientPaginationRESTIntegrationTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ BusinessCardPaginationRESTIntegrationTest.class, ClientCardPaginationRESTIntegrationTest.class, BusinessToClientPaginationRESTIntegrationTest.class })
+@SuiteClasses({ BusinessCardPaginationRESTIntegrationTest.class, ClientCardPaginationRESTIntegrationTest.class })
 public final class IntegrationPaginationRESTTestSuite {
     //
 }

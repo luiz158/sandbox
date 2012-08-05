@@ -1,10 +1,16 @@
 package org.rest.sec.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.rest.common.persistence.model.INameableEntity;
@@ -24,6 +30,12 @@ public class BusinessCard implements INameableEntity {
     private String name;
     @Column(unique = false, nullable = true)
     private String description;
+
+    //@formatter:off
+    @ManyToMany( /*cascade = { CascadeType.REMOVE },*/fetch = FetchType.EAGER )
+    @JoinTable( joinColumns = { @JoinColumn( name = "BC_ID",referencedColumnName = "BC_ID" ) },inverseJoinColumns = { @JoinColumn( name = "CC_ID",referencedColumnName = "CC_ID" ) } )
+    private Set<ClientCard> clientCards;
+    //@formatter:on
 
     public BusinessCard() {
         super();
@@ -61,6 +73,14 @@ public class BusinessCard implements INameableEntity {
 
     public void setDescription(final String descriptionToSet) {
         description = descriptionToSet;
+    }
+
+    public Set<ClientCard> getClientCards() {
+        return clientCards;
+    }
+
+    public void setClientCards(Set<ClientCard> clientCardsToSet) {
+        this.clientCards = clientCardsToSet;
     }
 
     //

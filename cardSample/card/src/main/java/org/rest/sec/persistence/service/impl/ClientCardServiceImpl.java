@@ -5,8 +5,10 @@ import java.util.List;
 import org.apache.commons.lang3.tuple.Triple;
 import org.rest.common.persistence.service.AbstractService;
 import org.rest.common.search.ClientOperation;
+import org.rest.sec.model.BusinessCard;
 import org.rest.sec.model.ClientCard;
 import org.rest.sec.persistence.dao.IClientCardJpaDAO;
+import org.rest.sec.persistence.service.IBusinessCardService;
 import org.rest.sec.persistence.service.IClientCardService;
 import org.rest.sec.util.SearchUtilSec;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class ClientCardServiceImpl extends AbstractService<ClientCard> implement
     @Autowired
     IClientCardJpaDAO dao;
 
+    @Autowired
+    IBusinessCardService businessCardService;
+
     public ClientCardServiceImpl() {
         super(ClientCard.class);
     }
@@ -39,7 +44,8 @@ public class ClientCardServiceImpl extends AbstractService<ClientCard> implement
 
     @Override
     public List<ClientCard> findAllByAssociation(final Long idOfBusinessCard) {
-        return Lists.newArrayList();
+        final BusinessCard businessCard = businessCardService.findOne(idOfBusinessCard);
+        return Lists.newArrayList(businessCard.getClientCards());
     }
 
     // Spring

@@ -2,10 +2,8 @@ package org.rest.sec.persistence.setup;
 
 import org.rest.common.event.BeforeSetupEvent;
 import org.rest.sec.model.BusinessCard;
-import org.rest.sec.model.BusinessToClient;
 import org.rest.sec.model.ClientCard;
 import org.rest.sec.persistence.service.IBusinessCardService;
-import org.rest.sec.persistence.service.IBusinessToClientService;
 import org.rest.sec.persistence.service.IClientCardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,8 +25,6 @@ public class SecuritySetup implements ApplicationListener<ContextRefreshedEvent>
     private IBusinessCardService businessCardService;
     @Autowired
     private IClientCardService clientCardService;
-    @Autowired
-    private IBusinessToClientService businessToClientService;
 
     @Autowired
     private ApplicationContext eventPublisher;
@@ -52,7 +48,6 @@ public class SecuritySetup implements ApplicationListener<ContextRefreshedEvent>
 
             createBusinessCards();
             createClientCards();
-            createBusinessToClientAssociations();
 
             setupDone = true;
             logger.info("Setup Done");
@@ -86,28 +81,6 @@ public class SecuritySetup implements ApplicationListener<ContextRefreshedEvent>
         if (entityByName == null) {
             final ClientCard entity = new ClientCard(name);
             clientCardService.create(entity);
-        }
-    }
-
-    // BusinessToClient
-
-    private void createBusinessToClientAssociations() {
-        final BusinessCard businessCard1 = businessCardService.findByName("BusinessCard1");
-        final BusinessCard businessCard2 = businessCardService.findByName("BusinessCard2");
-        final ClientCard clientCard1 = clientCardService.findByName("ClientCard1");
-        final ClientCard clientCard2 = clientCardService.findByName("ClientCard2");
-
-        createBusinessToClientAssociationIfNotExisting("bc11", businessCard1, clientCard1);
-        createBusinessToClientAssociationIfNotExisting("bc21", businessCard2, clientCard1);
-        createBusinessToClientAssociationIfNotExisting("bc22", businessCard2, clientCard2);
-    }
-
-    final void createBusinessToClientAssociationIfNotExisting(final String name, final BusinessCard businessCard, final ClientCard clientCard) {
-        final BusinessToClient entityByName = businessToClientService.findByName(name);
-        if (entityByName == null) {
-            final BusinessToClient entity = new BusinessToClient(name);
-            entity.setBusinessCard(businessCard);
-            businessToClientService.create(entity);
         }
     }
 

@@ -13,8 +13,6 @@ import org.rest.sec.model.BusinessCard;
 import org.rest.sec.model.BusinessCard_;
 import org.rest.sec.model.ClientCard;
 import org.rest.sec.model.ClientCard_;
-import org.rest.sec.model.BusinessToClient;
-import org.rest.sec.model.BusinessToClient_;
 import org.springframework.data.jpa.domain.Specification;
 
 /**
@@ -62,9 +60,6 @@ public final class QuerySpecificationSec {
     // id
 
     static <T extends IEntity> Specification<T> getByIdSpecification(final Class<T> clazz, final Long id, final boolean negated) {
-        if (clazz.equals(BusinessToClient.class)) {
-            return (Specification<T>) roleByIdEq(id, negated);
-        }
         if (clazz.equals(BusinessCard.class)) {
             return (Specification<T>) businessCardCardByIdEq(id, negated);
         }
@@ -78,9 +73,6 @@ public final class QuerySpecificationSec {
     // name
 
     static <T extends IEntity> Specification<T> getByNameSpecificationEq(final Class<T> clazz, final String name, final boolean negated) {
-        if (clazz.equals(BusinessToClient.class)) {
-            return (Specification<T>) roleByNameEq(name, negated);
-        }
         if (clazz.equals(BusinessCard.class)) {
             return (Specification<T>) businessCardByNameEq(name, negated);
         }
@@ -92,9 +84,6 @@ public final class QuerySpecificationSec {
     }
 
     static <T extends IEntity> Specification<T> getByNameSpecificationContains(final Class<T> clazz, final String name, final boolean negated) {
-        if (clazz.equals(BusinessToClient.class)) {
-            return (Specification<T>) roleByNameContains(name, negated);
-        }
         if (clazz.equals(BusinessCard.class)) {
             return (Specification<T>) businessCardByNameContains(name, negated);
         }
@@ -106,9 +95,6 @@ public final class QuerySpecificationSec {
     }
 
     static <T extends IEntity> Specification<T> getByNameSpecificationStartsWith(final Class<T> clazz, final String name, final boolean negated) {
-        if (clazz.equals(BusinessToClient.class)) {
-            return (Specification<T>) roleByNameStartsWith(name, negated);
-        }
         if (clazz.equals(BusinessCard.class)) {
             return (Specification<T>) businessCardByNameStartsWith(name, negated);
         }
@@ -120,9 +106,6 @@ public final class QuerySpecificationSec {
     }
 
     static <T extends IEntity> Specification<T> getByNameSpecificationEndsWith(final Class<T> clazz, final String name, final boolean negated) {
-        if (clazz.equals(BusinessToClient.class)) {
-            return (Specification<T>) roleByNameEndsWith(name, negated);
-        }
         if (clazz.equals(BusinessCard.class)) {
             return (Specification<T>) businessCardByNameEndsWith(name, negated);
         }
@@ -131,38 +114,6 @@ public final class QuerySpecificationSec {
         }
 
         return null;
-    }
-
-    // individual specifications
-
-    // role
-
-    private static Specification<BusinessToClient> roleByIdEq(final Long id, final boolean negated) {
-        return new Specification<BusinessToClient>() {
-            @Override
-            public final Predicate toPredicate(final Root<BusinessToClient> root, final CriteriaQuery<?> query, final CriteriaBuilder builder) {
-                if (negated) {
-                    return builder.notEqual(root.get(BusinessToClient_.id), id);
-                }
-                return builder.equal(root.get(BusinessToClient_.id), id);
-            }
-        };
-    }
-
-    private static Specification<BusinessToClient> roleByNameEq(final String name, final boolean negated) {
-        return QuerySpecificationSec.<BusinessToClient> entityByKeyEq(name, negated, BusinessToClient_.name);
-    }
-
-    private static Specification<BusinessToClient> roleByNameContains(final String name, final boolean negated) {
-        return QuerySpecificationSec.<BusinessToClient> entityByKeyContains(name, negated, BusinessToClient_.name);
-    }
-
-    private static Specification<BusinessToClient> roleByNameEndsWith(final String name, final boolean negated) {
-        return QuerySpecificationSec.<BusinessToClient> entityByKeyEndsWith(name, negated, BusinessToClient_.name);
-    }
-
-    private static Specification<BusinessToClient> roleByNameStartsWith(final String name, final boolean negated) {
-        return QuerySpecificationSec.<BusinessToClient> entityByKeyStartsWith(name, negated, BusinessToClient_.name);
     }
 
     // Business Card

@@ -13,8 +13,6 @@ public class ClientCardServicePersistenceIntegrationTest extends SecPersistenceS
 
     @Autowired
     private IClientCardService service;
-    @Autowired
-    IBusinessToClientService roleService;
 
     // create
 

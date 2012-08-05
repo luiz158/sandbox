@@ -17,8 +17,6 @@ public class BusinessCardDAOPersistenceIntegrationTest extends SecPersistenceDAO
 
     @Autowired
     private IBusinessCardJpaDAO privilegeDao;
-    @Autowired
-    IBusinessToClientJpaDAO associationDao;
 
     // save
 
