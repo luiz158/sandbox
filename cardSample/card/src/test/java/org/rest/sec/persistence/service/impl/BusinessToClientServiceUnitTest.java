@@ -9,29 +9,29 @@ import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 import org.rest.common.persistence.service.AbstractServiceUnitTest;
-import org.rest.sec.model.Role;
-import org.rest.sec.persistence.dao.IRoleJpaDAO;
+import org.rest.sec.model.BusinessToClient;
+import org.rest.sec.persistence.dao.IBusinessToClientJpaDAO;
 import org.rest.sec.persistence.util.FixtureFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.google.common.collect.Lists;
 
-public class RoleServiceUnitTest extends AbstractServiceUnitTest<Role> {
+public class BusinessToClientServiceUnitTest extends AbstractServiceUnitTest<BusinessToClient> {
 
-    private RoleServiceImpl instance;
+    private BusinessToClientServiceImpl instance;
 
-    private IRoleJpaDAO daoMock;
+    private IBusinessToClientJpaDAO daoMock;
 
     // fixtures
 
     @Override
     @Before
     public final void before() {
-        instance = new RoleServiceImpl();
+        instance = new BusinessToClientServiceImpl();
 
-        daoMock = mock(IRoleJpaDAO.class);
-        when(daoMock.save(any(Role.class))).thenReturn(new Role());
-        when(daoMock.findAll()).thenReturn(Lists.<Role> newArrayList());
+        daoMock = mock(IBusinessToClientJpaDAO.class);
+        when(daoMock.save(any(BusinessToClient.class))).thenReturn(new BusinessToClient());
+        when(daoMock.findAll()).thenReturn(Lists.<BusinessToClient> newArrayList());
         instance.dao = daoMock;
         super.before();
     }
@@ -60,8 +60,8 @@ public class RoleServiceUnitTest extends AbstractServiceUnitTest<Role> {
 
     // mocking behavior
 
-    final Role configureGet(final long id) {
-        final Role entity = createNewEntity();
+    final BusinessToClient configureGet(final long id) {
+        final BusinessToClient entity = createNewEntity();
         entity.setId(id);
         when(daoMock.findOne(id)).thenReturn(entity);
         return entity;
@@ -70,22 +70,22 @@ public class RoleServiceUnitTest extends AbstractServiceUnitTest<Role> {
     // template method
 
     @Override
-    protected final RoleServiceImpl getAPI() {
+    protected final BusinessToClientServiceImpl getAPI() {
         return instance;
     }
 
     @Override
-    protected final JpaRepository<Role, Long> getDAO() {
+    protected final JpaRepository<BusinessToClient, Long> getDAO() {
         return daoMock;
     }
 
     @Override
-    protected final Role createNewEntity() {
+    protected final BusinessToClient createNewEntity() {
         return FixtureFactory.createNewRole();
     }
 
     @Override
-    protected void changeEntity(final Role entity) {
+    protected void changeEntity(final BusinessToClient entity) {
         entity.setName(randomAlphabetic(6));
     }
 

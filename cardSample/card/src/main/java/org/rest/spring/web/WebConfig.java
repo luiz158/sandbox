@@ -3,7 +3,7 @@ package org.rest.spring.web;
 import java.util.List;
 
 import org.rest.sec.model.BusinessCard;
-import org.rest.sec.model.Role;
+import org.rest.sec.model.BusinessToClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +28,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public XStreamMarshaller xstreamMarshaller() {
         final XStreamMarshaller xStreamMarshaller = new XStreamMarshaller();
         xStreamMarshaller.setAutodetectAnnotations(true);
-        xStreamMarshaller.setAnnotatedClasses(new Class[] { Role.class, BusinessCard.class });
+        xStreamMarshaller.setAnnotatedClasses(new Class[] { BusinessToClient.class, BusinessCard.class });
         xStreamMarshaller.getXStream().addDefaultImplementation(java.sql.Timestamp.class, java.util.Date.class);
 
         return xStreamMarshaller;

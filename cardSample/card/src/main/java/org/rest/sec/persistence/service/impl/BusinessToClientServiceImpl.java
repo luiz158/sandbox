@@ -3,9 +3,9 @@ package org.rest.sec.persistence.service.impl;
 import org.apache.commons.lang3.tuple.Triple;
 import org.rest.common.persistence.service.AbstractService;
 import org.rest.common.search.ClientOperation;
-import org.rest.sec.model.Role;
-import org.rest.sec.persistence.dao.IRoleJpaDAO;
-import org.rest.sec.persistence.service.IRoleService;
+import org.rest.sec.model.BusinessToClient;
+import org.rest.sec.persistence.dao.IBusinessToClientJpaDAO;
+import org.rest.sec.persistence.service.IBusinessToClientService;
 import org.rest.sec.util.SearchUtilSec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -15,13 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class RoleServiceImpl extends AbstractService<Role> implements IRoleService {
+public class BusinessToClientServiceImpl extends AbstractService<BusinessToClient> implements IBusinessToClientService {
 
     @Autowired
-    IRoleJpaDAO dao;
+    IBusinessToClientJpaDAO dao;
 
-    public RoleServiceImpl() {
-        super(Role.class);
+    public BusinessToClientServiceImpl() {
+        super(BusinessToClient.class);
     }
 
     // API
@@ -29,14 +29,14 @@ public class RoleServiceImpl extends AbstractService<Role> implements IRoleServi
     // get/find
 
     @Override
-    public Role findByName(final String name) {
+    public BusinessToClient findByName(final String name) {
         return getDao().findByName(name);
     }
 
     // create
 
     @Override
-    public Role create(final Role entity) {
+    public BusinessToClient create(final BusinessToClient entity) {
         /*
          * final long id = IdUtil.randomPositiveLong(); entity.setId( id );
          */
@@ -52,17 +52,17 @@ public class RoleServiceImpl extends AbstractService<Role> implements IRoleServi
     // Spring
 
     @Override
-    public Specification<Role> resolveConstraint(final Triple<String, ClientOperation, String> constraint) {
-        return SearchUtilSec.resolveConstraint(constraint, Role.class);
+    public Specification<BusinessToClient> resolveConstraint(final Triple<String, ClientOperation, String> constraint) {
+        return SearchUtilSec.resolveConstraint(constraint, BusinessToClient.class);
     }
 
     @Override
-    protected final IRoleJpaDAO getDao() {
+    protected final IBusinessToClientJpaDAO getDao() {
         return dao;
     }
 
     @Override
-    protected JpaSpecificationExecutor<Role> getSpecificationExecutor() {
+    protected JpaSpecificationExecutor<BusinessToClient> getSpecificationExecutor() {
         return dao;
     }
 

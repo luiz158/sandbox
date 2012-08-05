@@ -1,21 +1,21 @@
 package org.rest.sec.web.role;
 
-import org.rest.sec.client.template.RoleRESTTemplateImpl;
-import org.rest.sec.model.Role;
+import org.rest.sec.client.template.BusinessToClientRESTTemplateImpl;
+import org.rest.sec.model.BusinessToClient;
 import org.rest.sec.test.SecPaginationRESTIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class RolePaginationRESTIntegrationTest extends SecPaginationRESTIntegrationTest<Role> {
+public class BusinessToClientPaginationRESTIntegrationTest extends SecPaginationRESTIntegrationTest<BusinessToClient> {
 
     @Autowired
-    private RoleRESTTemplateImpl template;
+    private BusinessToClientRESTTemplateImpl template;
 
     // tests
 
     // template method (shortcuts)
 
     @Override
-    protected final Role createNewEntity() {
+    protected final BusinessToClient createNewEntity() {
         return template.createNewEntity();
     }
 
@@ -25,7 +25,7 @@ public class RolePaginationRESTIntegrationTest extends SecPaginationRESTIntegrat
     }
 
     @Override
-    protected final RoleRESTTemplateImpl getAPI() {
+    protected final BusinessToClientRESTTemplateImpl getAPI() {
         return template;
     }
 

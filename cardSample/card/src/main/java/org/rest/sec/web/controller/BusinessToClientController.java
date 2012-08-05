@@ -11,8 +11,8 @@ import org.rest.common.util.SearchCommonUtil;
 import org.rest.common.web.RestPreconditions;
 import org.rest.common.web.controller.AbstractController;
 import org.rest.common.web.controller.ISortingController;
-import org.rest.sec.model.Role;
-import org.rest.sec.persistence.service.IRoleService;
+import org.rest.sec.model.BusinessToClient;
+import org.rest.sec.persistence.service.IBusinessToClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.HttpStatus;
@@ -27,14 +27,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
-@RequestMapping(value = "role")
-public class RoleController extends AbstractController<Role> implements ISortingController<Role> {
+@RequestMapping(value = "businesstoclient")
+public class BusinessToClientController extends AbstractController<BusinessToClient> implements ISortingController<BusinessToClient> {
 
     @Autowired
-    private IRoleService service;
+    private IBusinessToClientService service;
 
-    public RoleController() {
-        super(Role.class);
+    public BusinessToClientController() {
+        super(BusinessToClient.class);
     }
 
     // API
@@ -43,7 +43,7 @@ public class RoleController extends AbstractController<Role> implements ISorting
 
     @RequestMapping(params = { SearchCommonUtil.Q_PARAM }, method = RequestMethod.GET)
     @ResponseBody
-    public List<Role> search(@RequestParam(SearchCommonUtil.Q_PARAM) final String queryString) {
+    public List<BusinessToClient> search(@RequestParam(SearchCommonUtil.Q_PARAM) final String queryString) {
         return searchInternal(queryString);
     }
 
@@ -52,7 +52,7 @@ public class RoleController extends AbstractController<Role> implements ISorting
     @Override
     @RequestMapping(params = { QueryConstants.PAGE, QueryConstants.SIZE, QueryConstants.SORT_BY }, method = RequestMethod.GET)
     @ResponseBody
-    public List<Role> findAllPaginatedAndSorted(@RequestParam(value = QueryConstants.PAGE) final int page, @RequestParam(value = QueryConstants.SIZE) final int size,
+    public List<BusinessToClient> findAllPaginatedAndSorted(@RequestParam(value = QueryConstants.PAGE) final int page, @RequestParam(value = QueryConstants.SIZE) final int size,
             @RequestParam(value = QueryConstants.SORT_BY) final String sortBy, @RequestParam(value = QueryConstants.SORT_ORDER) final String sortOrder, final UriComponentsBuilder uriBuilder,
             final HttpServletResponse response) {
         return findPaginatedAndSortedInternal(page, size, sortBy, sortOrder, uriBuilder, response);
@@ -61,7 +61,7 @@ public class RoleController extends AbstractController<Role> implements ISorting
     @Override
     @RequestMapping(params = { QueryConstants.PAGE, QueryConstants.SIZE }, method = RequestMethod.GET)
     @ResponseBody
-    public List<Role> findAllPaginated(@RequestParam(value = QueryConstants.PAGE) final int page, @RequestParam(value = QueryConstants.SIZE) final int size, final UriComponentsBuilder uriBuilder,
+    public List<BusinessToClient> findAllPaginated(@RequestParam(value = QueryConstants.PAGE) final int page, @RequestParam(value = QueryConstants.SIZE) final int size, final UriComponentsBuilder uriBuilder,
             final HttpServletResponse response) {
         return findPaginatedAndSortedInternal(page, size, null, null, uriBuilder, response);
     }
@@ -69,14 +69,14 @@ public class RoleController extends AbstractController<Role> implements ISorting
     @Override
     @RequestMapping(params = { QueryConstants.SORT_BY }, method = RequestMethod.GET)
     @ResponseBody
-    public List<Role> findAllSorted(@RequestParam(value = QueryConstants.SORT_BY) final String sortBy, @RequestParam(value = QueryConstants.SORT_ORDER) final String sortOrder) {
+    public List<BusinessToClient> findAllSorted(@RequestParam(value = QueryConstants.SORT_BY) final String sortBy, @RequestParam(value = QueryConstants.SORT_ORDER) final String sortOrder) {
         return findAllSortedInternal(sortBy, sortOrder);
     }
 
     @Override
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<Role> findAll(final HttpServletRequest request) {
+    public List<BusinessToClient> findAll(final HttpServletRequest request) {
         return findAllInternal(request);
     }
 
@@ -84,14 +84,14 @@ public class RoleController extends AbstractController<Role> implements ISorting
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Role findOne(@PathVariable("id") final Long id, final UriComponentsBuilder uriBuilder, final HttpServletResponse response) {
+    public BusinessToClient findOne(@PathVariable("id") final Long id, final UriComponentsBuilder uriBuilder, final HttpServletResponse response) {
         return findOneInternal(id, uriBuilder, response);
     }
 
     @RequestMapping(params = "name", method = RequestMethod.GET)
     @ResponseBody
-    public Role findOneByName(@RequestParam("name") final String name) {
-        Role resource = null;
+    public BusinessToClient findOneByName(@RequestParam("name") final String name) {
+        BusinessToClient resource = null;
         try {
             resource = RestPreconditions.checkNotNull(getService().findByName(name));
         } catch (final InvalidDataAccessApiUsageException ex) {
@@ -107,7 +107,7 @@ public class RoleController extends AbstractController<Role> implements ISorting
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody final Role resource, final UriComponentsBuilder uriBuilder, final HttpServletResponse response) {
+    public void create(@RequestBody final BusinessToClient resource, final UriComponentsBuilder uriBuilder, final HttpServletResponse response) {
         createInternal(resource, uriBuilder, response);
     }
 
@@ -115,7 +115,7 @@ public class RoleController extends AbstractController<Role> implements ISorting
 
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void update(@RequestBody final Role resource) {
+    public void update(@RequestBody final BusinessToClient resource) {
         updateInternal(resource);
     }
 
@@ -130,7 +130,7 @@ public class RoleController extends AbstractController<Role> implements ISorting
     // Spring
 
     @Override
-    protected final IRoleService getService() {
+    protected final IBusinessToClientService getService() {
         return service;
     }
 

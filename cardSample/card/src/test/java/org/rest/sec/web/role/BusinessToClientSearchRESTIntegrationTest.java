@@ -3,8 +3,8 @@ package org.rest.sec.web.role;
 import org.junit.runner.RunWith;
 import org.rest.common.client.IEntityOperations;
 import org.rest.common.web.base.AbstractSearchRESTIntegrationTest;
-import org.rest.sec.client.template.RoleRESTTemplateImpl;
-import org.rest.sec.model.Role;
+import org.rest.sec.client.template.BusinessToClientRESTTemplateImpl;
+import org.rest.sec.model.BusinessToClient;
 import org.rest.spring.client.ClientTestConfig;
 import org.rest.spring.context.ContextTestConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +14,12 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ClientTestConfig.class, ContextTestConfig.class }, loader = AnnotationConfigContextLoader.class)
-public class RoleSearchRESTIntegrationTest extends AbstractSearchRESTIntegrationTest<Role> {
+public class BusinessToClientSearchRESTIntegrationTest extends AbstractSearchRESTIntegrationTest<BusinessToClient> {
 
     @Autowired
-    private RoleRESTTemplateImpl restTemplate;
+    private BusinessToClientRESTTemplateImpl restTemplate;
 
-    public RoleSearchRESTIntegrationTest() {
+    public BusinessToClientSearchRESTIntegrationTest() {
         super();
     }
 
@@ -28,12 +28,12 @@ public class RoleSearchRESTIntegrationTest extends AbstractSearchRESTIntegration
     // template
 
     @Override
-    protected final RoleRESTTemplateImpl getAPI() {
+    protected final BusinessToClientRESTTemplateImpl getAPI() {
         return restTemplate;
     }
 
     @Override
-    protected final IEntityOperations<Role> getEntityOperations() {
+    protected final IEntityOperations<BusinessToClient> getEntityOperations() {
         return restTemplate;
     }
 

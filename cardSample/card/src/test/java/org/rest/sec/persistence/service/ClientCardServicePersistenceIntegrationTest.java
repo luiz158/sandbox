@@ -14,7 +14,7 @@ public class ClientCardServicePersistenceIntegrationTest extends SecPersistenceS
     @Autowired
     private IClientCardService service;
     @Autowired
-    IRoleService roleService;
+    IBusinessToClientService roleService;
 
     // create
 

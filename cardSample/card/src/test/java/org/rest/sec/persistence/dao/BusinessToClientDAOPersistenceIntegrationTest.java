@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 import org.rest.sec.model.BusinessCard;
-import org.rest.sec.model.Role;
+import org.rest.sec.model.BusinessToClient;
 import org.rest.sec.test.SecPersistenceDAOIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,12 +16,12 @@ import com.google.common.collect.Sets;
 
 @TransactionConfiguration(defaultRollback = true)
 @Transactional
-public class RoleDAOPersistenceIntegrationTest extends SecPersistenceDAOIntegrationTest<Role> {
+public class BusinessToClientDAOPersistenceIntegrationTest extends SecPersistenceDAOIntegrationTest<BusinessToClient> {
 
     @Autowired
     IBusinessCardJpaDAO privilegeDao;
     @Autowired
-    private IRoleJpaDAO roleDao;
+    private IBusinessToClientJpaDAO roleDao;
 
     // find by
 
@@ -31,7 +31,7 @@ public class RoleDAOPersistenceIntegrationTest extends SecPersistenceDAOIntegrat
         final String name = randomAlphabetic(8);
 
         // When
-        final Role entityByName = getDAOCasted().findByName(name);
+        final BusinessToClient entityByName = getDAOCasted().findByName(name);
 
         // Then
         assertNull(entityByName);
@@ -40,30 +40,30 @@ public class RoleDAOPersistenceIntegrationTest extends SecPersistenceDAOIntegrat
     // template method
 
     @Override
-    protected final JpaRepository<Role, Long> getAPI() {
+    protected final JpaRepository<BusinessToClient, Long> getAPI() {
         return roleDao;
     }
 
     @Override
-    protected final Role createNewEntity() {
-        final Role entity = new Role(randomAlphabetic(8));
+    protected final BusinessToClient createNewEntity() {
+        final BusinessToClient entity = new BusinessToClient(randomAlphabetic(8));
         entity.setPrivileges(Sets.<BusinessCard> newHashSet());
         return entity;
     }
 
     @Override
-    protected final void invalidate(final Role entity) {
+    protected final void invalidate(final BusinessToClient entity) {
         entity.setName(null);
     }
 
     @Override
-    protected final void changeEntity(final Role entity) {
+    protected final void changeEntity(final BusinessToClient entity) {
         entity.setName(randomAlphabetic(6));
     }
 
     //
 
-    protected final IRoleJpaDAO getDAOCasted() {
+    protected final IBusinessToClientJpaDAO getDAOCasted() {
         return roleDao;
     }
 

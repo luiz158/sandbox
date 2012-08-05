@@ -1,7 +1,7 @@
 package org.rest.common.client.marshall;
 
 import org.rest.sec.model.BusinessCard;
-import org.rest.sec.model.Role;
+import org.rest.sec.model.BusinessToClient;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -20,7 +20,7 @@ public final class XStreamMarshaller implements IMarshaller {
 
         xstream = new XStream();
         xstream.autodetectAnnotations(true);
-        xstream.processAnnotations(Role.class);
+        xstream.processAnnotations(BusinessToClient.class);
         xstream.processAnnotations(BusinessCard.class);
     }
 

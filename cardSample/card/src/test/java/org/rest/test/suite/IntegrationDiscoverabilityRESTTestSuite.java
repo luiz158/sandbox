@@ -4,10 +4,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import org.rest.sec.web.businesscard.BusinessCardDiscoverabilityRESTIntegrationTest;
-import org.rest.sec.web.role.RoleDiscoverabilityRESTIntegrationTest;
+import org.rest.sec.web.role.BusinessToClientDiscoverabilityRESTIntegrationTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ RoleDiscoverabilityRESTIntegrationTest.class, BusinessCardDiscoverabilityRESTIntegrationTest.class })
+@SuiteClasses({ BusinessToClientDiscoverabilityRESTIntegrationTest.class, BusinessCardDiscoverabilityRESTIntegrationTest.class })
 public final class IntegrationDiscoverabilityRESTTestSuite {
     //
 }

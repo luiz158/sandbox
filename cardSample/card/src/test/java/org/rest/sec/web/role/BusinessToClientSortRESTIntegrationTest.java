@@ -1,24 +1,24 @@
 package org.rest.sec.web.role;
 
 import org.rest.common.util.order.OrderByName;
-import org.rest.sec.client.template.RoleRESTTemplateImpl;
-import org.rest.sec.model.Role;
+import org.rest.sec.client.template.BusinessToClientRESTTemplateImpl;
+import org.rest.sec.model.BusinessToClient;
 import org.rest.sec.test.SecSortRESTIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.collect.Ordering;
 
-public class RoleSortRESTIntegrationTest extends SecSortRESTIntegrationTest<Role> {
+public class BusinessToClientSortRESTIntegrationTest extends SecSortRESTIntegrationTest<BusinessToClient> {
 
     @Autowired
-    private RoleRESTTemplateImpl template;
+    private BusinessToClientRESTTemplateImpl template;
 
     // tests
 
     // template method (shortcuts)
 
     @Override
-    protected final Role createNewEntity() {
+    protected final BusinessToClient createNewEntity() {
         return template.createNewEntity();
     }
 
@@ -28,13 +28,13 @@ public class RoleSortRESTIntegrationTest extends SecSortRESTIntegrationTest<Role
     }
 
     @Override
-    protected final RoleRESTTemplateImpl getAPI() {
+    protected final BusinessToClientRESTTemplateImpl getAPI() {
         return template;
     }
 
     @Override
-    protected final Ordering<Role> getOrdering() {
-        return new OrderByName<Role>();
+    protected final Ordering<BusinessToClient> getOrdering() {
+        return new OrderByName<BusinessToClient>();
     }
 
 }

@@ -11,9 +11,9 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.rest.common.web.WebConstants;
 import org.rest.sec.client.template.BusinessCardRESTTemplateImpl;
-import org.rest.sec.client.template.RoleRESTTemplateImpl;
+import org.rest.sec.client.template.BusinessToClientRESTTemplateImpl;
 import org.rest.sec.model.BusinessCard;
-import org.rest.sec.model.Role;
+import org.rest.sec.model.BusinessToClient;
 import org.rest.sec.test.SecLogicRESTIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,15 +21,15 @@ import com.google.common.collect.Sets;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
 
-public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Role> {
+public class BusinessToClientLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<BusinessToClient> {
 
     @Autowired
-    private RoleRESTTemplateImpl restTemplate;
+    private BusinessToClientRESTTemplateImpl restTemplate;
     @Autowired
     private BusinessCardRESTTemplateImpl associationRestTemplate;
 
-    public RoleLogicRESTIntegrationTest() {
-        super(Role.class);
+    public BusinessToClientLogicRESTIntegrationTest() {
+        super(BusinessToClient.class);
     }
 
     // tests
@@ -38,12 +38,12 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
 
     @Test
     public final void givenWorkingWithSpecialCharacters_whtnResourcesIfRetrievedByName_thenResourceIsCorrectlyRetrieved() {
-        final Role newResource = getAPI().createNewEntity();
+        final BusinessToClient newResource = getAPI().createNewEntity();
         newResource.setName("Macy's,Dell, Inc.");
         getAPI().createAsResponse(newResource);
 
         // When
-        final Role retrievedResource = getAPI().findByName(newResource.getName());
+        final BusinessToClient retrievedResource = getAPI().findByName(newResource.getName());
         assertEquals(newResource, retrievedResource);
     }
 
@@ -51,9 +51,9 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
 
     @Test
     public final void givenResourceExists_whenResourceIsRetrievedByName_thenResourceIsCorrectlyRetrieved() {
-        final Role newResource = getAPI().createNewEntity();
+        final BusinessToClient newResource = getAPI().createNewEntity();
         getAPI().create(newResource);
-        final Role existingResourceByName = getAPI().findByName(newResource.getName());
+        final BusinessToClient existingResourceByName = getAPI().findByName(newResource.getName());
         assertEquals(newResource, existingResourceByName);
     }
 
@@ -61,7 +61,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
 
     @Test
     public final void whenResourceIsRetrieved_thenAssociationsAreAlsoRetrieved() {
-        final Role existingResource = getAPI().create(getAPI().createNewEntity());
+        final BusinessToClient existingResource = getAPI().create(getAPI().createNewEntity());
         assertThat(existingResource.getPrivileges(), not(Matchers.<BusinessCard> empty()));
     }
 
@@ -69,7 +69,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
 
     @Test
     public final void givenResourceHasNameWithSpace_whenResourceIsCreated_then201IsReceived() {
-        final Role newResource = getAPI().createNewEntity();
+        final BusinessToClient newResource = getAPI().createNewEntity();
         newResource.setName(randomAlphabetic(4) + " " + randomAlphabetic(4));
 
         // When
@@ -81,23 +81,23 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
 
     @Test
     public final void givenExistingResourceHasNameWithSpace_whtnResourcesIfRetrievedByName_thenResourceIsCorrectlyRetrieved() {
-        final Role newResource = getAPI().createNewEntity();
+        final BusinessToClient newResource = getAPI().createNewEntity();
         newResource.setName(randomAlphabetic(4) + " " + randomAlphabetic(4));
         getAPI().createAsResponse(newResource);
 
         // When
-        final Role retrievedResource = getAPI().findByName(newResource.getName());
+        final BusinessToClient retrievedResource = getAPI().findByName(newResource.getName());
         assertEquals(newResource, retrievedResource);
     }
 
     @Test
     public final void whenCreatingNewResourceWithExistingAssociations_thenNewResourceIsCorrectlyCreated() {
         final BusinessCard existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
-        final Role newResource = getAPI().createNewEntity();
+        final BusinessToClient newResource = getAPI().createNewEntity();
         newResource.getPrivileges().add(existingAssociation);
         getAPI().create(newResource);
 
-        final Role newResource2 = getAPI().createNewEntity();
+        final BusinessToClient newResource2 = getAPI().createNewEntity();
         newResource2.getPrivileges().add(existingAssociation);
         getAPI().create(newResource2);
     }
@@ -108,7 +108,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
      */
     @Test
     public final void whenResourceIsCreatedWithNewAssociation_then409IsReceived() {
-        final Role newResource = getAPI().createNewEntity();
+        final BusinessToClient newResource = getAPI().createNewEntity();
         newResource.getPrivileges().add(getAssociationAPI().createNewEntity());
 
         // When
@@ -122,7 +122,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
     public final void whenResourceIsCreatedWithInvalidAssociation_then409IsReceived() {
         final BusinessCard invalidAssociation = getAssociationAPI().createNewEntity();
         getAssociationAPI().invalidate(invalidAssociation);
-        final Role newResource = getAPI().createNewEntity();
+        final BusinessToClient newResource = getAPI().createNewEntity();
         newResource.getPrivileges().add(invalidAssociation);
 
         // When
@@ -135,7 +135,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
     @Test
     public final void whenResourceIsCreatedWithExistingAssociation_then201IsReceived() {
         final BusinessCard existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
-        final Role newResource = getAPI().createNewEntity();
+        final BusinessToClient newResource = getAPI().createNewEntity();
         newResource.getPrivileges().add(existingAssociation);
 
         // When
@@ -148,11 +148,11 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
     @Test
     public final void whenResourceIsCreatedWithExistingAssociation_thenAssociationIsLinkedToTheResource() {
         final BusinessCard existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
-        final Role resourceToCreate = getAPI().createNewEntity();
+        final BusinessToClient resourceToCreate = getAPI().createNewEntity();
 
         // When
         resourceToCreate.getPrivileges().add(existingAssociation);
-        final Role existingResource = getAPI().create(resourceToCreate);
+        final BusinessToClient existingResource = getAPI().create(resourceToCreate);
 
         // Then
         assertThat(existingResource.getPrivileges(), hasItem(existingAssociation));
@@ -163,7 +163,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
     @Test
     public final void givenResourceExists_whenResourceIsUpdatedWithExistingAsscoaition_thenAssociationIsCorrectlyUpdated() {
         // Given
-        final Role existingResource = getAPI().create(getAPI().createNewEntity());
+        final BusinessToClient existingResource = getAPI().create(getAPI().createNewEntity());
         final BusinessCard existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
         existingResource.setPrivileges(Sets.newHashSet(existingAssociation));
 
@@ -171,18 +171,18 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
         getAPI().update(existingResource);
 
         // Given
-        final Role updatedResource = getAPI().findOne(existingResource.getId());
+        final BusinessToClient updatedResource = getAPI().findOne(existingResource.getId());
         assertThat(updatedResource.getPrivileges(), hasItem(existingAssociation));
     }
 
     @Test
     public final void givenExistingResourceAndExistingAssociation_whenUpdatingResourceWithTheAssociation_thanAssociationCorrectlyDone() {
-        final Role existingResource = getAPI().create(getAPI().createNewEntity());
+        final BusinessToClient existingResource = getAPI().create(getAPI().createNewEntity());
         final BusinessCard existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
         existingResource.setPrivileges(Sets.newHashSet(existingAssociation));
 
         getAPI().update(existingResource);
-        final Role updatedResource = getAPI().findOne(existingResource.getId());
+        final BusinessToClient updatedResource = getAPI().findOne(existingResource.getId());
         assertThat(updatedResource.getPrivileges(), hasItem(existingAssociation));
     }
 
@@ -191,22 +191,22 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
     @Test
     public final void whenScenarioOfWorkingWithAssociations_thenTheChangesAreCorrectlyPersisted() {
         final BusinessCard existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
-        final Role resource1 = new Role(randomAlphabetic(6), Sets.newHashSet(existingAssociation));
+        final BusinessToClient resource1 = new BusinessToClient(randomAlphabetic(6), Sets.newHashSet(existingAssociation));
 
-        final Role resource1ViewOfServerBefore = getAPI().create(resource1);
+        final BusinessToClient resource1ViewOfServerBefore = getAPI().create(resource1);
         assertThat(resource1ViewOfServerBefore.getPrivileges(), hasItem(existingAssociation));
 
-        final Role resource2 = new Role(randomAlphabetic(6), Sets.newHashSet(existingAssociation));
+        final BusinessToClient resource2 = new BusinessToClient(randomAlphabetic(6), Sets.newHashSet(existingAssociation));
         getAPI().create(resource2);
 
-        final Role resource1ViewOfServerAfter = getAPI().findOne(resource1ViewOfServerBefore.getId());
+        final BusinessToClient resource1ViewOfServerAfter = getAPI().findOne(resource1ViewOfServerBefore.getId());
         assertThat(resource1ViewOfServerAfter.getPrivileges(), hasItem(existingAssociation));
     }
 
     // template
 
     @Override
-    protected final RoleRESTTemplateImpl getAPI() {
+    protected final BusinessToClientRESTTemplateImpl getAPI() {
         return restTemplate;
     }
 

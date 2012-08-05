@@ -8,19 +8,19 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.rest.common.persistence.service.IService;
 import org.rest.sec.model.BusinessCard;
-import org.rest.sec.model.Role;
+import org.rest.sec.model.BusinessToClient;
 import org.rest.sec.test.SecPersistenceServiceIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
 import com.google.common.collect.Sets;
 
-public class RoleServicePersistenceIntegrationTest extends SecPersistenceServiceIntegrationTest<Role> {
+public class BusinessToClientServicePersistenceIntegrationTest extends SecPersistenceServiceIntegrationTest<BusinessToClient> {
 
     @Autowired
     private IBusinessCardService privilegeService;
     @Autowired
-    private IRoleService roleService;
+    private IBusinessToClientService roleService;
 
     // create
 
@@ -44,7 +44,7 @@ public class RoleServicePersistenceIntegrationTest extends SecPersistenceService
     @Ignore
     public final void givenEntityExistsWithAssociationScenarios_whenDeletingEverything_thenNoException() {
         final BusinessCard existingAssociation = getAssociationService().create(new BusinessCard(randomAlphabetic(6)));
-        final Role newResource = createNewEntity();
+        final BusinessToClient newResource = createNewEntity();
         newResource.getPrivileges().add(existingAssociation);
         getAPI().create(newResource);
 
@@ -55,11 +55,11 @@ public class RoleServicePersistenceIntegrationTest extends SecPersistenceService
     @Test
     public final void whenCreatingNewResourceWithExistingAssociations_thenNewResourceIsCorrectlyCreated() {
         final BusinessCard existingAssociation = getAssociationService().create(new BusinessCard(randomAlphabetic(6)));
-        final Role newResource = createNewEntity();
+        final BusinessToClient newResource = createNewEntity();
         newResource.getPrivileges().add(existingAssociation);
         getAPI().create(newResource);
 
-        final Role newResource2 = createNewEntity();
+        final BusinessToClient newResource2 = createNewEntity();
         newResource2.getPrivileges().add(existingAssociation);
         getAPI().create(newResource2);
     }
@@ -67,44 +67,44 @@ public class RoleServicePersistenceIntegrationTest extends SecPersistenceService
     @Test
     public final void whenScenarioOfWorkingWithAssociations_thenTheChangesAreCorrectlyPersisted() {
         final BusinessCard existingAssociation = getAssociationService().create(new BusinessCard(randomAlphabetic(6)));
-        final Role resource1 = new Role(randomAlphabetic(6), Sets.newHashSet(existingAssociation));
+        final BusinessToClient resource1 = new BusinessToClient(randomAlphabetic(6), Sets.newHashSet(existingAssociation));
 
-        final Role resource1ViewOfServerBefore = getAPI().create(resource1);
+        final BusinessToClient resource1ViewOfServerBefore = getAPI().create(resource1);
         assertThat(resource1ViewOfServerBefore.getPrivileges(), hasItem(existingAssociation));
 
-        final Role resource2 = new Role(randomAlphabetic(6), Sets.newHashSet(existingAssociation));
+        final BusinessToClient resource2 = new BusinessToClient(randomAlphabetic(6), Sets.newHashSet(existingAssociation));
         getAPI().create(resource2);
 
-        final Role resource1ViewOfServerAfter = getAPI().findOne(resource1ViewOfServerBefore.getId());
+        final BusinessToClient resource1ViewOfServerAfter = getAPI().findOne(resource1ViewOfServerBefore.getId());
         assertThat(resource1ViewOfServerAfter.getPrivileges(), hasItem(existingAssociation));
     }
 
     // template method
 
     @Override
-    protected final IService<Role> getAPI() {
+    protected final IService<BusinessToClient> getAPI() {
         return roleService;
     }
 
     @Override
-    protected final Role createNewEntity() {
+    protected final BusinessToClient createNewEntity() {
         return createNewEntity(randomAlphabetic(8));
     }
 
     @Override
-    protected final void invalidate(final Role entity) {
+    protected final void invalidate(final BusinessToClient entity) {
         entity.setName(null);
     }
 
     @Override
-    protected final void changeEntity(final Role entity) {
+    protected final void changeEntity(final BusinessToClient entity) {
         entity.setName(randomAlphabetic(6));
     }
 
     // util
 
-    protected final Role createNewEntity(final String name) {
-        return new Role(name, Sets.<BusinessCard> newHashSet());
+    protected final BusinessToClient createNewEntity(final String name) {
+        return new BusinessToClient(name, Sets.<BusinessCard> newHashSet());
     }
 
     final IBusinessCardService getAssociationService() {

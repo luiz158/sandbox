@@ -23,7 +23,7 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
 @Entity
 @XmlRootElement
 @XStreamAlias("role")
-public class Role implements INameableEntity {
+public class BusinessToClient implements INameableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,16 +41,16 @@ public class Role implements INameableEntity {
 
     // @formatter:on
 
-    public Role() {
+    public BusinessToClient() {
         super();
     }
 
-    public Role(final String nameToSet) {
+    public BusinessToClient(final String nameToSet) {
         super();
         name = nameToSet;
     }
 
-    public Role(final String nameToSet, final Set<BusinessCard> privilegesToSet) {
+    public BusinessToClient(final String nameToSet, final Set<BusinessCard> privilegesToSet) {
         super();
         name = nameToSet;
         privileges = privilegesToSet;
@@ -103,7 +103,7 @@ public class Role implements INameableEntity {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        final Role other = (Role) obj;
+        final BusinessToClient other = (BusinessToClient) obj;
         if (name == null) {
             if (other.name != null)
                 return false;

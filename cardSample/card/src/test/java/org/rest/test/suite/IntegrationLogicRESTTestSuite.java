@@ -5,14 +5,14 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import org.rest.sec.web.businesscard.BusinessCardLogicRESTIntegrationTest;
 import org.rest.sec.web.businesscard.BusinessCardSearchRESTIntegrationTest;
-import org.rest.sec.web.role.RoleLogicRESTIntegrationTest;
-import org.rest.sec.web.role.RoleSearchRESTIntegrationTest;
+import org.rest.sec.web.role.BusinessToClientLogicRESTIntegrationTest;
+import org.rest.sec.web.role.BusinessToClientSearchRESTIntegrationTest;
 
 @RunWith(Suite.class)
 @SuiteClasses({// @formatter:off
-    RoleLogicRESTIntegrationTest.class, 
+    BusinessToClientLogicRESTIntegrationTest.class, 
     BusinessCardLogicRESTIntegrationTest.class,
-    RoleSearchRESTIntegrationTest.class, 
+    BusinessToClientSearchRESTIntegrationTest.class, 
     BusinessCardSearchRESTIntegrationTest.class 
  })
 // @formatter:off

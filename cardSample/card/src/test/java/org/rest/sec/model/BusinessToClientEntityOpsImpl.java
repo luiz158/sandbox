@@ -4,32 +4,32 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
 import org.rest.common.client.IEntityOperations;
 import org.rest.sec.model.BusinessCard;
-import org.rest.sec.model.Role;
+import org.rest.sec.model.BusinessToClient;
 import org.springframework.stereotype.Component;
 
 import com.google.common.collect.Sets;
 
 @Component
-public final class RoleEntityOpsImpl implements IEntityOperations<Role> {
+public final class BusinessToClientEntityOpsImpl implements IEntityOperations<BusinessToClient> {
 
-    public RoleEntityOpsImpl() {
+    public BusinessToClientEntityOpsImpl() {
         super();
     }
 
     // API
 
     @Override
-    public final Role createNewEntity() {
-        return new Role(randomAlphabetic(8), Sets.<BusinessCard> newHashSet());
+    public final BusinessToClient createNewEntity() {
+        return new BusinessToClient(randomAlphabetic(8), Sets.<BusinessCard> newHashSet());
     }
 
     @Override
-    public final void invalidate(final Role entity) {
+    public final void invalidate(final BusinessToClient entity) {
         entity.setName(null);
     }
 
     @Override
-    public final void change(final Role resource) {
+    public final void change(final BusinessToClient resource) {
         resource.setName(randomAlphabetic(8));
     }
 

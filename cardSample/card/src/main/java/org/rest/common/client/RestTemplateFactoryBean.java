@@ -2,7 +2,7 @@ package org.rest.common.client;
 
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.rest.sec.model.BusinessCard;
-import org.rest.sec.model.Role;
+import org.rest.sec.model.BusinessToClient;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
@@ -64,7 +64,7 @@ public class RestTemplateFactoryBean implements FactoryBean<RestTemplate>, Initi
     final XStreamMarshaller xstreamMarshaller() {
         final XStreamMarshaller xStreamMarshaller = new XStreamMarshaller();
         xStreamMarshaller.setAutodetectAnnotations(true);
-        xStreamMarshaller.setAnnotatedClasses(new Class[] { Role.class, BusinessCard.class });
+        xStreamMarshaller.setAnnotatedClasses(new Class[] { BusinessToClient.class, BusinessCard.class });
         xStreamMarshaller.getXStream().addDefaultImplementation(java.sql.Timestamp.class, java.util.Date.class);
 
         return xStreamMarshaller;
