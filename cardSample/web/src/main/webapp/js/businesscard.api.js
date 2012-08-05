@@ -20,3 +20,26 @@ var BusinessCardApi = {
 	}
 
 };
+
+var ClientCardApi = {
+
+	/**
+	 * Find a page of resources.
+	 * @param page the page number.
+	 * @param pageSize the items per page.
+	 */
+	findAllPaged : function(page, pageSize, successHandler, errorHandler) {
+		var serverURL = businessCardUrl() + "/api/clientcard?page=" + page + "&size=" + pageSize;
+		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
+	},
+
+	/**
+	 * Find a resource by id.
+	 * @param id the user id.
+	 */
+	findOneById : function(id, successHandler, errorHandler) {
+		var serverURL = businessCardUrl() + "/api/clientcard/" + id;
+		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
+	}
+
+};

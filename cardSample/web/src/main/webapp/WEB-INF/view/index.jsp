@@ -67,23 +67,24 @@
 
     <ul class="pager">
       <li class="disabled previous">
-        <a id="prevPage" href="javascript:void(0);">&larr; <spring:message code="prev"/></a>
+        <a id="prevPageBC" href="javascript:void(0);">&larr; <spring:message code="prev"/></a>
       </li>
       <li class="next">
-        <a id="nextPage" href="javascript:void(0);"><spring:message code="next"/> &rarr;</a>
+        <a id="nextPageBC" href="javascript:void(0);"><spring:message code="next"/> &rarr;</a>
       </li>
     </ul>
   </div>
+  
   <div style="padding: 10px; float: right; width: 45%;">
     <div id="clientcards_table"> <table id="clientcardtable"></table> </div>
     <div id="clientcards_table_footer"> <spring:message code="page"/> <span id="currentPage">1</span> </div>
 
     <ul class="pager">
       <li class="disabled previous">
-        <a id="prevPage" href="javascript:void(0);">&larr; <spring:message code="prev"/></a>
+        <a id="prevPageCC" href="javascript:void(0);">&larr; <spring:message code="prev"/></a>
       </li>
       <li class="next">
-        <a id="nextPage" href="javascript:void(0);"><spring:message code="next"/> &rarr;</a>
+        <a id="nextPageCC" href="javascript:void(0);"><spring:message code="next"/> &rarr;</a>
       </li>
     </ul>
   </div>
