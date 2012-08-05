@@ -29,7 +29,7 @@ public class BusinessCardClientRESTTemplate extends AbstractClientRESTTemplate<B
 
     @Override
     protected void basicAuth() {
-        throw new UnsupportedOperationException();
+        //
     }
 
 }
