@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
-@RequestMapping(value = "privilege")
+@RequestMapping(value = "businesscard")
 public class BusinessCardController extends AbstractController<BusinessCard> implements ISortingController<BusinessCard> {
 
     @Autowired

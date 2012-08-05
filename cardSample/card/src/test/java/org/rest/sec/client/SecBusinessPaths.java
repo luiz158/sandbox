@@ -14,24 +14,12 @@ public final class SecBusinessPaths {
 
     // API
 
-    public final String getUserUri() {
-        return secPaths.getRootUri() + "user";
-    }
-
     public final String getPrivilegeUri() {
-        return secPaths.getRootUri() + "privilege";
+        return secPaths.getRootUri() + "businesscard";
     }
 
     public final String getRoleUri() {
         return secPaths.getRootUri() + "role";
-    }
-
-    public final String getAuthenticationUri() {
-        return secPaths.getRootUri() + "authentication";
-    }
-
-    public final String getLoginUri() {
-        return secPaths.getContext() + "/j_spring_security_check";
     }
 
     public final String getRootUri() {
