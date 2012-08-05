@@ -36,7 +36,7 @@ public final class BusinessToClientRESTTemplateImpl extends AbstractRESTTemplate
 
     @Override
     public final String getURI() {
-        return paths.getRoleUri();
+        return paths.getBusinessToClientStringUri();
     }
 
     @Override

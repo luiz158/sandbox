@@ -27,7 +27,7 @@ public final class ClientCardRESTTemplateImpl extends AbstractRESTTemplate<Clien
 
     @Override
     public final String getURI() {
-        return paths.getPrivilegeUri();
+        return paths.getClientCardUri();
     }
 
     @Override

@@ -14,12 +14,16 @@ public final class SecBusinessPaths {
 
     // API
 
-    public final String getPrivilegeUri() {
+    public final String getBusinessCardUri() {
         return secPaths.getRootUri() + "businesscard";
     }
 
-    public final String getRoleUri() {
-        return secPaths.getRootUri() + "role";
+    public final String getClientCardUri() {
+        return secPaths.getRootUri() + "clientcard";
+    }
+
+    public final String getBusinessToClientStringUri() {
+        return secPaths.getRootUri() + "businesstoclient";
     }
 
     public final String getRootUri() {

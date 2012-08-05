@@ -27,7 +27,7 @@ public final class BusinessCardRESTTemplateImpl extends AbstractRESTTemplate<Bus
 
     @Override
     public final String getURI() {
-        return paths.getPrivilegeUri();
+        return paths.getBusinessCardUri();
     }
 
     @Override
