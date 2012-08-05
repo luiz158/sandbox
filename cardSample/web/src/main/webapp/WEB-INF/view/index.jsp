@@ -7,15 +7,14 @@
   <meta charset="UTF-8">
   <link href="<spring:url value="/css/bootstrap.css"/>" rel="stylesheet" type="text/css"/>
   <link href="<spring:url value="/css/styles.css"/>" rel="stylesheet" type="text/css"/>
-  <link href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>
+  <link href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.2/css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.2/jquery.dataTables.min.js"></script>
   
   <script type="text/javascript" src="<spring:url value="/js/jquery.json-2.3.js"/>"></script>
   <script type="text/javascript" src="<spring:url value="/js/jquery.blockUI.2.4.2.js"/>"></script>
   <script type="text/javascript" src="<spring:url value="/js/ajaxHandler.js"/>"></script>
-  <script type="text/javascript" src="<spring:url value="/js/mustache.js"/>"></script>
   <script type="text/javascript" src="<spring:url value="/js/common.js"/>"></script>
   <script type="text/javascript" src="<spring:url value="/js/user.api.js"/>"></script>
   <script type="text/javascript" src="<spring:url value="/js/businesscard.api.js"/>"></script>

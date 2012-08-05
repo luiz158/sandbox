@@ -6,19 +6,30 @@ var Admin = {
 
 	loadPage : function() {
 
-		var table = $('#businesscardtable').dataTable({
-			aoColumns : [
-				{ sTitle : "Id", bSearchable : false, bSortable : false },
-				{ sTitle : "Name", bSearchable : false, bSortable : false }
-			],
-			bJQueryUI : true,
+		var businesscardtable = $('#businesscardtable').dataTable({
+			aoColumns : [ {
+				sTitle : "Id",
+				bSearchable : false,
+				bSortable : false
+			}, {
+				sTitle : "Name",
+				bSearchable : false,
+				bSortable : false
+			} ],
+			"sDom" : 'T<"clear">lfrtip',
+			"oTableTools" : {
+				"sRowSelect" : "single"
+			},
+			// bJQueryUI : true,
 			bFilter : false,
 			bInfo : false,
-			bAutoWidth : true,
+			// bAutoWidth : true,
 			bPaginate : false
 		});
-		
-		var successHandler = function(data, textStatus, xhr) {
+
+		initializeBusinessCardTable(businesscardtable);
+
+		var businessCardSuccessHandler = function(data, textStatus, xhr) {
 			if (!data || data.length == 0) {
 				// if there are no data, then don't change table and page number
 				page--;
@@ -30,12 +41,12 @@ var Admin = {
 				} else {
 					$("#nextPage").parent().removeClass("disabled");
 				}
-				
+
 				$('#businesscardtable').dataTable().fnClearTable();
-				
+
 				// add new data to the grid
 				$.each(cards, function(index, elem) {
-					table.fnAddData([ elem.id, elem.name ]);
+					businesscardtable.fnAddData([ elem.id, elem.name ]);
 				});
 
 				// change info - a page number
@@ -48,7 +59,7 @@ var Admin = {
 				$("#prevPage").parent().removeClass("disabled");
 			}
 		};
-		var errorHandler = function(xhr, textStatus) {
+		var businessCardErrorHandler = function(xhr, textStatus) {
 			showErrorNotification(loadErrMsg);
 			page--;
 			if (page == 0) {
@@ -61,18 +72,18 @@ var Admin = {
 		// pagination
 		$('#prevPage').click(function() {
 			if (page > 0) {
-				BusinessCardApi.findAllPaged(--page, pageSize, successHandler, errorHandler);
+				BusinessCardApi.findAllPaged(--page, pageSize, businessCardSuccessHandler, businessCardErrorHandler);
 			}
 		});
 		$('#nextPage').click(function() {
-			BusinessCardApi.findAllPaged(++page, pageSize, successHandler, errorHandler);
+			BusinessCardApi.findAllPaged(++page, pageSize, businessCardSuccessHandler, businessCardErrorHandler);
 		});
 
 		// load first page
-		BusinessCardApi.findAllPaged(page, pageSize, successHandler, errorHandler);
+		BusinessCardApi.findAllPaged(page, pageSize, businessCardSuccessHandler, businessCardErrorHandler);
 	},
 
-	// helpers
+	// convertors
 
 	_toBusinessCards : function(data) {
 		if ($.isArray(data)) {
@@ -84,7 +95,30 @@ var Admin = {
 	},
 
 	_toBusinessCard : function(elem) {
-		return {id : elem.id, name : elem.name};
+		return {
+			id : elem.id,
+			name : elem.name
+		};
 	}
-
 };
+
+function rowClicked(oTableLocal) {
+	return oTableLocal.$('tr.row_selected');
+}
+
+function initializeBusinessCardTable(oTableLocal) {
+	$("#businesscardtable tbody").click(function(event) {
+		$(oTableLocal.fnSettings().aoData).each(function() {
+			$(this.nTr).removeClass('row_selected');
+		});
+		$(event.target.parentNode).addClass('row_selected');
+	});
+
+	/* Add a click handler for the delete row */
+	$('#businesscardtable tbody').click(function() {
+		var anSelected = rowClicked(oTableLocal);
+		if (anSelected.length !== 0) {
+			oTableLocal.fnDeleteRow(anSelected[0]);
+		}
+	});
+}
