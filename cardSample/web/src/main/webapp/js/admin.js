@@ -1,5 +1,3 @@
-var authorizationKey = null;
-
 var page = 0;
 var pageSize = 5;
 
@@ -172,7 +170,7 @@ var Admin = {
 					addServiceRow(service, services[service], "failed", xhr.status + ": " + xhr.statusText);
 				}
 			};
-			handleAjaxRequest('GET', services[i], null, success(), error(), beforeSendHandler, authorizationKey);
+			handleAjaxRequest('GET', services[i], null, success(), error(), beforeSendHandler);
 		}
 	},
 

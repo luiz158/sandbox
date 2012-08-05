@@ -29,9 +29,7 @@
       return '${properties.securl}';
     }
     $(document).ready(function () {
-      authorizationKey = '${requestScope.authorizationKey}';
       var userEditLinkTmpl = '<a href="<spring:url value="/admin/edit-user.html?id={{id}}"/>" class="btn btn-mini pull-right"><spring:message code="edit"/></a>';
-
       Admin.loadUsersPage(userEditLinkTmpl);
     });
     

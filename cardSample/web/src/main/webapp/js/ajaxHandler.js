@@ -1,4 +1,4 @@
-function handleAjaxRequest(type, url, data, overrideSuccessHandler, overrideErrorHandler, overrideBeforeSendHandler, authorizationKey, timeout) {
+function handleAjaxRequest(type, url, data, overrideSuccessHandler, overrideErrorHandler, overrideBeforeSendHandler, timeout) {
 	$.ajax({
 		type : type,
 		url : url,
@@ -8,7 +8,7 @@ function handleAjaxRequest(type, url, data, overrideSuccessHandler, overrideErro
 		timeout : timeout ? timeout : 20000,
 		beforeSend : function(xhr) {
 			if (overrideBeforeSendHandler) {
-				overrideBeforeSendHandler(xhr, authorizationKey);
+				overrideBeforeSendHandler(xhr);
 			}
 		},
 		success : function(msg, textStatus, xhr) {
@@ -30,7 +30,7 @@ function handleAjaxRequest(type, url, data, overrideSuccessHandler, overrideErro
 	});
 }
 
-function handleSimpleAjaxRequest(type, url, data, overrideSuccessHandler, overrideErrorHandler, overrideBeforeSendHandler, authorizationKey) {
+function handleSimpleAjaxRequest(type, url, data, overrideSuccessHandler, overrideErrorHandler, overrideBeforeSendHandler) {
 	$.ajax({
 		type : type,
 		url : url,
@@ -38,7 +38,7 @@ function handleSimpleAjaxRequest(type, url, data, overrideSuccessHandler, overri
 		timeout : 10000,
 		beforeSend : function(xhr) {
 			if (overrideBeforeSendHandler) {
-				overrideBeforeSendHandler(xhr, authorizationKey);
+				overrideBeforeSendHandler(xhr);
 			}
 		},
 		success : function(msg, textStatus, xhr) {

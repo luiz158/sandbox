@@ -1,18 +1,18 @@
 
-var UserApi = {
+var BusinessCardApi = {
 
 	/**
-	 * Find a page of users.
+	 * Find a page of resources.
 	 * @param page the page number.
 	 * @param pageSize the items per page.
 	 */
 	findUsers : function (page, pageSize, successHandler, errorHandler) {
-		var serverURL = secUrl() + "/api/user/?page=" + page + "&size=" + pageSize;
+		var serverURL = businessCardUrl() + "/api/user/?page=" + page + "&size=" + pageSize;
 		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
 	},
 
 	/**
-	 * Find a user by id.
+	 * Find a resource by id.
 	 * @param id the user id.
 	 */
 	findById : function (id, successHandler, errorHandler) {
@@ -21,7 +21,7 @@ var UserApi = {
 	},
 
 	/**
-	 * Find user by email.
+	 * Find resource by email.
 	 * @param email the email address.
 	 */
 	findUserByEmail : function (email, successHandler, errorHandler) {

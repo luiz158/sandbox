@@ -41,9 +41,8 @@ $(document).ready(function () {
 	}
 });
 
-function beforeSendHandler(xhr, authorizationKey) {
-	// use basic authorization
-	xhr.setRequestHeader("Authorization", "Basic " + authorizationKey);
+function beforeSendHandler(xhr) {
+	// 
 }
 
 function loadImage(imageLink, onload, onerror) {
@@ -215,11 +214,6 @@ jQuery.fn.center = function(vertical) {
 // Load the User details - For profile page
 //------------------------------------------------------
 
-function loadUserDetails(authorizationKey) {
-	var serverURL = secUrl() + "/api/user/current";
-	handleAjaxRequest('GET', serverURL, null, displayUserDetails, null, beforeSendHandler, authorizationKey);
-}
-
 function displayUserDetails(data, textStatus, xhr) {
 	var encoded = $.toJSON(data);
 
@@ -235,46 +229,4 @@ function displayUserDetails(data, textStatus, xhr) {
 	var email = userDetails.email;
 
 	$('#emailId').text(email);
-}
-
-//------------------------------------------------------
-//Update password - For profile page
-//------------------------------------------------------
-
-function updatePassword(authorizationKey) {
-	//old password
-	var password = $('#password').val();
-	
-	//new password
-	var password2 = $('#password2').val();
-	var url = secUrl() + "/api/principal";
-
-	userDetails.credential = password2;
-	userDetails.oldCredential = password;
-
-	var data = JSON.stringify(userDetails);
-
-	// The current password entered by the user in the profile page is used to authenticate
-	handleAjaxRequest('PUT', url, data, updatePasswordSuccessHandler, updatePasswordFailedHandler, beforeSendHandler, authorizationKey);
-}
-
-function updatePasswordFailedHandler(xhr, textStatus) {
-	if (xhr.statusText) {
-		showErrorNotification(xhr.statusText);
-	} else {
-		showErrorNotification(passUpdateErrMsg);
-	}
-}
-
-function updatePasswordSuccessHandler(msg, textStatus, xhr) {
-	var $dialog = $('<div></div>')
-	.html(passUpdateSuccesMsg)
-	.dialog({
-		autoOpen: false,
-		modal: true,
-		title: 'Success',
-		close: function(event, ui) { window.parent.location.href='/geogrep-client/j_spring_security_logout'; }
-	});
-
-	$dialog.dialog('open');
 }
