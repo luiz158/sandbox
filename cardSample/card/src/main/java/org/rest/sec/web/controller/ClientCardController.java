@@ -80,6 +80,12 @@ public class ClientCardController extends AbstractController<ClientCard> impleme
         return findAllInternal(request);
     }
 
+    @RequestMapping(value = "/businesscard/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<ClientCard> findAllByAssociation(@PathVariable("id") final Long idOfAssociation) {
+        return service.findAllByAssociation(idOfAssociation);
+    }
+
     // find - one
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

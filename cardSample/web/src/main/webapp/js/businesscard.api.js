@@ -17,6 +17,14 @@ var BusinessCardApi = {
 	findOneById : function(id, successHandler, errorHandler) {
 		var serverURL = businessCardUrl() + "/api/businesscard/" + id;
 		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
+	},
+
+	/**
+	 * Find all resources of association
+	 */
+	findAllByAssociation : function(idOfAssociation, successHandler, errorHandler) {
+		var serverURL = businessCardUrl() + "/api/businesscard/" + ididOfAssociation;
+		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
 	}
 
 };
@@ -39,6 +47,14 @@ var ClientCardApi = {
 	 */
 	findOneById : function(id, successHandler, errorHandler) {
 		var serverURL = businessCardUrl() + "/api/clientcard/" + id;
+		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
+	}, 
+	
+	/**
+	 * Find all resources of association
+	 */
+	findAllByAssociation : function(idOfAssociation, successHandler, errorHandler) {
+		var serverURL = businessCardUrl() + "/api/clientcard/" + ididOfAssociation;
 		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
 	}
 

@@ -1,5 +1,7 @@
 package org.rest.sec.persistence.service.impl;
 
+import java.util.List;
+
 import org.apache.commons.lang3.tuple.Triple;
 import org.rest.common.persistence.service.AbstractService;
 import org.rest.common.search.ClientOperation;
@@ -12,6 +14,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.google.common.collect.Lists;
 
 @Service
 @Transactional
@@ -31,6 +35,11 @@ public class ClientCardServiceImpl extends AbstractService<ClientCard> implement
     @Override
     public ClientCard findByName(final String name) {
         return getDao().findByName(name);
+    }
+
+    @Override
+    public List<ClientCard> findAllByAssociation(final Long idOfBusinessCard) {
+        return Lists.newArrayList();
     }
 
     // Spring

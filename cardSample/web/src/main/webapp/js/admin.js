@@ -22,7 +22,26 @@ var Admin = {
 			bAutoWidth : true,
 			bPaginate : false
 		});
-		initializeBusinessCardTable(businesscardtable);
+		var clientcardtable = $('#clientcardtable').dataTable({
+			aoColumns : [ {
+				sTitle : "Id",
+				bSearchable : false,
+				bSortable : false
+			}, {
+				sTitle : "Name",
+				bSearchable : false,
+				bSortable : false
+			} ],
+			// bJQueryUI : true,
+			bFilter : false,
+			bInfo : false,
+			bAutoWidth : true,
+			bPaginate : false
+		});
+
+		// II. BUSINESS CARD TABLE
+
+		initializeBusinessCardTable(businesscardtable, clientcardtable);
 
 		var businessCardSuccessHandler = function(data, textStatus, xhr) {
 			if (!data || data.length == 0) {
@@ -63,7 +82,7 @@ var Admin = {
 				$("#prevPageBC").parent().removeClass("disabled");
 			}
 		};
-		
+
 		// pagination
 		$('#prevPageBC').click(function() {
 			if (page > 0) {
@@ -73,28 +92,13 @@ var Admin = {
 		$('#nextPageBC').click(function() {
 			BusinessCardApi.findAllPaged(++page, pageSize, businessCardSuccessHandler, businessCardErrorHandler);
 		});
-		
+
 		// load first page
 		BusinessCardApi.findAllPaged(page, pageSize, businessCardSuccessHandler, businessCardErrorHandler);
-		
-		
-		var clientcardtable = $('#clientcardtable').dataTable({
-			aoColumns : [ {
-				sTitle : "Id",
-				bSearchable : false,
-				bSortable : false
-			}, {
-				sTitle : "Name",
-				bSearchable : false,
-				bSortable : false
-			} ],
-			// bJQueryUI : true,
-			bFilter : false,
-			bInfo : false,
-			bAutoWidth : true,
-			bPaginate : false
-		});
-		initializeClientCardTable(clientcardtable);
+
+		// II. CLIENT CARD TABLE
+
+		initializeClientCardTable(clientcardtable, businesscardtable);
 
 		var clientCardSuccessHandler = function(data, textStatus, xhr) {
 			if (!data || data.length == 0) {
@@ -144,7 +148,7 @@ var Admin = {
 		$('#nextPageCC').click(function() {
 			ClientCardApi.findAllPaged(++page, pageSize, clientCardSuccessHandler, clientCardErrorHandler);
 		});
-		
+
 		// load first page
 		ClientCardApi.findAllPaged(page, pageSize, clientCardSuccessHandler, clientCardErrorHandler);
 	},
@@ -172,9 +176,9 @@ function rowClicked(oTableLocal) {
 	return oTableLocal.$('tr.row_selected');
 }
 
-function initializeBusinessCardTable(oTableLocal) {
+function initializeBusinessCardTable(bTable, cTable) {
 	$("#businesscardtable tbody").click(function(event) {
-		$(oTableLocal.fnSettings().aoData).each(function() {
+		$(bTable.fnSettings().aoData).each(function() {
 			$(this.nTr).removeClass('row_selected');
 		});
 		$(event.target.parentNode).addClass('row_selected');
@@ -182,16 +186,16 @@ function initializeBusinessCardTable(oTableLocal) {
 
 	/* Add a click handler for the delete row */
 	$('#businesscardtable tbody').click(function() {
-		var anSelected = rowClicked(oTableLocal);
+		var anSelected = rowClicked(bTable);
 		if (anSelected.length !== 0) {
-			oTableLocal.fnDeleteRow(anSelected[0]);
+			bTable.fnDeleteRow(anSelected[0]);
 		}
 	});
 }
 
-function initializeClientCardTable(oTableLocal) {
+function initializeClientCardTable(cTable, bTable) {
 	$("#clientcardtable tbody").click(function(event) {
-		$(oTableLocal.fnSettings().aoData).each(function() {
+		$(cTable.fnSettings().aoData).each(function() {
 			$(this.nTr).removeClass('row_selected');
 		});
 		$(event.target.parentNode).addClass('row_selected');
@@ -199,9 +203,9 @@ function initializeClientCardTable(oTableLocal) {
 
 	/* Add a click handler for the delete row */
 	$('#clientcardtable tbody').click(function() {
-		var anSelected = rowClicked(oTableLocal);
+		var anSelected = rowClicked(cTable);
 		if (anSelected.length !== 0) {
-			oTableLocal.fnDeleteRow(anSelected[0]);
+			cTable.fnDeleteRow(anSelected[0]);
 		}
 	});
 }
