@@ -18,6 +18,7 @@
   <script type="text/javascript" src="<spring:url value="/js/mustache.js"/>"></script>
   <script type="text/javascript" src="<spring:url value="/js/common.js"/>"></script>
   <script type="text/javascript" src="<spring:url value="/js/user.api.js"/>"></script>
+  <script type="text/javascript" src="<spring:url value="/js/businesscard.api.js"/>"></script>
   <script type="text/javascript" src="<spring:url value="/js/admin.js"/>"></script>
   <script type="text/javascript" src="<spring:url value="/js/bootstrap.js"/>"></script>
 
@@ -28,9 +29,11 @@
     function secUrl() {
       return '${properties.securl}';
     }
+    function businessCardUrl() {
+      return '${properties.businessCardUrl}';
+    }
     $(document).ready(function () {
-      var userEditLinkTmpl = '<a href="<spring:url value="/admin/edit-user.html?id={{id}}"/>" class="btn btn-mini pull-right"><spring:message code="edit"/></a>';
-      Admin.loadUsersPage(userEditLinkTmpl);
+      Admin.loadPage();
     });
     
     loadErrMsg = '<spring:message code="js.admin.load.users.error"/>';
@@ -63,10 +66,10 @@
   <h1><spring:message code="admin.console"/></h1>
 
   <hr/>
-  <h3><spring:message code="users"/></h3>
+  <h3><spring:message code="cards"/></h3>
   <div style="padding: 10px 0;">
-    <div id="users_table"> <table id="datatable"></table> </div>
-    <div id="users_table_footer"> <spring:message code="page"/> <span id="currentPage">1</span> </div>
+    <div id="cards_table"> <table id="datatable"></table> </div>
+    <div id="cards_table_footer"> <spring:message code="page"/> <span id="currentPage">1</span> </div>
 
     <ul class="pager">
       <li class="disabled previous">
@@ -79,12 +82,5 @@
   </div>
 </div>
 
-<div id="filterTmpl" style="display: none;">
-  <form id="filterForm" class="filter pull-right">
-    <input type="text" id="filter" value="" placeholder="<spring:message code="search.by.exact.email"/>"/>
-    <input type="submit" id="search" class="btn btn-primary" value="<spring:message code="search"/>"/>
-    <input type="button" id="clearSearch" class="btn" value="<spring:message code="clear.search"/>"/>
-  </form>
-</div>
 </body>
 </html>

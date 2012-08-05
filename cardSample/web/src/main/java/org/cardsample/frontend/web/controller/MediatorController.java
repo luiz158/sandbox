@@ -19,9 +19,4 @@ public final class MediatorController {
         return "index";
     }
 
-    @RequestMapping(value = "/")
-    public String root() {
-        return "index";
-    }
-
 }

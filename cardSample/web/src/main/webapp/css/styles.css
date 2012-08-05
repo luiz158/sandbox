@@ -52,8 +52,8 @@
 
 hr.popup { margin: 10px 0 15px 0; }
 
-#users_table { min-height: 225px;}
-#users_table_footer { padding: 10px 0; }
+#cards_table { min-height: 225px;}
+#cards_table_footer { padding: 10px 0; }
 
 .addFieldSection { padding: 15px; text-align: center; cursor: pointer; background-color: #f7f7f7; border-radius: 5px; text-shadow: 1px 1px 1px #ffffff;}
 .addFieldSection:hover { background-color: #efefef; }

@@ -6,8 +6,8 @@ var BusinessCardApi = {
 	 * @param page the page number.
 	 * @param pageSize the items per page.
 	 */
-	findUsers : function (page, pageSize, successHandler, errorHandler) {
-		var serverURL = businessCardUrl() + "/api/user/?page=" + page + "&size=" + pageSize;
+	findAllPaged : function (page, pageSize, successHandler, errorHandler) {
+		var serverURL = businessCardUrl() + "/api/businesscard/?page=" + page + "&size=" + pageSize;
 		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
 	},
 
@@ -15,17 +15,17 @@ var BusinessCardApi = {
 	 * Find a resource by id.
 	 * @param id the user id.
 	 */
-	findById : function (id, successHandler, errorHandler) {
-		var serverURL = secUrl() + "/api/user/" + id;
+	findOneById : function (id, successHandler, errorHandler) {
+		var serverURL = businessCardUrl() + "/api/businesscard/" + id;
 		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
 	},
 
 	/**
-	 * Find resource by email.
-	 * @param email the email address.
+	 * Find resource by name.
+	 * @param name the name of the resource.
 	 */
 	findUserByEmail : function (email, successHandler, errorHandler) {
-		var serverURL = secUrl() + "/api/user/?email=" + encodeURIComponent(email);
+		var serverURL = businessCardUrl() + "/api/businesscard/?name=" + encodeURIComponent(email);
 		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
 	}
 };
