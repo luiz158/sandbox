@@ -4,8 +4,6 @@
 	<classpath>
 		<dir name="C:/opt/git/github/sandbox/cardSample/web/target/classes">
 		</dir>
-		<dir name="C:/opt/git/github/sandbox/cardSample/web/target/test-classes">
-		</dir>
 	</classpath>
 
 	<web>
