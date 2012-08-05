@@ -3,7 +3,7 @@ package org.rest.sec.persistence.service.impl;
 import org.apache.commons.lang3.tuple.Triple;
 import org.rest.common.persistence.service.AbstractService;
 import org.rest.common.search.ClientOperation;
-import org.rest.sec.model.Privilege;
+import org.rest.sec.model.BusinessCard;
 import org.rest.sec.persistence.dao.IPrivilegeJpaDAO;
 import org.rest.sec.persistence.service.IPrivilegeService;
 import org.rest.sec.util.SearchUtilSec;
@@ -15,13 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class PrivilegeServiceImpl extends AbstractService<Privilege> implements IPrivilegeService {
+public class PrivilegeServiceImpl extends AbstractService<BusinessCard> implements IPrivilegeService {
 
     @Autowired
     IPrivilegeJpaDAO dao;
 
     public PrivilegeServiceImpl() {
-        super(Privilege.class);
+        super(BusinessCard.class);
     }
 
     // API
@@ -29,7 +29,7 @@ public class PrivilegeServiceImpl extends AbstractService<Privilege> implements 
     // find
 
     @Override
-    public Privilege findByName(final String name) {
+    public BusinessCard findByName(final String name) {
         return getDao().findByName(name);
     }
 
@@ -41,12 +41,12 @@ public class PrivilegeServiceImpl extends AbstractService<Privilege> implements 
     }
 
     @Override
-    public Specification<Privilege> resolveConstraint(final Triple<String, ClientOperation, String> constraint) {
-        return SearchUtilSec.resolveConstraint(constraint, Privilege.class);
+    public Specification<BusinessCard> resolveConstraint(final Triple<String, ClientOperation, String> constraint) {
+        return SearchUtilSec.resolveConstraint(constraint, BusinessCard.class);
     }
 
     @Override
-    protected JpaSpecificationExecutor<Privilege> getSpecificationExecutor() {
+    protected JpaSpecificationExecutor<BusinessCard> getSpecificationExecutor() {
         return dao;
     }
 

@@ -11,7 +11,7 @@ import org.rest.common.util.SearchCommonUtil;
 import org.rest.common.web.RestPreconditions;
 import org.rest.common.web.controller.AbstractController;
 import org.rest.common.web.controller.ISortingController;
-import org.rest.sec.model.Privilege;
+import org.rest.sec.model.BusinessCard;
 import org.rest.sec.persistence.service.IPrivilegeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
@@ -28,13 +28,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
 @RequestMapping(value = "privilege")
-public class PrivilegeController extends AbstractController<Privilege> implements ISortingController<Privilege> {
+public class PrivilegeController extends AbstractController<BusinessCard> implements ISortingController<BusinessCard> {
 
     @Autowired
     private IPrivilegeService service;
 
     public PrivilegeController() {
-        super(Privilege.class);
+        super(BusinessCard.class);
     }
 
     // API
@@ -43,7 +43,7 @@ public class PrivilegeController extends AbstractController<Privilege> implement
 
     @RequestMapping(params = { SearchCommonUtil.Q_PARAM }, method = RequestMethod.GET)
     @ResponseBody
-    public List<Privilege> search(@RequestParam(SearchCommonUtil.Q_PARAM) final String queryString) {
+    public List<BusinessCard> search(@RequestParam(SearchCommonUtil.Q_PARAM) final String queryString) {
         return searchInternal(queryString);
     }
 
@@ -52,7 +52,7 @@ public class PrivilegeController extends AbstractController<Privilege> implement
     @Override
     @RequestMapping(params = { QueryConstants.PAGE, QueryConstants.SIZE, QueryConstants.SORT_BY }, method = RequestMethod.GET)
     @ResponseBody
-    public List<Privilege> findAllPaginatedAndSorted(@RequestParam(value = QueryConstants.PAGE) final int page, @RequestParam(value = QueryConstants.SIZE) final int size,
+    public List<BusinessCard> findAllPaginatedAndSorted(@RequestParam(value = QueryConstants.PAGE) final int page, @RequestParam(value = QueryConstants.SIZE) final int size,
             @RequestParam(value = QueryConstants.SORT_BY) final String sortBy, @RequestParam(value = QueryConstants.SORT_ORDER) final String sortOrder, final UriComponentsBuilder uriBuilder,
             final HttpServletResponse response) {
         return findPaginatedAndSortedInternal(page, size, sortBy, sortOrder, uriBuilder, response);
@@ -61,7 +61,7 @@ public class PrivilegeController extends AbstractController<Privilege> implement
     @Override
     @RequestMapping(params = { QueryConstants.PAGE, QueryConstants.SIZE }, method = RequestMethod.GET)
     @ResponseBody
-    public List<Privilege> findAllPaginated(@RequestParam(value = QueryConstants.PAGE) final int page, @RequestParam(value = QueryConstants.SIZE) final int size, final UriComponentsBuilder uriBuilder,
+    public List<BusinessCard> findAllPaginated(@RequestParam(value = QueryConstants.PAGE) final int page, @RequestParam(value = QueryConstants.SIZE) final int size, final UriComponentsBuilder uriBuilder,
             final HttpServletResponse response) {
         return findPaginatedAndSortedInternal(page, size, null, null, uriBuilder, response);
     }
@@ -69,14 +69,14 @@ public class PrivilegeController extends AbstractController<Privilege> implement
     @Override
     @RequestMapping(params = { QueryConstants.SORT_BY }, method = RequestMethod.GET)
     @ResponseBody
-    public List<Privilege> findAllSorted(@RequestParam(value = QueryConstants.SORT_BY) final String sortBy, @RequestParam(value = QueryConstants.SORT_ORDER) final String sortOrder) {
+    public List<BusinessCard> findAllSorted(@RequestParam(value = QueryConstants.SORT_BY) final String sortBy, @RequestParam(value = QueryConstants.SORT_ORDER) final String sortOrder) {
         return findAllSortedInternal(sortBy, sortOrder);
     }
 
     @Override
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<Privilege> findAll(final HttpServletRequest request) {
+    public List<BusinessCard> findAll(final HttpServletRequest request) {
         return findAllInternal(request);
     }
 
@@ -84,14 +84,14 @@ public class PrivilegeController extends AbstractController<Privilege> implement
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Privilege findOne(@PathVariable("id") final Long id, final UriComponentsBuilder uriBuilder, final HttpServletResponse response) {
+    public BusinessCard findOne(@PathVariable("id") final Long id, final UriComponentsBuilder uriBuilder, final HttpServletResponse response) {
         return findOneInternal(id, uriBuilder, response);
     }
 
     @RequestMapping(params = "name", method = RequestMethod.GET)
     @ResponseBody
-    public Privilege findOneByName(@RequestParam("name") final String name) {
-        Privilege resource = null;
+    public BusinessCard findOneByName(@RequestParam("name") final String name) {
+        BusinessCard resource = null;
         try {
             resource = RestPreconditions.checkNotNull(getService().findByName(name));
         } catch (final InvalidDataAccessApiUsageException ex) {
@@ -107,7 +107,7 @@ public class PrivilegeController extends AbstractController<Privilege> implement
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody final Privilege resource, final UriComponentsBuilder uriBuilder, final HttpServletResponse response) {
+    public void create(@RequestBody final BusinessCard resource, final UriComponentsBuilder uriBuilder, final HttpServletResponse response) {
         createInternal(resource, uriBuilder, response);
     }
 
@@ -115,7 +115,7 @@ public class PrivilegeController extends AbstractController<Privilege> implement
 
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void update(@RequestBody final Privilege resource) {
+    public void update(@RequestBody final BusinessCard resource) {
         updateInternal(resource);
     }
 

@@ -4,19 +4,17 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
 import org.junit.Test;
 import org.rest.common.persistence.service.IService;
-import org.rest.sec.model.Privilege;
+import org.rest.sec.model.BusinessCard;
 import org.rest.sec.test.SecPersistenceServiceIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
-public class PrivilegeServicePersistenceIntegrationTest extends SecPersistenceServiceIntegrationTest<Privilege> {
+public class PrivilegeServicePersistenceIntegrationTest extends SecPersistenceServiceIntegrationTest<BusinessCard> {
 
     @Autowired
     private IPrivilegeService privilegeService;
     @Autowired
     IRoleService roleService;
-    @Autowired
-    IPrincipalService principalService;
 
     // create
 
@@ -36,29 +34,29 @@ public class PrivilegeServicePersistenceIntegrationTest extends SecPersistenceSe
     // template method
 
     @Override
-    protected final IService<Privilege> getAPI() {
+    protected final IService<BusinessCard> getAPI() {
         return privilegeService;
     }
 
     @Override
-    protected final Privilege createNewEntity() {
-        return new Privilege(randomAlphabetic(8));
+    protected final BusinessCard createNewEntity() {
+        return new BusinessCard(randomAlphabetic(8));
     }
 
     @Override
-    protected final void invalidate(final Privilege entity) {
+    protected final void invalidate(final BusinessCard entity) {
         entity.setName(null);
     }
 
     @Override
-    protected final void changeEntity(final Privilege entity) {
+    protected final void changeEntity(final BusinessCard entity) {
         entity.setName(randomAlphabetic(6));
     }
 
     // util
 
-    protected final Privilege createNewEntity(final String name) {
-        return new Privilege(name);
+    protected final BusinessCard createNewEntity(final String name) {
+        return new BusinessCard(name);
     }
 
 }

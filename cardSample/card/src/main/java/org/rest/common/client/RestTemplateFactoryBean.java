@@ -1,12 +1,8 @@
 package org.rest.common.client;
 
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.rest.sec.model.Principal;
-import org.rest.sec.model.Privilege;
+import org.rest.sec.model.BusinessCard;
 import org.rest.sec.model.Role;
-import org.rest.sec.model.dto.User;
-import org.rest.security.BasicHttpComponentsClientHttpRequestFactory;
-import org.rest.security.DigestHttpComponentsClientHttpRequestFactory;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,8 +18,6 @@ import org.springframework.web.client.RestTemplate;
 public class RestTemplateFactoryBean implements FactoryBean<RestTemplate>, InitializingBean {
     private RestTemplate restTemplate;
 
-    @Value("${sec.auth.basic}")
-    boolean basicAuth;
     @Value("${http.req.timeout}")
     int timeout;
 
@@ -47,20 +41,11 @@ public class RestTemplateFactoryBean implements FactoryBean<RestTemplate>, Initi
     @Override
     public void afterPropertiesSet() {
         final DefaultHttpClient httpClient = new DefaultHttpClient();
-        final HttpComponentsClientHttpRequestFactory requestFactory;
-        if (basicAuth) {
-            requestFactory = new BasicHttpComponentsClientHttpRequestFactory(httpClient) {
-                {
-                    setReadTimeout(timeout);
-                }
-            };
-        } else {
-            requestFactory = new DigestHttpComponentsClientHttpRequestFactory(httpClient) {
-                {
-                    setReadTimeout(timeout);
-                }
-            };
-        }
+        final HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient) {
+            {
+                setReadTimeout(timeout);
+            }
+        };
         restTemplate = new RestTemplate(requestFactory);
 
         restTemplate.getMessageConverters().add(marshallingHttpMessageConverter());
@@ -79,7 +64,7 @@ public class RestTemplateFactoryBean implements FactoryBean<RestTemplate>, Initi
     final XStreamMarshaller xstreamMarshaller() {
         final XStreamMarshaller xStreamMarshaller = new XStreamMarshaller();
         xStreamMarshaller.setAutodetectAnnotations(true);
-        xStreamMarshaller.setAnnotatedClasses(new Class[] { Principal.class, User.class, Role.class, Privilege.class });
+        xStreamMarshaller.setAnnotatedClasses(new Class[] { Role.class, BusinessCard.class });
         xStreamMarshaller.getXStream().addDefaultImplementation(java.sql.Timestamp.class, java.util.Date.class);
 
         return xStreamMarshaller;

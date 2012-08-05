@@ -5,10 +5,9 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import org.rest.sec.web.privilege.PrivilegeSortRESTIntegrationTest;
 import org.rest.sec.web.role.RoleSortRESTIntegrationTest;
-import org.rest.sec.web.user.UserSortRESTIntegrationTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ PrivilegeSortRESTIntegrationTest.class, RoleSortRESTIntegrationTest.class, UserSortRESTIntegrationTest.class })
+@SuiteClasses({ PrivilegeSortRESTIntegrationTest.class, RoleSortRESTIntegrationTest.class })
 public final class IntegrationSortRESTTestSuite {
     //
 }

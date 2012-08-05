@@ -4,7 +4,7 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
-import org.rest.sec.model.Privilege;
+import org.rest.sec.model.BusinessCard;
 import org.rest.sec.test.SecPersistenceDAOIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,14 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 @TransactionConfiguration(defaultRollback = true)
 @Transactional
-public class PrivilegeDAOPersistenceIntegrationTest extends SecPersistenceDAOIntegrationTest<Privilege> {
+public class PrivilegeDAOPersistenceIntegrationTest extends SecPersistenceDAOIntegrationTest<BusinessCard> {
 
     @Autowired
     private IPrivilegeJpaDAO privilegeDao;
     @Autowired
     IRoleJpaDAO associationDao;
-    @Autowired
-    IPrincipalJpaDAO principalDao;
 
     // save
 
@@ -37,7 +35,7 @@ public class PrivilegeDAOPersistenceIntegrationTest extends SecPersistenceDAOInt
         final String name = randomAlphabetic(8);
 
         // When
-        final Privilege entityByName = getDAOCasted().findByName(name);
+        final BusinessCard entityByName = getDAOCasted().findByName(name);
 
         // Then
         assertNull(entityByName);
@@ -46,22 +44,22 @@ public class PrivilegeDAOPersistenceIntegrationTest extends SecPersistenceDAOInt
     // template method
 
     @Override
-    protected final JpaRepository<Privilege, Long> getAPI() {
+    protected final JpaRepository<BusinessCard, Long> getAPI() {
         return privilegeDao;
     }
 
     @Override
-    protected final Privilege createNewEntity() {
-        return new Privilege(randomAlphabetic(8));
+    protected final BusinessCard createNewEntity() {
+        return new BusinessCard(randomAlphabetic(8));
     }
 
     @Override
-    protected final void invalidate(final Privilege entity) {
+    protected final void invalidate(final BusinessCard entity) {
         entity.setName(null);
     }
 
     @Override
-    protected final void changeEntity(final Privilege entity) {
+    protected final void changeEntity(final BusinessCard entity) {
         entity.setName(randomAlphabetic(6));
     }
 

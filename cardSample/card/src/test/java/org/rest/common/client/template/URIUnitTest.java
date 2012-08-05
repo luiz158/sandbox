@@ -4,21 +4,13 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.rest.common.client.template.AbstractClientRESTTemplate;
 import org.rest.common.util.SearchCommonUtil;
-import org.rest.sec.client.template.newer.UserClientRESTTemplate;
 
 public class URIUnitTest {
 
     @SuppressWarnings("rawtypes")
     public static AbstractClientRESTTemplate instance;
-
-    @BeforeClass
-    public static void beforeClass() {
-        instance = new UserClientRESTTemplate();
-    }
 
     @Test(expected = NullPointerException.class)
     public void givenNullArgumentArray_whenURIIsConstructed_thenException() {

@@ -5,7 +5,7 @@ import org.rest.common.client.AbstractClientRESTIntegrationTest;
 import org.rest.common.client.IEntityOperations;
 import org.rest.sec.client.template.PrivilegeRESTTemplateImpl;
 import org.rest.sec.client.template.newer.PrivilegeClientRESTTemplate;
-import org.rest.sec.model.Privilege;
+import org.rest.sec.model.BusinessCard;
 import org.rest.spring.client.ClientTestConfig;
 import org.rest.spring.context.ContextTestConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { ContextTestConfig.class, ClientTestConfig.class }, loader = AnnotationConfigContextLoader.class)
-public class PrivilegeClientRESTIntegrationTest extends AbstractClientRESTIntegrationTest<Privilege> {
+public class PrivilegeClientRESTIntegrationTest extends AbstractClientRESTIntegrationTest<BusinessCard> {
 
     @Autowired
     private PrivilegeClientRESTTemplate clientTemplate;
@@ -36,7 +36,7 @@ public class PrivilegeClientRESTIntegrationTest extends AbstractClientRESTIntegr
     }
 
     @Override
-    protected final IEntityOperations<Privilege> getEntityOps() {
+    protected final IEntityOperations<BusinessCard> getEntityOps() {
         return entityOps;
     }
 

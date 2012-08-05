@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.rest.common.web.WebConstants;
 import org.rest.sec.client.template.PrivilegeRESTTemplateImpl;
 import org.rest.sec.client.template.RoleRESTTemplateImpl;
-import org.rest.sec.model.Privilege;
+import org.rest.sec.model.BusinessCard;
 import org.rest.sec.model.Role;
 import org.rest.sec.test.SecLogicRESTIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +62,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
     @Test
     public final void whenResourceIsRetrieved_thenAssociationsAreAlsoRetrieved() {
         final Role existingResource = getAPI().create(getAPI().createNewEntity());
-        assertThat(existingResource.getPrivileges(), not(Matchers.<Privilege> empty()));
+        assertThat(existingResource.getPrivileges(), not(Matchers.<BusinessCard> empty()));
     }
 
     // create
@@ -92,7 +92,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
 
     @Test
     public final void whenCreatingNewResourceWithExistingAssociations_thenNewResourceIsCorrectlyCreated() {
-        final Privilege existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
+        final BusinessCard existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
         final Role newResource = getAPI().createNewEntity();
         newResource.getPrivileges().add(existingAssociation);
         getAPI().create(newResource);
@@ -104,7 +104,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
 
     /**
      * - note: this test ensures that a new User cannot automatically create new Privileges <br>
-     * - note: the standard way to do this is: first create the Privilege resource(s), then associate them with the new User resource and then create the User resource
+     * - note: the standard way to do this is: first create the BusinessCard resource(s), then associate them with the new User resource and then create the User resource
      */
     @Test
     public final void whenResourceIsCreatedWithNewAssociation_then409IsReceived() {
@@ -120,7 +120,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
 
     @Test
     public final void whenResourceIsCreatedWithInvalidAssociation_then409IsReceived() {
-        final Privilege invalidAssociation = getAssociationAPI().createNewEntity();
+        final BusinessCard invalidAssociation = getAssociationAPI().createNewEntity();
         getAssociationAPI().invalidate(invalidAssociation);
         final Role newResource = getAPI().createNewEntity();
         newResource.getPrivileges().add(invalidAssociation);
@@ -134,7 +134,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
 
     @Test
     public final void whenResourceIsCreatedWithExistingAssociation_then201IsReceived() {
-        final Privilege existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
+        final BusinessCard existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
         final Role newResource = getAPI().createNewEntity();
         newResource.getPrivileges().add(existingAssociation);
 
@@ -147,7 +147,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
 
     @Test
     public final void whenResourceIsCreatedWithExistingAssociation_thenAssociationIsLinkedToTheResource() {
-        final Privilege existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
+        final BusinessCard existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
         final Role resourceToCreate = getAPI().createNewEntity();
 
         // When
@@ -164,7 +164,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
     public final void givenResourceExists_whenResourceIsUpdatedWithExistingAsscoaition_thenAssociationIsCorrectlyUpdated() {
         // Given
         final Role existingResource = getAPI().create(getAPI().createNewEntity());
-        final Privilege existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
+        final BusinessCard existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
         existingResource.setPrivileges(Sets.newHashSet(existingAssociation));
 
         // When
@@ -178,7 +178,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
     @Test
     public final void givenExistingResourceAndExistingAssociation_whenUpdatingResourceWithTheAssociation_thanAssociationCorrectlyDone() {
         final Role existingResource = getAPI().create(getAPI().createNewEntity());
-        final Privilege existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
+        final BusinessCard existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
         existingResource.setPrivileges(Sets.newHashSet(existingAssociation));
 
         getAPI().update(existingResource);
@@ -190,7 +190,7 @@ public class RoleLogicRESTIntegrationTest extends SecLogicRESTIntegrationTest<Ro
 
     @Test
     public final void whenScenarioOfWorkingWithAssociations_thenTheChangesAreCorrectlyPersisted() {
-        final Privilege existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
+        final BusinessCard existingAssociation = getAssociationAPI().create(getAssociationAPI().createNewEntity());
         final Role resource1 = new Role(randomAlphabetic(6), Sets.newHashSet(existingAssociation));
 
         final Role resource1ViewOfServerBefore = getAPI().create(resource1);

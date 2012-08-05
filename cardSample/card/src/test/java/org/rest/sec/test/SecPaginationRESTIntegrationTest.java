@@ -5,11 +5,11 @@ import org.rest.common.persistence.model.IEntity;
 import org.rest.common.web.base.AbstractPaginationRESTIntegrationTest;
 import org.rest.spring.client.ClientTestConfig;
 import org.rest.spring.context.ContextTestConfig;
-import org.rest.testing.security.AuthenticationUtil;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
+import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.specification.RequestSpecification;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,7 +18,7 @@ public abstract class SecPaginationRESTIntegrationTest<T extends IEntity> extend
 
     @Override
     protected RequestSpecification givenAuthenticated() {
-        return AuthenticationUtil.givenBasicAuthenticated();
+        return RestAssured.given();
     }
 
     // tests

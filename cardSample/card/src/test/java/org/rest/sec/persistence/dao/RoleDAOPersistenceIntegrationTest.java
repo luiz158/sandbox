@@ -4,7 +4,7 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
-import org.rest.sec.model.Privilege;
+import org.rest.sec.model.BusinessCard;
 import org.rest.sec.model.Role;
 import org.rest.sec.test.SecPersistenceDAOIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,6 @@ public class RoleDAOPersistenceIntegrationTest extends SecPersistenceDAOIntegrat
     IPrivilegeJpaDAO privilegeDao;
     @Autowired
     private IRoleJpaDAO roleDao;
-    @Autowired
-    IPrincipalJpaDAO principalDao;
 
     // find by
 
@@ -49,7 +47,7 @@ public class RoleDAOPersistenceIntegrationTest extends SecPersistenceDAOIntegrat
     @Override
     protected final Role createNewEntity() {
         final Role entity = new Role(randomAlphabetic(8));
-        entity.setPrivileges(Sets.<Privilege> newHashSet());
+        entity.setPrivileges(Sets.<BusinessCard> newHashSet());
         return entity;
     }
 

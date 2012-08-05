@@ -1,10 +1,10 @@
 package org.rest.sec.persistence.service;
 
 import org.rest.common.persistence.service.IService;
-import org.rest.sec.model.Privilege;
+import org.rest.sec.model.BusinessCard;
 
-public interface IPrivilegeService extends IService<Privilege> {
+public interface IPrivilegeService extends IService<BusinessCard> {
 
-    Privilege findByName(final String name);
+    BusinessCard findByName(final String name);
 
 }

@@ -37,7 +37,7 @@ public class Role implements INameableEntity {
     @ManyToMany( /* cascade = { CascadeType.REMOVE }, */fetch = FetchType.EAGER)
     @JoinTable(joinColumns = { @JoinColumn(name = "ROLE_ID", referencedColumnName = "ROLE_ID") }, inverseJoinColumns = { @JoinColumn(name = "PRIV_ID", referencedColumnName = "PRIV_ID") })
     @XStreamImplicit
-    private Set<Privilege> privileges;
+    private Set<BusinessCard> privileges;
 
     // @formatter:on
 
@@ -50,7 +50,7 @@ public class Role implements INameableEntity {
         name = nameToSet;
     }
 
-    public Role(final String nameToSet, final Set<Privilege> privilegesToSet) {
+    public Role(final String nameToSet, final Set<BusinessCard> privilegesToSet) {
         super();
         name = nameToSet;
         privileges = privilegesToSet;
@@ -77,11 +77,11 @@ public class Role implements INameableEntity {
         name = nameToSet;
     }
 
-    public Set<Privilege> getPrivileges() {
+    public Set<BusinessCard> getPrivileges() {
         return privileges;
     }
 
-    public void setPrivileges(final Set<Privilege> privilegesToSet) {
+    public void setPrivileges(final Set<BusinessCard> privilegesToSet) {
         privileges = privilegesToSet;
     }
 

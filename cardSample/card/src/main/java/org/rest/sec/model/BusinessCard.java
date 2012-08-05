@@ -14,7 +14,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @Entity
 @XmlRootElement
 @XStreamAlias("privilege")
-public class Privilege implements INameableEntity {
+public class BusinessCard implements INameableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,11 +25,11 @@ public class Privilege implements INameableEntity {
     @Column(unique = false, nullable = true)
     private String description;
 
-    public Privilege() {
+    public BusinessCard() {
         super();
     }
 
-    public Privilege(final String nameToSet) {
+    public BusinessCard(final String nameToSet) {
         super();
         name = nameToSet;
     }
@@ -81,7 +81,7 @@ public class Privilege implements INameableEntity {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        final Privilege other = (Privilege) obj;
+        final BusinessCard other = (BusinessCard) obj;
         if (name == null) {
             if (other.name != null)
                 return false;

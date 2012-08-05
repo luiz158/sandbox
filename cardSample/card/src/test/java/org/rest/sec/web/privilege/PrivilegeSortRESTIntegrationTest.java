@@ -1,13 +1,13 @@
 package org.rest.sec.web.privilege;
 
 import org.rest.sec.client.template.PrivilegeRESTTemplateImpl;
-import org.rest.sec.model.Privilege;
+import org.rest.sec.model.BusinessCard;
 import org.rest.sec.test.SecSortRESTIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.collect.Ordering;
 
-public class PrivilegeSortRESTIntegrationTest extends SecSortRESTIntegrationTest<Privilege> {
+public class PrivilegeSortRESTIntegrationTest extends SecSortRESTIntegrationTest<BusinessCard> {
 
     @Autowired
     private PrivilegeRESTTemplateImpl template;
@@ -17,7 +17,7 @@ public class PrivilegeSortRESTIntegrationTest extends SecSortRESTIntegrationTest
     // template method (shortcuts)
 
     @Override
-    protected final Privilege createNewEntity() {
+    protected final BusinessCard createNewEntity() {
         return template.createNewEntity();
     }
 
@@ -32,10 +32,10 @@ public class PrivilegeSortRESTIntegrationTest extends SecSortRESTIntegrationTest
     }
 
     @Override
-    protected final Ordering<Privilege> getOrdering() {
-        return new Ordering<Privilege>() {
+    protected final Ordering<BusinessCard> getOrdering() {
+        return new Ordering<BusinessCard>() {
             @Override
-            public final int compare(final Privilege left, final Privilege right) {
+            public final int compare(final BusinessCard left, final BusinessCard right) {
                 return left.getName().compareToIgnoreCase(right.getName());
             }
         };

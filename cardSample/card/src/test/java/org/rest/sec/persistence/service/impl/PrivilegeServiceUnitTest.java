@@ -10,14 +10,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.rest.common.persistence.service.AbstractServiceUnitTest;
 import org.rest.common.util.IDUtils;
-import org.rest.sec.model.Privilege;
+import org.rest.sec.model.BusinessCard;
 import org.rest.sec.persistence.dao.IPrivilegeJpaDAO;
 import org.rest.sec.persistence.util.FixtureFactory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.google.common.collect.Lists;
 
-public class PrivilegeServiceUnitTest extends AbstractServiceUnitTest<Privilege> {
+public class PrivilegeServiceUnitTest extends AbstractServiceUnitTest<BusinessCard> {
 
     private PrivilegeServiceImpl instance;
 
@@ -31,8 +31,8 @@ public class PrivilegeServiceUnitTest extends AbstractServiceUnitTest<Privilege>
         instance = new PrivilegeServiceImpl();
 
         daoMock = mock(IPrivilegeJpaDAO.class);
-        when(daoMock.save(any(Privilege.class))).thenReturn(new Privilege());
-        when(daoMock.findAll()).thenReturn(Lists.<Privilege> newArrayList());
+        when(daoMock.save(any(BusinessCard.class))).thenReturn(new BusinessCard());
+        when(daoMock.findAll()).thenReturn(Lists.<BusinessCard> newArrayList());
         instance.dao = daoMock;
         super.before();
     }
@@ -61,8 +61,8 @@ public class PrivilegeServiceUnitTest extends AbstractServiceUnitTest<Privilege>
 
     // mocking behavior
 
-    final Privilege configureGet(final long id) {
-        final Privilege entity = new Privilege();
+    final BusinessCard configureGet(final long id) {
+        final BusinessCard entity = new BusinessCard();
         entity.setId(id);
         when(daoMock.findOne(id)).thenReturn(entity);
         return entity;
@@ -76,19 +76,19 @@ public class PrivilegeServiceUnitTest extends AbstractServiceUnitTest<Privilege>
     }
 
     @Override
-    protected final JpaRepository<Privilege, Long> getDAO() {
+    protected final JpaRepository<BusinessCard, Long> getDAO() {
         return daoMock;
     }
 
     @Override
-    protected Privilege createNewEntity() {
-        final Privilege newPrivilege = FixtureFactory.createNewPrivilege();
+    protected BusinessCard createNewEntity() {
+        final BusinessCard newPrivilege = FixtureFactory.createNewPrivilege();
         newPrivilege.setId(IDUtils.randomPositiveLong());
         return newPrivilege;
     }
 
     @Override
-    protected void changeEntity(final Privilege entity) {
+    protected void changeEntity(final BusinessCard entity) {
         entity.setName(randomAlphabetic(8));
     }
 

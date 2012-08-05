@@ -3,7 +3,7 @@ package org.rest.sec.model;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
 import org.rest.common.client.IEntityOperations;
-import org.rest.sec.model.Privilege;
+import org.rest.sec.model.BusinessCard;
 import org.rest.sec.model.Role;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +20,7 @@ public final class RoleEntityOpsImpl implements IEntityOperations<Role> {
 
     @Override
     public final Role createNewEntity() {
-        return new Role(randomAlphabetic(8), Sets.<Privilege> newHashSet());
+        return new Role(randomAlphabetic(8), Sets.<BusinessCard> newHashSet());
     }
 
     @Override

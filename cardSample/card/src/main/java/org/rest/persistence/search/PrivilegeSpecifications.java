@@ -5,7 +5,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.rest.sec.model.Privilege;
+import org.rest.sec.model.BusinessCard;
 import org.springframework.data.jpa.domain.Specification;
 
 public final class PrivilegeSpecifications {
@@ -16,10 +16,10 @@ public final class PrivilegeSpecifications {
 
     // API
 
-    public static Specification<Privilege> lastNameIsLike(final String searchTerm) {
-        return new Specification<Privilege>() {
+    public static Specification<BusinessCard> lastNameIsLike(final String searchTerm) {
+        return new Specification<BusinessCard>() {
             @Override
-            public final Predicate toPredicate(final Root<Privilege> root, final CriteriaQuery<?> query, final CriteriaBuilder builder) {
+            public final Predicate toPredicate(final Root<BusinessCard> root, final CriteriaQuery<?> query, final CriteriaBuilder builder) {
                 // return builder.equal( root.get, y );
                 return null;
             }

@@ -1,10 +1,8 @@
 package org.rest.sec.persistence.setup;
 
 import org.rest.common.event.BeforeSetupEvent;
-import org.rest.sec.web.controller.AuthenticationController;
 import org.rest.sec.web.controller.PrivilegeController;
 import org.rest.sec.web.controller.RoleController;
-import org.rest.sec.web.controller.UserController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
@@ -31,8 +29,6 @@ public final class SpringVerificationsBeforeSetupListener implements Application
     public final void onApplicationEvent(final BeforeSetupEvent event) {
         Preconditions.checkNotNull(context.getBean(PrivilegeController.class));
         Preconditions.checkNotNull(context.getBean(RoleController.class));
-        Preconditions.checkNotNull(context.getBean(UserController.class));
-        Preconditions.checkNotNull(context.getBean(AuthenticationController.class));
     }
 
 }
