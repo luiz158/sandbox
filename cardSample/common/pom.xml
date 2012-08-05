@@ -455,32 +455,4 @@
 
 	</profiles>
 
-	<repositories>
-
-		<!-- <repository> <id>jboss-public-repository-group</id> <name>JBoss Public 
-			Maven Repository Group</name> <url>https://repository.jboss.org/nexus/content/groups/public/</url> 
-			<layout>default</layout> <releases> <enabled>true</enabled> <updatePolicy>never</updatePolicy> 
-			</releases> <snapshots> <enabled>true</enabled> <updatePolicy>never</updatePolicy> 
-			</snapshots> </repository> -->
-
-		<repository>
-			<id>spring-maven-snapshot</id>
-			<name>Springframework Maven Snapshot Repository</name>
-			<url>http://maven.springframework.org/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-
-		<repository>
-			<id>apache-snapshot</id>
-			<name>Apache Maven Snapshot Repository</name>
-			<url>https://repository.apache.org/content/groups/snapshots/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-
-	</repositories>
-
 </project>
