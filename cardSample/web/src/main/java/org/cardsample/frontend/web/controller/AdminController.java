@@ -1,6 +1,5 @@
 package org.cardsample.frontend.web.controller;
 
-import org.cardsample.sec.util.SecurityConstants.Privileges;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,10 +27,10 @@ public final class AdminController {
      * @return the edit_user jsp view
      */
     @RequestMapping(value = "/edit-user", method = RequestMethod.GET, params = "id")
-    @Secured({ Privileges.ROLE_ADMIN })
+    @Secured({ "ROLE_ADMIN" })
     public String editUser(@RequestParam("id") final String id, final Model model) {
-	model.addAttribute("id", id);
+        model.addAttribute("id", id);
 
-	return "/admin/edit_user";
+        return "/admin/edit_user";
     }
 }
