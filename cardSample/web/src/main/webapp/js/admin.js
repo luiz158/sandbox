@@ -84,10 +84,7 @@ var Admin = {
 	},
 
 	_toBusinessCard : function(elem) {
-		return {
-			id : elem.id,
-			name : elem.name
-		};
+		return {id : elem.id, name : name.email};
 	}
 
 };
