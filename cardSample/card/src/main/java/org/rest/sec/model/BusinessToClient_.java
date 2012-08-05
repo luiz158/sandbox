@@ -11,5 +11,6 @@ public abstract class BusinessToClient_ {
     public static volatile SingularAttribute<BusinessToClient, Long> id;
     public static volatile SingularAttribute<BusinessToClient, String> name;
     public static volatile SingularAttribute<BusinessToClient, BusinessCard> businessCard;
+    public static volatile SingularAttribute<BusinessToClient, ClientCard> clientCard;
 
 }

@@ -28,10 +28,10 @@ public class BusinessToClient implements INameableEntity {
     @Column(unique = true, nullable = false)
     private String name;
 
-    // @formatter:off
     @OneToOne( /* cascade = { CascadeType.REMOVE }, */fetch = FetchType.EAGER)
     private BusinessCard businessCard;
-    // @formatter:on
+    @OneToOne( /* cascade = { CascadeType.REMOVE }, */fetch = FetchType.EAGER)
+    private ClientCard clientCard;
 
     public BusinessToClient() {
         super();
@@ -76,6 +76,14 @@ public class BusinessToClient implements INameableEntity {
 
     public void setBusinessCard(final BusinessCard businessCardToSet) {
         businessCard = businessCardToSet;
+    }
+
+    public ClientCard getClientCard() {
+        return clientCard;
+    }
+
+    public void setClientCard(final ClientCard clientCardToSet) {
+        clientCard = clientCardToSet;
     }
 
     //
