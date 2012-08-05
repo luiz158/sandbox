@@ -2,7 +2,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <html>
 <head>
-  <title><spring:message code="admin.console"/></title>
+  <title><spring:message code="admin.title"/></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <meta charset="UTF-8">
   <link href="<spring:url value="/css/bootstrap.css"/>" rel="stylesheet" type="text/css"/>
@@ -37,10 +37,6 @@
     });
     
     loadErrMsg = '<spring:message code="js.admin.load.users.error"/>';
-    noResultMsg = '<spring:message code="js.admin.load.users.no.result"/>';
-    noRecordsMsg = '<spring:message code="js.admin.load.users.no.records"/>';
-    notFoundMsg = '<spring:message code="js.admin.user.not.found"/>';
-    enterEmailMsg = '<spring:message code="js.admin.enter.email"/>';
   </script>
   <%@include file="includes/common.jsp" %>
 </head>
@@ -63,13 +59,25 @@
   </div>
 </div>
 <div class="container">
-  <h1><spring:message code="admin.console"/></h1>
-
   <hr/>
+  
   <h3><spring:message code="cards"/></h3>
-  <div style="padding: 10px 0;">
-    <div id="cards_table"> <table id="datatable"></table> </div>
-    <div id="cards_table_footer"> <spring:message code="page"/> <span id="currentPage">1</span> </div>
+  <div style="padding: 10px; float: left; width: 45%;">
+    <div id="businesscards_table"> <table id="businesscardtable"></table> </div>
+    <div id="businesscards_table_footer"> <spring:message code="page"/> <span id="currentPage">1</span> </div>
+
+    <ul class="pager">
+      <li class="disabled previous">
+        <a id="prevPage" href="javascript:void(0);">&larr; <spring:message code="prev"/></a>
+      </li>
+      <li class="next">
+        <a id="nextPage" href="javascript:void(0);"><spring:message code="next"/> &rarr;</a>
+      </li>
+    </ul>
+  </div>
+  <div style="padding: 10px; float: right; width: 45%;">
+    <div id="clientcards_table"> <table id="clientcardtable"></table> </div>
+    <div id="clientcards_table_footer"> <spring:message code="page"/> <span id="currentPage">1</span> </div>
 
     <ul class="pager">
       <li class="disabled previous">

@@ -5,6 +5,19 @@ var Admin = {
 	// page handlers
 
 	loadPage : function() {
+
+		var table = $('#businesscardtable').dataTable({
+			aoColumns : [
+				{ sTitle : "Id", bSearchable : false, bSortable : false },
+				{ sTitle : "Name", bSearchable : false, bSortable : false }
+			],
+			bJQueryUI : true,
+			bFilter : false,
+			bInfo : false,
+			bAutoWidth : true,
+			bPaginate : false
+		});
+		
 		var successHandler = function(data, textStatus, xhr) {
 			if (!data || data.length == 0) {
 				// if there are no data, then don't change table and page number
@@ -17,8 +30,9 @@ var Admin = {
 				} else {
 					$("#nextPage").parent().removeClass("disabled");
 				}
-				// table.fnClearTable();
-
+				
+				$('#businesscardtable').dataTable().fnClearTable();
+				
 				// add new data to the grid
 				$.each(cards, function(index, elem) {
 					table.fnAddData([ elem.id, elem.name ]);
@@ -43,19 +57,6 @@ var Admin = {
 				$("#prevPage").parent().removeClass("disabled");
 			}
 		};
-
-		$('#datatable').dataTable({
-			aoColumns : [
-				{ sTitle : "id", bSearchable : false, bSortable : false },
-				{ sTitle : "name", bSearchable : false, bSortable : false }
-			],
-			bJQueryUI : true,
-			bLengthChange : false,
-			bFilter : false,
-			bInfo : false,
-			bAutoWidth : true,
-			bPaginate : false
-		});
 
 		// pagination
 		$('#prevPage').click(function() {

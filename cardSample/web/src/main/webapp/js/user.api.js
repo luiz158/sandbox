@@ -18,14 +18,5 @@ var UserApi = {
 	findById : function (id, successHandler, errorHandler) {
 		var serverURL = secUrl() + "/api/user/" + id;
 		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
-	},
-
-	/**
-	 * Find user by email.
-	 * @param email the email address.
-	 */
-	findUserByEmail : function (email, successHandler, errorHandler) {
-		var serverURL = secUrl() + "/api/user/?email=" + encodeURIComponent(email);
-		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
-	}
+	} 
 };

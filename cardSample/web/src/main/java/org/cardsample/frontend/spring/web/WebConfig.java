@@ -24,12 +24,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(final ViewControllerRegistry registry) {
         super.addViewControllers(registry);
-
-        registry.addViewController("/login.html");
-        registry.addViewController("/register.html");
-        registry.addViewController("/login_denied.html");
-        registry.addViewController("/login_invalid.html");
-        registry.addViewController("/access_denied.html");
     }
 
     /**
