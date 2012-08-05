@@ -1,4 +1,4 @@
-package org.rest.sec.web.privilege;
+package org.rest.sec.web.businesscard;
 
 import org.rest.sec.client.template.BusinessCardRESTTemplateImpl;
 import org.rest.sec.model.BusinessCard;

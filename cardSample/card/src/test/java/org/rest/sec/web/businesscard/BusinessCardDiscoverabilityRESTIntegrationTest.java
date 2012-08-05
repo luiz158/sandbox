@@ -1,4 +1,4 @@
-package org.rest.sec.web.privilege;
+package org.rest.sec.web.businesscard;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
