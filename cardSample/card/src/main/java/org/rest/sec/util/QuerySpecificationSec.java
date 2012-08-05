@@ -11,6 +11,8 @@ import org.rest.common.search.ClientOperation;
 import org.rest.common.util.QueryConstants;
 import org.rest.sec.model.BusinessCard;
 import org.rest.sec.model.BusinessCard_;
+import org.rest.sec.model.ClientCard;
+import org.rest.sec.model.ClientCard_;
 import org.rest.sec.model.Role;
 import org.rest.sec.model.Role_;
 import org.springframework.data.jpa.domain.Specification;
@@ -64,7 +66,10 @@ public final class QuerySpecificationSec {
             return (Specification<T>) roleByIdEq(id, negated);
         }
         if (clazz.equals(BusinessCard.class)) {
-            return (Specification<T>) privilegeByIdEq(id, negated);
+            return (Specification<T>) businessCardCardByIdEq(id, negated);
+        }
+        if (clazz.equals(ClientCard.class)) {
+            return (Specification<T>) clientCardCardByIdEq(id, negated);
         }
 
         return null;
@@ -77,7 +82,10 @@ public final class QuerySpecificationSec {
             return (Specification<T>) roleByNameEq(name, negated);
         }
         if (clazz.equals(BusinessCard.class)) {
-            return (Specification<T>) privilegeByNameEq(name, negated);
+            return (Specification<T>) businessCardByNameEq(name, negated);
+        }
+        if (clazz.equals(ClientCard.class)) {
+            return (Specification<T>) clientCardByNameEq(name, negated);
         }
 
         return null;
@@ -88,7 +96,10 @@ public final class QuerySpecificationSec {
             return (Specification<T>) roleByNameContains(name, negated);
         }
         if (clazz.equals(BusinessCard.class)) {
-            return (Specification<T>) privilegeByNameContains(name, negated);
+            return (Specification<T>) businessCardByNameContains(name, negated);
+        }
+        if (clazz.equals(ClientCard.class)) {
+            return (Specification<T>) clientCardByNameContains(name, negated);
         }
 
         return null;
@@ -99,7 +110,10 @@ public final class QuerySpecificationSec {
             return (Specification<T>) roleByNameStartsWith(name, negated);
         }
         if (clazz.equals(BusinessCard.class)) {
-            return (Specification<T>) privilegeByNameStartsWith(name, negated);
+            return (Specification<T>) businessCardByNameStartsWith(name, negated);
+        }
+        if (clazz.equals(ClientCard.class)) {
+            return (Specification<T>) clientCardByNameStartsWith(name, negated);
         }
 
         return null;
@@ -110,7 +124,10 @@ public final class QuerySpecificationSec {
             return (Specification<T>) roleByNameEndsWith(name, negated);
         }
         if (clazz.equals(BusinessCard.class)) {
-            return (Specification<T>) privilegeByNameEndsWith(name, negated);
+            return (Specification<T>) businessCardByNameEndsWith(name, negated);
+        }
+        if (clazz.equals(ClientCard.class)) {
+            return (Specification<T>) clientCardByNameEndsWith(name, negated);
         }
 
         return null;
@@ -148,9 +165,9 @@ public final class QuerySpecificationSec {
         return QuerySpecificationSec.<Role> entityByKeyStartsWith(name, negated, Role_.name);
     }
 
-    // privilege
+    // Business Card
 
-    private static Specification<BusinessCard> privilegeByIdEq(final Long id, final boolean negated) {
+    private static Specification<BusinessCard> businessCardCardByIdEq(final Long id, final boolean negated) {
         return new Specification<BusinessCard>() {
             @Override
             public final Predicate toPredicate(final Root<BusinessCard> root, final CriteriaQuery<?> query, final CriteriaBuilder builder) {
@@ -162,36 +179,82 @@ public final class QuerySpecificationSec {
         };
     }
 
-    private static Specification<BusinessCard> privilegeByNameEq(final String name, final boolean negated) {
+    private static Specification<BusinessCard> businessCardByNameEq(final String name, final boolean negated) {
         return QuerySpecificationSec.<BusinessCard> entityByKeyEq(name, negated, BusinessCard_.name);
     }
 
-    private static Specification<BusinessCard> privilegeByNameContains(final String name, final boolean negated) {
+    private static Specification<BusinessCard> businessCardByNameContains(final String name, final boolean negated) {
         return QuerySpecificationSec.<BusinessCard> entityByKeyContains(name, negated, BusinessCard_.name);
     }
 
-    private static Specification<BusinessCard> privilegeByNameStartsWith(final String name, final boolean negated) {
+    private static Specification<BusinessCard> businessCardByNameStartsWith(final String name, final boolean negated) {
         return QuerySpecificationSec.<BusinessCard> entityByKeyStartsWith(name, negated, BusinessCard_.name);
     }
 
-    private static Specification<BusinessCard> privilegeByNameEndsWith(final String name, final boolean negated) {
+    private static Specification<BusinessCard> businessCardByNameEndsWith(final String name, final boolean negated) {
         return QuerySpecificationSec.<BusinessCard> entityByKeyEndsWith(name, negated, BusinessCard_.name);
     }
 
-    private static Specification<BusinessCard> privilegeByDescriptionEq(final String description, final boolean negated) {
+    private static Specification<BusinessCard> businessCardByDescriptionEq(final String description, final boolean negated) {
         return QuerySpecificationSec.<BusinessCard> entityByKeyEq(description, negated, BusinessCard_.description);
     }
 
-    private static Specification<BusinessCard> privilegeByDescriptionContains(final String description, final boolean negated) {
+    private static Specification<BusinessCard> businessCardByDescriptionContains(final String description, final boolean negated) {
         return QuerySpecificationSec.<BusinessCard> entityByKeyContains(description, negated, BusinessCard_.description);
     }
 
-    private static Specification<BusinessCard> privilegeByDescriptionStartsWith(final String description, final boolean negated) {
+    private static Specification<BusinessCard> businessCardByDescriptionStartsWith(final String description, final boolean negated) {
         return QuerySpecificationSec.<BusinessCard> entityByKeyStartsWith(description, negated, BusinessCard_.description);
     }
 
-    private static Specification<BusinessCard> privilegeByDescriptionEndsWith(final String description, final boolean negated) {
+    private static Specification<BusinessCard> businessCardByDescriptionEndsWith(final String description, final boolean negated) {
         return QuerySpecificationSec.<BusinessCard> entityByKeyEndsWith(description, negated, BusinessCard_.description);
+    }
+
+    // Client Card
+
+    private static Specification<ClientCard> clientCardCardByIdEq(final Long id, final boolean negated) {
+        return new Specification<ClientCard>() {
+            @Override
+            public final Predicate toPredicate(final Root<ClientCard> root, final CriteriaQuery<?> query, final CriteriaBuilder builder) {
+                if (negated) {
+                    return builder.notEqual(root.get(ClientCard_.id), id);
+                }
+                return builder.equal(root.get(ClientCard_.id), id);
+            }
+        };
+    }
+
+    private static Specification<ClientCard> clientCardByNameEq(final String name, final boolean negated) {
+        return QuerySpecificationSec.<ClientCard> entityByKeyEq(name, negated, ClientCard_.name);
+    }
+
+    private static Specification<ClientCard> clientCardByNameContains(final String name, final boolean negated) {
+        return QuerySpecificationSec.<ClientCard> entityByKeyContains(name, negated, ClientCard_.name);
+    }
+
+    private static Specification<ClientCard> clientCardByNameStartsWith(final String name, final boolean negated) {
+        return QuerySpecificationSec.<ClientCard> entityByKeyStartsWith(name, negated, ClientCard_.name);
+    }
+
+    private static Specification<ClientCard> clientCardByNameEndsWith(final String name, final boolean negated) {
+        return QuerySpecificationSec.<ClientCard> entityByKeyEndsWith(name, negated, ClientCard_.name);
+    }
+
+    private static Specification<ClientCard> clientCardByDescriptionEq(final String description, final boolean negated) {
+        return QuerySpecificationSec.<ClientCard> entityByKeyEq(description, negated, ClientCard_.description);
+    }
+
+    private static Specification<ClientCard> clientCardByDescriptionContains(final String description, final boolean negated) {
+        return QuerySpecificationSec.<ClientCard> entityByKeyContains(description, negated, ClientCard_.description);
+    }
+
+    private static Specification<ClientCard> clientCardByDescriptionStartsWith(final String description, final boolean negated) {
+        return QuerySpecificationSec.<ClientCard> entityByKeyStartsWith(description, negated, ClientCard_.description);
+    }
+
+    private static Specification<ClientCard> clientCardByDescriptionEndsWith(final String description, final boolean negated) {
+        return QuerySpecificationSec.<ClientCard> entityByKeyEndsWith(description, negated, ClientCard_.description);
     }
 
     // generic
