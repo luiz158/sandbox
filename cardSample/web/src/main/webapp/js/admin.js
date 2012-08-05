@@ -5,6 +5,7 @@ var Admin = {
 	// page handlers
 
 	loadPage : function() {
+
 		var businesscardtable = $('#businesscardtable').dataTable({
 			aoColumns : [ {
 				sTitle : "Id",
@@ -38,7 +39,7 @@ var Admin = {
 			bPaginate : false
 		});
 
-		// II. BUSINESS CARD TABLE
+		// I. SUCCESS AND FAILURE HANDLES
 
 		var businessCardSuccessHandler = function(data, textStatus, xhr) {
 			if (!data || data.length == 0) {
@@ -79,13 +80,6 @@ var Admin = {
 				$("#prevPageBC").parent().removeClass("disabled");
 			}
 		};
-		initializeBusinessCardTable(businesscardtable, clientcardtable);
-		
-		// load first page
-		BusinessCardApi.findAllPaged(page, pageSize, businessCardSuccessHandler, businessCardErrorHandler);
-
-		
-		// II. CLIENT CARD TABLE
 
 		var clientCardSuccessHandler = function(data, textStatus, xhr) {
 			if (!data || data.length == 0) {
@@ -108,9 +102,12 @@ var Admin = {
 			showErrorNotification(loadErrMsg);
 		};
 
-		initializeClientCardTable(clientcardtable, businesscardtable);
+		// ii. INITS
 
-		// load first page
+		initializeBusinessCardTable(businesscardtable, clientcardtable, clientCardSuccessHandler, clientCardErrorHandler);
+		initializeClientCardTable(clientcardtable, businesscardtable, businessCardSuccessHandler, businessCardErrorHandler);
+
+		BusinessCardApi.findAllPaged(page, pageSize, businessCardSuccessHandler, businessCardErrorHandler);
 		ClientCardApi.findAllPaged(page, pageSize, clientCardSuccessHandler, clientCardErrorHandler);
 	},
 
@@ -137,7 +134,7 @@ function rowClicked(oTableLocal) {
 	return oTableLocal.$('tr.row_selected');
 }
 
-function initializeBusinessCardTable(bTable, cTable) {
+function initializeBusinessCardTable(bTable, cTable, cSucc, cFail) {
 	$("#businesscardtable tbody").click(function(event) {
 		$(bTable.fnSettings().aoData).each(function() {
 			$(this.nTr).removeClass('row_selected');
@@ -148,13 +145,14 @@ function initializeBusinessCardTable(bTable, cTable) {
 	/* Add a click handler for the delete row */
 	$('#businesscardtable tbody').click(function() {
 		$('#clientcardtable').dataTable().fnClearTable();
-		
+
 		var anSelected = rowClicked(bTable);
-		anSelected[0];
+		var id = anSelected[0];
+		ClientCardApi.findAllByAssociation(id, cSucc, cFail);
 	});
 }
 
-function initializeClientCardTable(cTable, bTable) {
+function initializeClientCardTable(cTable, bTable, bSucc, bFail) {
 	$("#clientcardtable tbody").click(function(event) {
 		$(cTable.fnSettings().aoData).each(function() {
 			$(this.nTr).removeClass('row_selected');
