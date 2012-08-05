@@ -4,24 +4,28 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
-import org.rest.sec.model.BusinessCard;
-import org.rest.sec.model.BusinessToClient;
+import org.rest.sec.model.ClientCard;
 import org.rest.sec.test.SecPersistenceDAOIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.google.common.collect.Sets;
-
 @TransactionConfiguration(defaultRollback = true)
 @Transactional
-public class BusinessToClientDAOPersistenceIntegrationTest extends SecPersistenceDAOIntegrationTest<BusinessToClient> {
+public class ClientCardDAOPersistenceIntegrationTest extends SecPersistenceDAOIntegrationTest<ClientCard> {
 
     @Autowired
-    IBusinessCardJpaDAO associationDao;
+    private IClientCardJpaDAO dao;
     @Autowired
-    private IBusinessToClientJpaDAO dao;
+    IBusinessToClientJpaDAO associationDao;
+
+    // save
+
+    @Test
+    public void whenSaveIsPerformed_thenNoException() {
+        getAPI().save(createNewEntity());
+    }
 
     // find by
 
@@ -31,7 +35,7 @@ public class BusinessToClientDAOPersistenceIntegrationTest extends SecPersistenc
         final String name = randomAlphabetic(8);
 
         // When
-        final BusinessToClient entityByName = getDAOCasted().findByName(name);
+        final ClientCard entityByName = getDAOCasted().findByName(name);
 
         // Then
         assertNull(entityByName);
@@ -40,30 +44,28 @@ public class BusinessToClientDAOPersistenceIntegrationTest extends SecPersistenc
     // template method
 
     @Override
-    protected final JpaRepository<BusinessToClient, Long> getAPI() {
+    protected final JpaRepository<ClientCard, Long> getAPI() {
         return dao;
     }
 
     @Override
-    protected final BusinessToClient createNewEntity() {
-        final BusinessToClient entity = new BusinessToClient(randomAlphabetic(8));
-        entity.setPrivileges(Sets.<BusinessCard> newHashSet());
-        return entity;
+    protected final ClientCard createNewEntity() {
+        return new ClientCard(randomAlphabetic(8));
     }
 
     @Override
-    protected final void invalidate(final BusinessToClient entity) {
+    protected final void invalidate(final ClientCard entity) {
         entity.setName(null);
     }
 
     @Override
-    protected final void changeEntity(final BusinessToClient entity) {
+    protected final void changeEntity(final ClientCard entity) {
         entity.setName(randomAlphabetic(6));
     }
 
     //
 
-    protected final IBusinessToClientJpaDAO getDAOCasted() {
+    protected final IClientCardJpaDAO getDAOCasted() {
         return dao;
     }
 

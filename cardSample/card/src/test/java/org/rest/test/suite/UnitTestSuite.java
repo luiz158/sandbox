@@ -6,10 +6,11 @@ import org.junit.runners.Suite.SuiteClasses;
 import org.rest.common.search.ConstructQueryStringUnitTest;
 import org.rest.sec.persistence.service.impl.BusinessCardServiceUnitTest;
 import org.rest.sec.persistence.service.impl.BusinessToClientServiceUnitTest;
+import org.rest.sec.persistence.service.impl.ClientCardServiceUnitTest;
 import org.rest.util.ParseQueryStringUnitTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ BusinessToClientServiceUnitTest.class, BusinessCardServiceUnitTest.class, ParseQueryStringUnitTest.class, ConstructQueryStringUnitTest.class })
+@SuiteClasses({ BusinessToClientServiceUnitTest.class, BusinessCardServiceUnitTest.class, ClientCardServiceUnitTest.class, ParseQueryStringUnitTest.class, ConstructQueryStringUnitTest.class })
 public final class UnitTestSuite {
     //
 }
