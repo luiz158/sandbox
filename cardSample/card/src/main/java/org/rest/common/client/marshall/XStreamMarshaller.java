@@ -1,5 +1,7 @@
 package org.rest.common.client.marshall;
 
+import java.util.List;
+
 import org.rest.sec.model.BusinessCard;
 import org.rest.sec.model.ClientCard;
 import org.springframework.context.annotation.Profile;
@@ -42,6 +44,12 @@ public final class XStreamMarshaller implements IMarshaller {
     @Override
     public final String getMime() {
         return MediaType.APPLICATION_XML.toString();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> List<T> decodeList(final String entityAsXML, final Class<T> clazz) {
+        return this.decode(entityAsXML, List.class);
     }
 
 }

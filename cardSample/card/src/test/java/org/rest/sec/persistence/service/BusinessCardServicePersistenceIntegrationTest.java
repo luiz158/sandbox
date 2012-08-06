@@ -36,9 +36,9 @@ public class BusinessCardServicePersistenceIntegrationTest extends SecPersistenc
         bService.create(createNewEntity(name));
     }
 
-    // scenarios
+    // scenarios (in progress)
 
-    @Test(expected = DataAccessException.class)
+    @Test
     public void when_thenNoExceptions() {
         final BusinessCard businessCard = bService.create(createNewEntity(randomAlphabetic(8)));
         final ClientCard clientCard = cService.create(new ClientCard(randomAlphabetic(8)));

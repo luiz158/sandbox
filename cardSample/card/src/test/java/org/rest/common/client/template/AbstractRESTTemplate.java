@@ -68,13 +68,13 @@ public abstract class AbstractRESTTemplate<T extends IEntity> implements IRESTTe
     @Override
     public List<T> findAll() {
         final Response findAllResponse = findOneAsResponse(getURI());
-        return marshaller.<List> decode(findAllResponse.getBody().asString(), List.class);
+        return marshaller.<T> decodeList(findAllResponse.getBody().asString(), clazz);
     }
 
     @Override
     public final List<T> findAll(final String sortBy, final String sortOrder) {
         final Response findAllResponse = findOneAsResponse(getURI() + QueryConstants.Q_SORT_BY + sortBy + QueryConstants.S_ORDER + sortOrder);
-        return marshaller.<List> decode(findAllResponse.getBody().asString(), List.class);
+        return marshaller.<T> decodeList(findAllResponse.getBody().asString(), clazz);
     }
 
     @Override
@@ -175,7 +175,7 @@ public abstract class AbstractRESTTemplate<T extends IEntity> implements IRESTTe
         final Response searchResponse = givenAuthenticated().header(HttpHeaders.ACCEPT, marshaller.getMime()).get(queryURI);
         Preconditions.checkState(searchResponse.getStatusCode() == 200);
 
-        return getMarshaller().<List> decode(searchResponse.getBody().asString(), List.class);
+        return getMarshaller().<T> decodeList(searchResponse.getBody().asString(), clazz);
     }
 
     @Override
