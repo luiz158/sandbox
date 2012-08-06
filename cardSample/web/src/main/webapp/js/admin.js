@@ -79,11 +79,14 @@ var Admin = {
 		var clientCardErrorHandler = function(xhr, textStatus) {
 			showErrorNotification(loadErrMsg);
 		};
-		
+
 		var notifySuccess = function(data, textStatus, xhr) {
-			alert('text');
+			ClientCardApi.findAllByAssociation(1, clientCardSuccessHandler, clientCardErrorHandler);
 		};
-		
+		var notifyFail = function(data, textStatus, xhr) {
+			//
+		};
+
 		// ii. INITS
 
 		initializeBusinessCardTable(businesscardtable, clientCardSuccessHandler, clientCardErrorHandler);
@@ -93,7 +96,7 @@ var Admin = {
 		ClientCardApi.findAllPaged(page, pageSize, clientCardSuccessHandler, clientCardErrorHandler);
 
 		$("#addClientToBusiness").click(function(event) {
-			BusinessCardApi.notify(notifySuccess);
+			BusinessCardApi.notify(notifySuccess, notifyFail);
 		});
 	},
 

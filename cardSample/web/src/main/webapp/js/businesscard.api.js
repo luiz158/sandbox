@@ -7,7 +7,7 @@ var BusinessCardApi = {
 	 */
 	notify : function (successHandler, errorHandler) {
 		var serverURL = cardUrl() + BusinessCardApi.root + "/notify";
-		handleAjaxRequest('POST', serverURL, successHandler, errorHandler, beforeSendHandler);
+		handleAjaxRequest('POST', serverURL, null, successHandler, errorHandler, beforeSendHandler);
 	},
 	
 	/**
