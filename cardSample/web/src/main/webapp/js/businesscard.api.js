@@ -6,7 +6,7 @@ var BusinessCardApi = {
 	 * @param pageSize the items per page.
 	 */
 	findAllPaged : function(page, pageSize, successHandler, errorHandler) {
-		var serverURL = businessCardUrl() + "/api/businesscard?page=" + page + "&size=" + pageSize;
+		var serverURL = cardUrl() + "/api/businesscard?page=" + page + "&size=" + pageSize;
 		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
 	},
 
@@ -15,7 +15,7 @@ var BusinessCardApi = {
 	 * @param id the user id.
 	 */
 	findOneById : function(id, successHandler, errorHandler) {
-		var serverURL = businessCardUrl() + "/api/businesscard/" + id;
+		var serverURL = cardUrl() + "/api/businesscard/" + id;
 		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
 	},
 
@@ -23,7 +23,7 @@ var BusinessCardApi = {
 	 * Find all resources of association
 	 */
 	findAllByAssociation : function(idOfAssociation, successHandler, errorHandler) {
-		var serverURL = businessCardUrl() + "/api/businesscard/clientcard/" + ididOfAssociation;
+		var serverURL = cardUrl() + "/api/businesscard/clientcard/" + ididOfAssociation;
 		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
 	}
 
@@ -37,7 +37,7 @@ var ClientCardApi = {
 	 * @param pageSize the items per page.
 	 */
 	findAllPaged : function(page, pageSize, successHandler, errorHandler) {
-		var serverURL = businessCardUrl() + "/api/clientcard?page=" + page + "&size=" + pageSize;
+		var serverURL = cardUrl() + "/api/clientcard?page=" + page + "&size=" + pageSize;
 		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
 	},
 
@@ -46,7 +46,7 @@ var ClientCardApi = {
 	 * @param id the user id.
 	 */
 	findOneById : function(id, successHandler, errorHandler) {
-		var serverURL = businessCardUrl() + "/api/clientcard/" + id;
+		var serverURL = cardUrl() + "/api/clientcard/" + id;
 		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
 	}, 
 	
@@ -54,7 +54,7 @@ var ClientCardApi = {
 	 * Find all resources of association
 	 */
 	findAllByAssociation : function(idOfAssociation, successHandler, errorHandler) {
-		var serverURL = businessCardUrl() + "/api/clientcard/businesscard/" + ididOfAssociation;
+		var serverURL = cardUrl() + "/api/clientcard/businesscard/" + idOfAssociation;
 		handleAjaxRequest('GET', serverURL, null, successHandler, errorHandler, beforeSendHandler);
 	}
 

@@ -104,11 +104,15 @@ var Admin = {
 
 		// ii. INITS
 
-		initializeBusinessCardTable(businesscardtable, clientcardtable, clientCardSuccessHandler, clientCardErrorHandler);
-		initializeClientCardTable(clientcardtable, businesscardtable, businessCardSuccessHandler, businessCardErrorHandler);
+		initializeBusinessCardTable(businesscardtable, clientcardtable,
+				clientCardSuccessHandler, clientCardErrorHandler);
+		initializeClientCardTable(clientcardtable, businesscardtable,
+				businessCardSuccessHandler, businessCardErrorHandler);
 
-		BusinessCardApi.findAllPaged(page, pageSize, businessCardSuccessHandler, businessCardErrorHandler);
-		ClientCardApi.findAllPaged(page, pageSize, clientCardSuccessHandler, clientCardErrorHandler);
+		BusinessCardApi.findAllPaged(page, pageSize,
+				businessCardSuccessHandler, businessCardErrorHandler);
+		ClientCardApi.findAllPaged(page, pageSize, clientCardSuccessHandler,
+				clientCardErrorHandler);
 	},
 
 	// convertors
@@ -142,14 +146,13 @@ function initializeBusinessCardTable(bTable, cTable, cSucc, cFail) {
 		$(event.target.parentNode).addClass('row_selected');
 	});
 
-	/* Add a click handler for the delete row */
-	$('#businesscardtable tbody').click(function() {
+	$("#businesscardtable tbody").delegate("tr", "click", function() {
 		$('#clientcardtable').dataTable().fnClearTable();
-
-		var anSelected = rowClicked(bTable);
-		var id = anSelected[0];
+		
+		var id = $("td:first", this).text();
 		ClientCardApi.findAllByAssociation(id, cSucc, cFail);
 	});
+
 }
 
 function initializeClientCardTable(cTable, bTable, bSucc, bFail) {

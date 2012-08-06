@@ -28,7 +28,7 @@
     function secUrl() {
       return '${properties.securl}';
     }
-    function businessCardUrl() {
+    function cardUrl() {
       return '/cardSample-rest';
     }
     $(document).ready(function () {
