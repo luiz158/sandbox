@@ -52,10 +52,10 @@
 
 hr.popup { margin: 10px 0 15px 0; }
 
-#businesscards_table { min-height: 400px; }
+#businesscards_table { min-height: 300px; }
 #businesscards_table_footer { padding: 10px; }
 
-#clientcards_table { min-height: 400px;}
+#clientcards_table { min-height: 300px;}
 #clientcards_table_footer { padding: 10px; }
 
 .addFieldSection { padding: 15px; text-align: center; cursor: pointer; background-color: #f7f7f7; border-radius: 5px; text-shadow: 1px 1px 1px #ffffff;}

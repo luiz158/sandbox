@@ -60,34 +60,21 @@
 <div class="container">
   <hr/>
   
-  <h3><spring:message code="cards"/></h3>
   <div style="padding: 10px; float: left; width: 45%;">
+  <h3><spring:message code="businesscards"/></h3>
     <div id="businesscards_table"> <table id="businesscardtable"></table> </div>
-    <div id="businesscards_table_footer"> <spring:message code="page"/> <span id="currentPage">1</span> </div>
-
-    <ul class="pager">
-      <li class="disabled previous">
-        <a id="prevPageBC" href="javascript:void(0);">&larr; <spring:message code="prev"/></a>
-      </li>
-      <li class="next">
-        <a id="nextPageBC" href="javascript:void(0);"><spring:message code="next"/> &rarr;</a>
-      </li>
-    </ul>
   </div>
   
   <div style="padding: 10px; float: right; width: 45%;">
+	<h3><spring:message code="clientcards"/></h3>
     <div id="clientcards_table"> <table id="clientcardtable"></table> </div>
-    <div id="clientcards_table_footer"> <spring:message code="page"/> <span id="currentPage">1</span> </div>
-
-    <ul class="pager">
-      <li class="disabled previous">
-        <a id="prevPageCC" href="javascript:void(0);">&larr; <spring:message code="prev"/></a>
-      </li>
-      <li class="next">
-        <a id="nextPageCC" href="javascript:void(0);"><spring:message code="next"/> &rarr;</a>
-      </li>
-    </ul>
   </div>
+  
+</div>
+  
+<div class="container">
+  <h5>Simulate Notification - adding sample Client Card to the first Business Card in table</h5>
+  <button id="addClientToBusiness">Add</button>
 </div>
 
 </body>

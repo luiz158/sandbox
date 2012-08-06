@@ -104,15 +104,16 @@ var Admin = {
 
 		// ii. INITS
 
-		initializeBusinessCardTable(businesscardtable, clientcardtable,
-				clientCardSuccessHandler, clientCardErrorHandler);
-		initializeClientCardTable(clientcardtable, businesscardtable,
-				businessCardSuccessHandler, businessCardErrorHandler);
+		initializeBusinessCardTable(businesscardtable, clientCardSuccessHandler, clientCardErrorHandler);
+		initializeClientCardTable(clientcardtable, businessCardSuccessHandler, businessCardErrorHandler);
 
-		BusinessCardApi.findAllPaged(page, pageSize,
-				businessCardSuccessHandler, businessCardErrorHandler);
-		ClientCardApi.findAllPaged(page, pageSize, clientCardSuccessHandler,
-				clientCardErrorHandler);
+		BusinessCardApi.findAllPaged(page, pageSize, businessCardSuccessHandler, businessCardErrorHandler);
+		ClientCardApi.findAllPaged(page, pageSize, clientCardSuccessHandler, clientCardErrorHandler);
+
+		$("#addClientToBusiness").click(function(event) {
+			var newClientCard = jQuery.parseJSON('{"id":null,"name":"BusinessCardSample","description":null}');
+			ClientCardApi.create(newClientCard, clientCardSuccessHandler, clientCardErrorHandler);
+		});
 	},
 
 	// convertors
@@ -138,7 +139,7 @@ function rowClicked(oTableLocal) {
 	return oTableLocal.$('tr.row_selected');
 }
 
-function initializeBusinessCardTable(bTable, cTable, cSucc, cFail) {
+function initializeBusinessCardTable(bTable, cSucc, cFail) {
 	$("#businesscardtable tbody").click(function(event) {
 		$(bTable.fnSettings().aoData).each(function() {
 			$(this.nTr).removeClass('row_selected');
@@ -148,14 +149,14 @@ function initializeBusinessCardTable(bTable, cTable, cSucc, cFail) {
 
 	$("#businesscardtable tbody").delegate("tr", "click", function() {
 		$('#clientcardtable').dataTable().fnClearTable();
-		
+
 		var id = $("td:first", this).text();
 		ClientCardApi.findAllByAssociation(id, cSucc, cFail);
 	});
 
 }
 
-function initializeClientCardTable(cTable, bTable, bSucc, bFail) {
+function initializeClientCardTable(cTable, bSucc, bFail) {
 	$("#clientcardtable tbody").click(function(event) {
 		$(cTable.fnSettings().aoData).each(function() {
 			$(this.nTr).removeClass('row_selected');
@@ -163,11 +164,10 @@ function initializeClientCardTable(cTable, bTable, bSucc, bFail) {
 		$(event.target.parentNode).addClass('row_selected');
 	});
 
-	/* Add a click handler for the delete row */
-	$('#clientcardtable tbody').click(function() {
-		var anSelected = rowClicked(cTable);
-		if (anSelected.length !== 0) {
-			cTable.fnDeleteRow(anSelected[0]);
-		}
+	$("#clientcardtable tbody").delegate("tr", "click", function() {
+		$('#businesscardtable').dataTable().fnClearTable();
+
+		var id = $("td:first", this).text();
+		BusinessCardApi.findAllByAssociation(id, bSucc, bFail);
 	});
 }

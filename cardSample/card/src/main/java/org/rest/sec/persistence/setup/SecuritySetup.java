@@ -38,8 +38,11 @@ public class SecuritySetup implements ApplicationListener<ContextRefreshedEvent>
     //
 
     /**
-     * - note that this is a compromise - the flag makes this bean statefull which can (and will) be avoided in the future by a more advanced mechanism <br>
-     * - the reason for this is that the context is refreshed more than once throughout the lifecycle of the deployable <br>
+     * - note that this is a compromise - the flag makes this bean statefull
+     * which can (and will) be avoided in the future by a more advanced
+     * mechanism <br>
+     * - the reason for this is that the context is refreshed more than once
+     * throughout the lifecycle of the deployable <br>
      * - alternatives: proper persisted versioning
      */
     @Override
@@ -85,9 +88,14 @@ public class SecuritySetup implements ApplicationListener<ContextRefreshedEvent>
 
         bc1.setClientCards(Sets.newHashSet(cc2));
         bc2.setClientCards(Sets.newHashSet(cc1));
+        cc1.setBusinessCards(Sets.newHashSet(bc2));
+        cc2.setBusinessCards(Sets.newHashSet(bc1));
 
         businessCardService.update(bc1);
         businessCardService.update(bc2);
+
+        // clientCardService.update(cc1);
+        // clientCardService.update(cc2);
     }
 
     final void createBusinessCardIfNotExisting(final String name) {
