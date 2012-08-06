@@ -90,7 +90,6 @@
 	</repositories>
 
 	<modules>
-		<module>common</module>
 		<module>test</module>
 
 		<module>card</module>
