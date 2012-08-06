@@ -7,6 +7,10 @@
 	<packaging>pom</packaging>
 	<name>cardSample-parent</name>
 
+	<dependencies>
+
+	</dependencies>
+
 	<build>
 
 		<plugins>
@@ -30,28 +34,6 @@
 		</pluginManagement>
 
 	</build>
-
-	<repositories>
-
-		<repository>
-			<id>spring-maven-snapshot</id>
-			<name>Springframework Maven Snapshot Repository</name>
-			<url>http://maven.springframework.org/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-
-		<repository>
-			<id>apache-snapshot</id>
-			<name>Apache Maven Snapshot Repository</name>
-			<url>https://repository.apache.org/content/groups/snapshots/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-
-	</repositories>
 
 	<properties>
 		<!-- VERSIONS -->
@@ -85,10 +67,32 @@
 
 	</properties>
 
+	<repositories>
+
+		<repository>
+			<id>spring-maven-snapshot</id>
+			<name>Springframework Maven Snapshot Repository</name>
+			<url>http://maven.springframework.org/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>apache-snapshot</id>
+			<name>Apache Maven Snapshot Repository</name>
+			<url>https://repository.apache.org/content/groups/snapshots/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+	</repositories>
+
 	<modules>
 		<module>common</module>
 		<module>test</module>
-		
+
 		<module>card</module>
 
 		<module>web</module>
