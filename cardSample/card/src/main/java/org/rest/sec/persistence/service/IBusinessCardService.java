@@ -11,4 +11,6 @@ public interface IBusinessCardService extends IService<BusinessCard> {
 
     List<BusinessCard> findAllByAssociation(Long idOfClientCard);
 
+    void notification();
+
 }

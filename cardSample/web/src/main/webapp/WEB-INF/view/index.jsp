@@ -16,7 +16,6 @@
   <script type="text/javascript" src="<spring:url value="/js/jquery.blockUI.2.4.2.js"/>"></script>
   <script type="text/javascript" src="<spring:url value="/js/ajaxHandler.js"/>"></script>
   <script type="text/javascript" src="<spring:url value="/js/common.js"/>"></script>
-  <script type="text/javascript" src="<spring:url value="/js/user.api.js"/>"></script>
   <script type="text/javascript" src="<spring:url value="/js/businesscard.api.js"/>"></script>
   <script type="text/javascript" src="<spring:url value="/js/admin.js"/>"></script>
   <script type="text/javascript" src="<spring:url value="/js/bootstrap.js"/>"></script>

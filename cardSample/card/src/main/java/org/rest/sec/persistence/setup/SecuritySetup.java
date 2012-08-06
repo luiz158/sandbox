@@ -82,18 +82,15 @@ public class SecuritySetup implements ApplicationListener<ContextRefreshedEvent>
 
         final ClientCard cc1 = clientCardService.findByName("ClientCard1");
         final ClientCard cc2 = clientCardService.findByName("ClientCard2");
-
         final BusinessCard bc1 = businessCardService.findByName("BusinessCard1");
         final BusinessCard bc2 = businessCardService.findByName("BusinessCard2");
-
         bc1.setClientCards(Sets.newHashSet(cc2));
         bc2.setClientCards(Sets.newHashSet(cc1));
-        cc1.setBusinessCards(Sets.newHashSet(bc2));
-        cc2.setBusinessCards(Sets.newHashSet(bc1));
-
         businessCardService.update(bc1);
         businessCardService.update(bc2);
 
+        // cc1.setBusinessCards(Sets.newHashSet(bc2));
+        // cc2.setBusinessCards(Sets.newHashSet(bc1));
         // clientCardService.update(cc1);
         // clientCardService.update(cc2);
     }

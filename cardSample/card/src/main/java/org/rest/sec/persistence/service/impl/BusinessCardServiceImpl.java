@@ -1,5 +1,7 @@
 package org.rest.sec.persistence.service.impl;
 
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Triple;
@@ -34,6 +36,14 @@ public class BusinessCardServiceImpl extends AbstractService<BusinessCard> imple
     }
 
     // API
+
+    @Override
+    public void notification() {
+        final ClientCard existingClientCard = clientCardService.create(new ClientCard(randomAlphabetic(6)));
+        BusinessCard existingBusinessCard = dao.findByName("BusinessCard1");
+        existingBusinessCard.getClientCards().add(existingClientCard);
+        dao.save(existingBusinessCard);
+    }
 
     // find
 

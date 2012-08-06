@@ -39,6 +39,12 @@ public class BusinessCardController extends AbstractController<BusinessCard> imp
 
     // API
 
+    @RequestMapping(value = "/notify", method = RequestMethod.POST)
+    @ResponseBody
+    public void notification() {
+        service.notification();
+    }
+
     // search
 
     @RequestMapping(params = { SearchCommonUtil.Q_PARAM }, method = RequestMethod.GET)

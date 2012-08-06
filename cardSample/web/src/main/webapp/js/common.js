@@ -45,17 +45,6 @@ function beforeSendHandler(xhr) {
 	// 
 }
 
-function loadImage(imageLink, onload, onerror) {
-	var image = new Image();
-	if (onload) {
-		image.onload = onload;
-	}
-	if (onerror) {
-		image.onerror = onerror;
-	}
-	image.src = imageLink;
-}
-
 // ---------------------------------------------- Notifications
 
 var hideNotificationTimeout;

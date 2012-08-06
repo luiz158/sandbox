@@ -44,15 +44,8 @@ var Admin = {
 		var businessCardSuccessHandler = function(data, textStatus, xhr) {
 			if (!data || data.length == 0) {
 				// if there are no data, then don't change table and page number
-				page--;
-				$("#nextPageBC").parent().addClass("disabled");
 			} else {
 				var cards = Admin._toCards(data);
-				if (cards.length < pageSize) {
-					$("#nextPageBC").parent().addClass("disabled");
-				} else {
-					$("#nextPageBC").parent().removeClass("disabled");
-				}
 
 				$('#businesscardtable').dataTable().fnClearTable();
 
@@ -60,25 +53,10 @@ var Admin = {
 				$.each(cards, function(index, elem) {
 					businesscardtable.fnAddData([ elem.id, elem.name ]);
 				});
-
-				// change info - a page number
-				$("#currentPage").text(page + 1);
-			}
-
-			if (page == 0) {
-				$("#prevPageBC").parent().addClass("disabled");
-			} else {
-				$("#prevPageBC").parent().removeClass("disabled");
 			}
 		};
 		var businessCardErrorHandler = function(xhr, textStatus) {
 			showErrorNotification(loadErrMsg);
-			page--;
-			if (page == 0) {
-				$("#prevPageBC").parent().addClass("disabled");
-			} else {
-				$("#prevPageBC").parent().removeClass("disabled");
-			}
 		};
 
 		var clientCardSuccessHandler = function(data, textStatus, xhr) {
@@ -101,7 +79,11 @@ var Admin = {
 		var clientCardErrorHandler = function(xhr, textStatus) {
 			showErrorNotification(loadErrMsg);
 		};
-
+		
+		var notifySuccess = function(data, textStatus, xhr) {
+			alert('text');
+		};
+		
 		// ii. INITS
 
 		initializeBusinessCardTable(businesscardtable, clientCardSuccessHandler, clientCardErrorHandler);
@@ -111,8 +93,7 @@ var Admin = {
 		ClientCardApi.findAllPaged(page, pageSize, clientCardSuccessHandler, clientCardErrorHandler);
 
 		$("#addClientToBusiness").click(function(event) {
-			var newClientCard = jQuery.parseJSON('{"id":null,"name":"BusinessCardSample","description":null}');
-			ClientCardApi.create(newClientCard, clientCardSuccessHandler, clientCardErrorHandler);
+			BusinessCardApi.notify(notifySuccess);
 		});
 	},
 

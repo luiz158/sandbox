@@ -1,5 +1,23 @@
 var BusinessCardApi = {
 	root : '/api/businesscard',
+	
+	/**
+	 * Update the resource.
+	 * @param location location to update.
+	 */
+	notify : function (successHandler, errorHandler) {
+		var serverURL = cardUrl() + BusinessCardApi.root + "/notify";
+		handleAjaxRequest('POST', serverURL, successHandler, errorHandler, beforeSendHandler);
+	},
+	
+	/**
+	 * Update the resource.
+	 * @param location location to update.
+	 */
+	update : function (location, successHandler, errorHandler) {
+		var serverURL = cardUrl() + BusinessCardApi.root;
+		handleAjaxRequest('PUT', serverURL, JSON.stringify(location), successHandler, errorHandler, beforeSendHandler);
+	},
 
 	/**
 	 * Find a page of resources.
