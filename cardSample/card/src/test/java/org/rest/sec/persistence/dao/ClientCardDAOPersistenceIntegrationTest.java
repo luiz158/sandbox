@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 import org.rest.sec.model.ClientCard;
-import org.rest.sec.test.SecPersistenceDAOIntegrationTest;
+import org.rest.sec.test.SecDAOPersistenceIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @TransactionConfiguration(defaultRollback = true)
 @Transactional
-public class ClientCardDAOPersistenceIntegrationTest extends SecPersistenceDAOIntegrationTest<ClientCard> {
+public class ClientCardDAOPersistenceIntegrationTest extends SecDAOPersistenceIntegrationTest<ClientCard> {
 
     @Autowired
     private IClientCardJpaDAO dao;

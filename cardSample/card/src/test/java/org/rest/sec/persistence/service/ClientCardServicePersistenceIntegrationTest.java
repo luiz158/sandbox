@@ -5,11 +5,11 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import org.junit.Test;
 import org.rest.common.persistence.service.IService;
 import org.rest.sec.model.ClientCard;
-import org.rest.sec.test.SecPersistenceServiceIntegrationTest;
+import org.rest.sec.test.SecServicePersistenceIntegrationTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
-public class ClientCardServicePersistenceIntegrationTest extends SecPersistenceServiceIntegrationTest<ClientCard> {
+public class ClientCardServicePersistenceIntegrationTest extends SecServicePersistenceIntegrationTest<ClientCard> {
 
     @Autowired
     private IClientCardService service;
