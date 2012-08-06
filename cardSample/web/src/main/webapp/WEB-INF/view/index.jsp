@@ -34,7 +34,7 @@
       Admin.loadPage();
     });
     
-    loadErrMsg = '<spring:message code="js.admin.load.users.error"/>';
+    loadErrMsg = '<spring:message code="js.admin.load.cards.error"/>';
   </script>
   <%@include file="includes/common.jsp" %>
 </head>
