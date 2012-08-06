@@ -179,6 +179,20 @@ public abstract class AbstractRESTTemplate<T extends IEntity> implements IRESTTe
     }
 
     @Override
+    public Response searchAsResponse(final Triple<String, ClientOperation, String>... constraints) {
+        final SearchUriBuilder builder = new SearchUriBuilder();
+        for (final Triple<String, ClientOperation, String> constraint : constraints) {
+            builder.consume(constraint);
+        }
+        final String queryURI = getURI() + START_QUERY_PARAM + builder.build();
+
+        final Response searchResponse = givenAuthenticated().header(HttpHeaders.ACCEPT, marshaller.getMime()).get(queryURI);
+        Preconditions.checkState(searchResponse.getStatusCode() == 200);
+
+        return searchResponse;
+    }
+
+    @Override
     public List<T> searchPaged(final Triple<String, ClientOperation, String> idOp, final Triple<String, ClientOperation, String> nameOp, final int page, final int size) {
         final String queryURI = getURI() + START_QUERY_PARAM + SearchTestUtil.constructQueryString(idOp, nameOp) + "&page=" + page + "&size=" + size;
         final Response searchResponse = givenAuthenticated().header(HttpHeaders.ACCEPT, marshaller.getMime()).get(queryURI);
