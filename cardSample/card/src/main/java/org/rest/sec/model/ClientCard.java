@@ -29,7 +29,7 @@ public class ClientCard implements INameableEntity {
     @Column(unique = true, nullable = false)
     private String name;
     @Column(unique = false, nullable = true)
-    private String description;
+    private String lastName;
 
     //@formatter:off
     @ManyToMany( /*cascade = { CascadeType.REMOVE },*/fetch = FetchType.EAGER )
@@ -67,12 +67,12 @@ public class ClientCard implements INameableEntity {
         name = nameToSet;
     }
 
-    public String getDescription() {
-        return description;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setDescription(final String descriptionToSet) {
-        description = descriptionToSet;
+    public void setLastName(final String lastNameToSet) {
+        lastName = lastNameToSet;
     }
 
     public Set<BusinessCard> getBusinessCards() {

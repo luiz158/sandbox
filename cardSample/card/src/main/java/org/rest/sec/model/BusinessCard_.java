@@ -10,6 +10,7 @@ public abstract class BusinessCard_ {
 
     public static volatile SingularAttribute<BusinessCard, Long> id;
     public static volatile SingularAttribute<BusinessCard, String> name;
-    public static volatile SingularAttribute<BusinessCard, String> description;
+    public static volatile SingularAttribute<BusinessCard, String> lastName;
+    public static volatile SingularAttribute<BusinessCard, String> company;
 
 }

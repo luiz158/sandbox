@@ -10,6 +10,6 @@ public abstract class ClientCard_ {
 
     public static volatile SingularAttribute<ClientCard, Long> id;
     public static volatile SingularAttribute<ClientCard, String> name;
-    public static volatile SingularAttribute<ClientCard, String> description;
+    public static volatile SingularAttribute<ClientCard, String> lastName;
 
 }

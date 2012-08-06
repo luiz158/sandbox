@@ -28,8 +28,10 @@ public class BusinessCard implements INameableEntity {
     private Long id;
     @Column(unique = true, nullable = false)
     private String name;
+    @Column(nullable = true)
+    private String lastName;
     @Column(unique = false, nullable = true)
-    private String description;
+    private String company;
 
     //@formatter:off
     @ManyToMany( /*cascade = { CascadeType.REMOVE },*/fetch = FetchType.EAGER )
@@ -67,12 +69,20 @@ public class BusinessCard implements INameableEntity {
         name = nameToSet;
     }
 
-    public String getDescription() {
-        return description;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setDescription(final String descriptionToSet) {
-        description = descriptionToSet;
+    public void setLastName(final String lastNameToSet) {
+        this.lastName = lastNameToSet;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(final String companyToSet) {
+        company = companyToSet;
     }
 
     public Set<ClientCard> getClientCards() {

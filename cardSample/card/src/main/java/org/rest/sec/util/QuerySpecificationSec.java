@@ -147,19 +147,19 @@ public final class QuerySpecificationSec {
     }
 
     private static Specification<BusinessCard> businessCardByDescriptionEq(final String description, final boolean negated) {
-        return QuerySpecificationSec.<BusinessCard> entityByKeyEq(description, negated, BusinessCard_.description);
+        return QuerySpecificationSec.<BusinessCard> entityByKeyEq(description, negated, BusinessCard_.company);
     }
 
     private static Specification<BusinessCard> businessCardByDescriptionContains(final String description, final boolean negated) {
-        return QuerySpecificationSec.<BusinessCard> entityByKeyContains(description, negated, BusinessCard_.description);
+        return QuerySpecificationSec.<BusinessCard> entityByKeyContains(description, negated, BusinessCard_.company);
     }
 
     private static Specification<BusinessCard> businessCardByDescriptionStartsWith(final String description, final boolean negated) {
-        return QuerySpecificationSec.<BusinessCard> entityByKeyStartsWith(description, negated, BusinessCard_.description);
+        return QuerySpecificationSec.<BusinessCard> entityByKeyStartsWith(description, negated, BusinessCard_.company);
     }
 
     private static Specification<BusinessCard> businessCardByDescriptionEndsWith(final String description, final boolean negated) {
-        return QuerySpecificationSec.<BusinessCard> entityByKeyEndsWith(description, negated, BusinessCard_.description);
+        return QuerySpecificationSec.<BusinessCard> entityByKeyEndsWith(description, negated, BusinessCard_.company);
     }
 
     // Client Card
@@ -193,19 +193,19 @@ public final class QuerySpecificationSec {
     }
 
     private static Specification<ClientCard> clientCardByDescriptionEq(final String description, final boolean negated) {
-        return QuerySpecificationSec.<ClientCard> entityByKeyEq(description, negated, ClientCard_.description);
+        return QuerySpecificationSec.<ClientCard> entityByKeyEq(description, negated, ClientCard_.lastName);
     }
 
     private static Specification<ClientCard> clientCardByDescriptionContains(final String description, final boolean negated) {
-        return QuerySpecificationSec.<ClientCard> entityByKeyContains(description, negated, ClientCard_.description);
+        return QuerySpecificationSec.<ClientCard> entityByKeyContains(description, negated, ClientCard_.lastName);
     }
 
     private static Specification<ClientCard> clientCardByDescriptionStartsWith(final String description, final boolean negated) {
-        return QuerySpecificationSec.<ClientCard> entityByKeyStartsWith(description, negated, ClientCard_.description);
+        return QuerySpecificationSec.<ClientCard> entityByKeyStartsWith(description, negated, ClientCard_.lastName);
     }
 
     private static Specification<ClientCard> clientCardByDescriptionEndsWith(final String description, final boolean negated) {
-        return QuerySpecificationSec.<ClientCard> entityByKeyEndsWith(description, negated, ClientCard_.description);
+        return QuerySpecificationSec.<ClientCard> entityByKeyEndsWith(description, negated, ClientCard_.lastName);
     }
 
     // generic
