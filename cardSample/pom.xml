@@ -90,8 +90,6 @@
 	</repositories>
 
 	<modules>
-		<module>test</module>
-
 		<module>card</module>
 
 		<module>web</module>
